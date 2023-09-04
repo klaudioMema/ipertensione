@@ -1,0 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Cabin&display=swap');
+
+
+
+.menuItem {
+    -fx-background-color:  rgba(0.65, 0.21, 0.90, 0.0);
+}
+.menuItem:hover{
+    -fx-background-color:  rgba(0.65, 0.21, 0.90, 0.5);
+}
+
+.button {
+    -fx-background-color:  rgba(0.65, 0.21, 0.90, 0.0);
+}
+.button:hover{
+    -fx-background-color:  rgba(0.65, 0.21, 0.90, 0.5);
+}
+
+
+#rectangleSide{
+    -fx-fill: linear-gradient(from 25% 25% to 100% 100%, #2265c3, #d62dfd);
+}
+
+#anchorPane{
+    -fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #2265c3, #d62dfd);
+}
+
+#nameLabel, #surnameLabel, #emaiLabel, #passwordLabel, #bdayLabel,#titleLabel, #usernameLabel, #passwordLabel, #titleLabel{
+    -fx-font-family: 'Cabin', sans-serif;
+}
+.normal {
+    -fx-font-family: 'Cabin', sans-serif;
+}
+
+
+.titles {
+    -fx-font-family: 'Cabin', sans-serif;
+}

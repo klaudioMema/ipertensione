@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane stylesheets="Main.css" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univr.Controller.PatientDashboard">
+    <HBox fx:id="contentArea" layoutX="174.0" prefHeight="400.0" prefWidth="426.0" />
+    <VBox prefHeight="400.0" prefWidth="174.0" style="-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #2265c3, #d62dfd);">
+        <Pane prefHeight="145.0" prefWidth="174.0">
+            <Label layoutX="10.0" layoutY="28.0" prefHeight="31.0" prefWidth="143.0" style="-fx-font-family: 'Cabin', sans-serif;" text="Welcome," textFill="WHITE">
+                <font>
+                    <Font size="21.0" />
+                </font>
+            </Label>
+            <Label fx:id="usernameLabel" layoutX="26.0" layoutY="73.0" text="USERNAME" textFill="WHITE">
+                <font>
+                    <Font size="24.0" />
+                </font>
+            </Label>
+        </Pane>
+        <Button mnemonicParsing="false" prefHeight="47.0" prefWidth="174.0" styleClass="menuItem" text="Home" textFill="WHITE" />
+        <Button mnemonicParsing="false" prefHeight="48.0" prefWidth="174.0" styleClass="menuItem" text="My Profile" textFill="WHITE" />
+        <Button mnemonicParsing="false" prefHeight="47.0" prefWidth="174.0" styleClass="menuItem" text="Blood Data" textFill="WHITE" />
+        <Button mnemonicParsing="false" prefHeight="47.0" prefWidth="174.0" styleClass="menuItem" text="Therapies" textFill="WHITE" />
+        <Button mnemonicParsing="false" prefHeight="47.0" prefWidth="174.0" styleClass="menuItem" text="Report Symptoms" textFill="WHITE" />
+        <Button onAction="#logout" mnemonicParsing="false" prefHeight="25.0" prefWidth="55.0" styleClass="menuItem" text="Logout" textFill="#ffafaf" />
+    </VBox>
+
+</AnchorPane>
