@@ -22,12 +22,12 @@ public class Search {
                     "' AND surname = '" + surname + "')");
 
             if (rs.next()) {
-                selectedUser = Patient.getInstance();
+                selectedUser = new Patient();
                 selectedUser.setPatientId(rs.getInt("user_id"));
                 selectedUser.setEmail(rs.getString("email"));
                 selectedUser.setPassword(rs.getString("password"));
                 selectedUser.setName(rs.getString("name"));
-                selectedUser.setSurname(rs.getString("surname"));
+                selectedUser.setCognome(rs.getString("surname"));
                 selectedUser.setCodiceF(rs.getString("codicef"));
                 selectedUser.setbDay(rs.getDate("bday"));
                 selectedUser.setDoctorId(rs.getInt("doctor_id"));
@@ -59,7 +59,7 @@ public class Search {
                 selectedUser.setEmail(rs.getString("email"));
                 selectedUser.setPassword(rs.getString("password"));
                 selectedUser.setName(rs.getString("name"));
-                selectedUser.setSurname(rs.getString("surname"));
+                selectedUser.setCognome(rs.getString("surname"));
             }
         } catch (SQLException e) {
             e.printStackTrace();
