@@ -18,11 +18,13 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
+import it.univr.Functions;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.function.Function;
 
 public class LoginPage implements Initializable {
 
@@ -75,14 +77,6 @@ public class LoginPage implements Initializable {
 
     @FXML
     private void login(ActionEvent event) {
-        // DEGUB - SO we don't have to login every time
-        //loadAdminDashboard("admin",event);
-        //loadDoctorDashboard("medico@gmail.com",event);
-        //loadPatientDashboard("paz@gmail.com",event);
-
-        // Login Code
-
-
         String usermail = usernameTextField.getText();
         String userpass = passwordField.getText();
         String userType = choiceBox.getValue();
@@ -90,9 +84,7 @@ public class LoginPage implements Initializable {
         // Check if user type is selected
         //alertMassage alert = new alertMassage();
         if (choiceBox.getValue() == null) {
-
-            statusLabel.setText("Please Select User Type");
-            statusLabel.setTextFill(Color.color(1, 0, 0));
+            Functions.notificationMessage("Seleziona il tipo di utente", "ERROR", statusLabel);
         } else {
             try {
                 // Check if user exists
@@ -286,7 +278,7 @@ public class LoginPage implements Initializable {
         stage.show();
     }
 
-    private void loadPatientDashboard(String username,ActionEvent event) throws  IOException {
+    private void loadPatientDashboard(String username, ActionEvent event) throws  IOException {
         // Load next scene
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/patient/PatientDashboard.fxml"));
         root = loader.load();
