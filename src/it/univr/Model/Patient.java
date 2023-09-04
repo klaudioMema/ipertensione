@@ -6,25 +6,20 @@ import java.sql.Date;
 public class Patient extends User{
 
     private int patientId;
-    private String surname;
+
     private String codiceF;
     private Date bDay;
     private String fattoriDiRischio;
     private int doctorId;
 
-    private static Patient instance;
 
-    private Patient(){}
-
-    public static Patient getInstance(){
-        if (instance == null) {
-            synchronized (User.class) {
-                if (instance == null) {
-                    instance = new Patient();
-                }
-            }
-        }
-        return instance;
+    public Patient(String name,String cognome,String email,String password,int patientId,String codiceF,Date bDay,String fattoriDiRischio,int doctorId ){
+        super(name, cognome,email,password);
+        this.patientId = patientId;
+        this.codiceF = codiceF;
+        this.bDay = bDay;
+        this.fattoriDiRischio = fattoriDiRischio;
+        this.doctorId = doctorId;
     }
 
     public int getPatientId() {
@@ -32,14 +27,6 @@ public class Patient extends User{
     }
     public void setPatientId(int patientId) {
         this.patientId = patientId;
-    }
-
-    public String getSurname() {
-        return surname;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
     }
 
     public String getCodiceF() {

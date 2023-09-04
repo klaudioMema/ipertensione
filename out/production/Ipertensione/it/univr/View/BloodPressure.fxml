@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@Main.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univr.Controller.BloodPressure">
+    <BorderPane prefHeight="400.0" prefWidth="600.0">
+        <center>
+            <TableView fx:id="tableView" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                <columns>
+                    <TableColumn fx:id="categoryColumn" prefWidth="231.0" text="Category" />
+                    <TableColumn fx:id="SBPColumn" prefWidth="111.0" text="Systolic" />
+                    <TableColumn fx:id="DBPColumn" prefWidth="114.0" text="Diastolic" />
+                    <TableColumn fx:id="whenColumn" prefWidth="142.0" text="When" />
+                </columns>
+            </TableView>
+        </center>
+        <bottom>
+            <Pane prefHeight="181.0" prefWidth="600.0" style="-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #2265c3, #d62dfd);;" BorderPane.alignment="CENTER">
+                <Label layoutX="25.0" layoutY="6.0" styleClass="normal" text="Blood Pressure Data" textFill="WHITE">
+                    <font>
+                        <Font size="25.0" />
+                    </font>
+                </Label>
+                <TextField fx:id="SBPField" layoutX="32.0" layoutY="53.0" prefHeight="25.0" prefWidth="195.0" promptText="SBP" />
+                <TextField fx:id="DBPField" layoutX="32.0" layoutY="92.0" prefHeight="25.0" prefWidth="195.0" promptText="DBP" />
+                <DatePicker fx:id="dateField" layoutX="30.0" layoutY="130.0" prefHeight="25" prefWidth="195" promptText="Date Measured" />
+                <Button fx:id="addButton" layoutX="247.0" layoutY="51.0" mnemonicParsing="false" onAction="#addMeasurement" prefHeight="104.0" prefWidth="194.0" text="ADD" textFill="WHITE" />
+                <Button layoutX="469.0" layoutY="49.0" mnemonicParsing="false" onAction="#removeSelected" prefHeight="106.0" prefWidth="117.0" text="Remove Selected" textFill="WHITE" />
+                <Label fx:id="statusLabel" layoutX="280.0" layoutY="-1.0" prefHeight="50.0" prefWidth="327.0" styleClass="normal" text="Couldn't remove data" textFill="#ffdada" visible="false">
+                    <font>
+                        <Font size="25.0" />
+                    </font>
+                </Label>
+            </Pane>
+        </bottom>
+    </BorderPane>
+</AnchorPane>

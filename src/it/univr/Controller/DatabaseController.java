@@ -6,7 +6,7 @@ public class DatabaseController {
 
     private static final String url = "jdbc:mysql://localhost:3306/bloodmonitor";
     private static final String user = "root";
-    private static final String pass = "admin";
+    private static final String pass = "12345";
 
     // Create a new connection
     public static Connection connect() throws SQLException {
