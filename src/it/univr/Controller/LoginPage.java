@@ -225,20 +225,21 @@ public class LoginPage implements Initializable {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/doctor/DoctorDashboard.fxml"));
         root = loader.load();
         //  Get user data
-        Medic activeUser = Medic.getInstance();
+        Medic activeUser;
         try {
             ResultSet rs = DatabaseController.getResultSet("SELECT * FROM medics WHERE email = '" + username + "'");
             rs.next();
 
+            activeUser = new Medic();
             activeUser.setEmail(rs.getString("email"));
             activeUser.setPassword(rs.getString("password"));
-            activeUser.setName(rs.getString("name"));
-            activeUser.setSurname(rs.getString("surname"));
+            activeUser.setNome(rs.getString("name"));
+            activeUser.setCognome(rs.getString("surname"));
 
             rs.close();
 
             DoctorViewDashboard menuController = loader.getController();
-            menuController.displayName(activeUser.getName());
+            menuController.displayName(activeUser.getNome());
         } catch (SQLException e) {
             e.printStackTrace();
         }
