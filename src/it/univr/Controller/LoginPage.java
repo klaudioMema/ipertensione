@@ -3,9 +3,7 @@ package it.univr.Controller;
 import it.univr.Controller.admin.AdminViewDashboard;
 import it.univr.Controller.doctor.DoctorViewDashboard;
 import it.univr.Controller.patient.PatientViewDashboard;
-import it.univr.Model.AgenteSanitario;
-import it.univr.Model.Medico;
-import it.univr.Model.Paziente;
+import it.univr.Model.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -61,7 +59,7 @@ public class LoginPage implements Initializable {
     private Label changePass_statusLabel;
 
 
-    private final String[] users = {"Patient", "Doctor", "Admin"};
+    private final String[] users = {"ADMIN", "PAZIENTE", "MEDICO"};
 
     private static Stage stage;
     private Scene scene;
@@ -76,9 +74,8 @@ public class LoginPage implements Initializable {
 
     @FXML
     private void login(ActionEvent event) {
-        /*
-        String usermail = usernameTextField.getText();
-        String userpass = passwordField.getText();
+        String username = usernameTextField.getText();
+        String password = passwordField.getText();
         String userType = choiceBox.getValue();
 
         // Check if user type is selected
@@ -86,36 +83,52 @@ public class LoginPage implements Initializable {
         if (choiceBox.getValue() == null) {
             Functions.notificationMessage("Seleziona il tipo di utente", "ERROR", statusLabel);
         } else {
-            try {
-                // Check if user exists
-                if (userExists(usermail, userType)) {
-                    // Check if password matches with database
-                    if (passwordCheck(usermail, userpass, userType)) {
+            switch(UserType.valueOf(userType)){
+                case ADMIN -> {
+                    User user = new AgenteSanitario();
+                    user = user.findUserDB(username, password);
 
+                    if(user == null) {
+                        System.out.println("Account non trovato");
+                        statusLabel.setText("Email o password sbagliati");
+                        statusLabel.setTextFill(Color.color(1, 0, 0));
+                    } else {
                         statusLabel.setText("Successful login!");
                         statusLabel.setTextFill(Color.color(0, 1, 0));
-                        // Load next scene
 
-                        if (userType.equals(users[2])) {
-                            loadAdminDashboard(usermail, event);
-                        } else if (userType.equals(users[1])) {
-                            loadDoctorDashboard(usermail, event);
-                        } else {
-                            loadPatientDashboard(usermail, event);
-                        }
-
-                    } else {
-
-                        statusLabel.setText("Incorrect password!");
-                        statusLabel.setTextFill(Color.color(1, 0, 0));
+                        loadAdminDashboard(username, event);
                     }
-                } else {
-
-                    statusLabel.setText("Account not found!");
-                    statusLabel.setTextFill(Color.color(1, 0, 0));
                 }
-            } catch (Exception e) {
-                e.printStackTrace();
+                case MEDICO -> {
+                    User user = new Medico();
+                    user = user.findUserDB(username, password);
+
+                    if(user == null) {
+                        System.out.println("Account non trovato");
+                        statusLabel.setText("Email o password sbagliati");
+                        statusLabel.setTextFill(Color.color(1, 0, 0));
+                    } else {
+                        statusLabel.setText("Successful login!");
+                        statusLabel.setTextFill(Color.color(0, 1, 0));
+
+                        loadDoctorDashboard(username, event);
+                    }
+                }
+                case PAZIENTE -> {
+                    User user = new Paziente();
+                    user = user.findUserDB(username, password);
+
+                    if(user == null) {
+                        System.out.println("Account non trovato");
+                        statusLabel.setText("Email o password sbagliati");
+                        statusLabel.setTextFill(Color.color(1, 0, 0));
+                    } else {
+                        statusLabel.setText("Successful login!");
+                        statusLabel.setTextFill(Color.color(0, 1, 0));
+
+                        loadPatientDashboard(username, event);
+                    }
+                }
             }
         }
         //SHOW PASSWORD
@@ -124,9 +137,6 @@ public class LoginPage implements Initializable {
         }else{
             login_showPassword.setText(passwordField.getText());
         }
-
-         */
-
     }
     @FXML
     private void showPassword(){
@@ -222,8 +232,10 @@ public class LoginPage implements Initializable {
 
     }
 
-    /*
-    private void loadDoctorDashboard(String username, ActionEvent event) throws IOException {
+
+    private void loadDoctorDashboard(String username, ActionEvent event) {
+        System.out.println("Dashboard del medico");
+        /*
         // Load next scene
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/doctor/DoctorDashboard.fxml"));
         root = loader.load();
@@ -251,12 +263,13 @@ public class LoginPage implements Initializable {
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+
+         */
     }
 
-     */
-
-/*
-    private void loadAdminDashboard(String username,ActionEvent event) throws IOException {
+    private void loadAdminDashboard(String username,ActionEvent event) {
+        System.out.println("Dashboard dell'admin");
+        /*
         // Load next scene
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/admin/AdminDashboard.fxml"));
         root = loader.load();
@@ -282,10 +295,14 @@ public class LoginPage implements Initializable {
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+
+         */
     }
- */
-/*
-    private void loadPatientDashboard(String username, ActionEvent event) throws  IOException {
+
+
+    private void loadPatientDashboard(String username, ActionEvent event) {
+    System.out.println("Dashboard del paziente");
+    /*
         // Load next scene
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/patient/PatientDashboard.fxml"));
         root = loader.load();
@@ -319,10 +336,12 @@ public class LoginPage implements Initializable {
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+
+     */
     }
 
 
- */
+
     private boolean userExists(String username,String userType) {
         boolean result = false;
 

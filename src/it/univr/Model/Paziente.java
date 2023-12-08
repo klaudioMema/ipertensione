@@ -1,7 +1,8 @@
 package it.univr.Model;
 
-
 import java.sql.Date;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class Paziente extends User{
 
@@ -21,6 +22,8 @@ public class Paziente extends User{
         this.fattoriDiRischio = fattoriDiRischio;
         this.doctorId = doctorId;
     }
+
+    public Paziente(){}
 
     public int getPatientId() {
         return patientId;
@@ -59,6 +62,34 @@ public class Paziente extends User{
 
     public void setDoctorId(int doctorId) {
         this.doctorId = doctorId;
+    }
+
+    public User findUserDB(String username, String password) {
+        String tableName = "patients";
+        String query = "SELECT * FROM " + tableName + " WHERE username = " + username + " AND password = " + password;
+
+        ResultSet resultSet = DatabaseManager.getItem(query);
+
+        if (resultSet != null) {
+            try {
+                String name = resultSet.getString("nome");
+                String cognome = resultSet.getString("cognome");
+                String email = resultSet.getString("email");
+                String psw = resultSet.getString("password");
+                int patientId = resultSet.getInt("patientId");
+                String codiceF = resultSet.getString("codiceF");
+                Date bDay = resultSet.getDate("bday");
+                String fattoriDiRischio = resultSet.getString("fattoriDiRischio");
+                int patientDoctorId = resultSet.getInt("doctorId");
+
+                return new Paziente(name, cognome, email, psw, patientId, codiceF, bDay, fattoriDiRischio, patientDoctorId);
+
+            } catch(SQLException e) {
+                return null;
+            }
+        } else {
+            return null;
+        }
     }
 
 }
