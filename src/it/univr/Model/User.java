@@ -58,6 +58,7 @@ public class User {
     //funzione in ingresso la email, tipo di utente, va a cerarlo
     // nel database e carica l'oggetto se riesce a trovarlo ok senno un null
 
+    /*
     public User findUserDB(String username, String password, UserType type) {
         String tableName = getTableName(type);
         String query = "SELECT * FROM " + tableName + " WHERE username = " + username + " AND password = " + password;
@@ -67,7 +68,7 @@ public class User {
         if(res != null) {
             // int userId = resultSet.getInt("id");
 
-            
+
 
             String name = resultSet.getString("name");
             String cognome = resultSet.getString("cognome");
@@ -97,6 +98,8 @@ public class User {
             return null;
         }
     }
+    */
+     
 
     private String getTableName(UserType type) {
         return switch (type) {
