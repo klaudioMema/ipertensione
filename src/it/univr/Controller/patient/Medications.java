@@ -1,8 +1,8 @@
 package it.univr.Controller.patient;
 
 import it.univr.Controller.DatabaseController;
-import it.univr.Model.Patient;
-import it.univr.Model.Prescription;
+import it.univr.Model.Paziente;
+import it.univr.Model.Prescrizione;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -27,20 +27,20 @@ import java.util.ResourceBundle;
 public class Medications implements Initializable {
 
     @FXML
-    private TableView<Prescription> tableView;
+    private TableView<Prescrizione> tableView;
     @FXML
-    private TableColumn<Prescription,String> medicationColumn;
+    private TableColumn<Prescrizione,String> medicationColumn;
     @FXML
-    private TableColumn<Prescription, String> indicationsColumn;
+    private TableColumn<Prescrizione, String> indicationsColumn;
     @FXML
-    private TableColumn<Prescription, Integer> daysLeftColumn;
+    private TableColumn<Prescrizione, Integer> daysLeftColumn;
     @FXML
-    private TableColumn<Prescription, Date> untilDateColumn;
+    private TableColumn<Prescrizione, Date> untilDateColumn;
     @FXML
     private Label todayLabel;
     @FXML
     private Label statusLabel;
-    private Patient activeUser;
+    private Paziente activeUser;
     private HomePage homePageController;
 
     public void setHomePageController(HomePage homePageController){
@@ -51,7 +51,8 @@ public class Medications implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         //set cell value -> FACTORY PATTERN
-        activeUser = Patient.getInstance();
+        /*
+        activeUser = Paziente.getInstance();
         medicationColumn.setCellValueFactory(new PropertyValueFactory<>("medication"));
         indicationsColumn.setCellValueFactory(new PropertyValueFactory<>("indications"));
         daysLeftColumn.setCellValueFactory(new PropertyValueFactory<>("days"));
@@ -59,45 +60,47 @@ public class Medications implements Initializable {
         todayLabel.setText("Medications I have to take today: " + LocalDate.now());
 
         loadTable();
+
+         */
     }
 
 
     private void loadTable(){
-        ObservableList<Prescription> data = FXCollections.observableArrayList();
-        ArrayList<Prescription> activePrescriptions = new ArrayList<>();
-        ArrayList<Prescription> takenMedicine = new ArrayList<>();
-        Prescription prescription;
+        ObservableList<Prescrizione> data = FXCollections.observableArrayList();
+        ArrayList<Prescrizione> activePrescriziones = new ArrayList<>();
+        ArrayList<Prescrizione> takenMedicine = new ArrayList<>();
+        Prescrizione prescrizione;
         try {
             // Get all active prescriptions from DB
             ResultSet rs = DatabaseController.getResultSet("SELECT * FROM prescriptions WHERE user_id = '" +
                     activeUser.getPatientId() + "'");
             while (rs.next()){
-                 prescription = new Prescription(rs.getString("medication"),
+                 prescrizione = new Prescrizione(rs.getString("medication"),
                         rs.getString("indications"),
                         rs.getInt("days"),
                         rs.getDate("fromDate"));
                 // If any prescriptions is expired, remove it from DB
-                if(isValidYet(prescription.getFromDate(), prescription.getDays()))
-                        activePrescriptions.add(prescription);
+                if(isValidYet(prescrizione.getFromDate(), prescrizione.getDays()))
+                        activePrescriziones.add(prescrizione);
                 else
-                    deleteExpiredPrescription(prescription);
+                    deleteExpiredPrescription(prescrizione);
             }
             rs = DatabaseController.getResultSet("SELECT * FROM takenmedication WHERE user_id = '" +
                     activeUser.getPatientId() + "'");
             while (rs.next()) {
-                 prescription = new Prescription(rs.getString("medication"),
+                 prescrizione = new Prescrizione(rs.getString("medication"),
                         rs.getString("indications"),
                         rs.getInt("days"),
                         rs.getDate("daythatwastaken"));
-                        takenMedicine.add(prescription);
+                        takenMedicine.add(prescrizione);
 
             }
             //se c'e il farmaco su activePrescription ma non c'è su takenMedicines = Ancora da prendere
             //se c'e il farmaco su activePrescription e c'è su takenMedicines = Già preso oggi
             //se non c'e su activePrescription ma c'è su taken = Expired, da cancellare;
             Date today = Date.valueOf(LocalDate.now());
-            for(Prescription p : activePrescriptions){
-                if((p.getFromDate().equals(today) && !takenMedicine.contains(p)) || !takenMedicine.contains(new Prescription(p.getMedication(), p.getIndications(),p.getDays(),today)))
+            for(Prescrizione p : activePrescriziones){
+                if((p.getFromDate().equals(today) && !takenMedicine.contains(p)) || !takenMedicine.contains(new Prescrizione(p.getMedication(), p.getIndications(),p.getDays(),today)))
                         data.add(p);
             }
             tableView.setItems(data);
@@ -111,55 +114,9 @@ public class Medications implements Initializable {
         }
     }
 
-    public static boolean hasMedicineToTake(){
-        ArrayList<Prescription> activePrescriptions = new ArrayList<>();
-        ArrayList<Prescription> takenMedicine = new ArrayList<>();
-        Prescription prescription;
-
-        try {
-            // Get all active prescriptions from DB
-            ResultSet rs = DatabaseController.getResultSet("SELECT * FROM prescriptions WHERE user_id = '" +
-                    Patient.getInstance().getPatientId() + "'");
-            while (rs.next()){
-                prescription = new Prescription(rs.getString("medication"),
-                        rs.getString("indications"),
-                        rs.getInt("days"),
-                        rs.getDate("fromDate"));
-                // If any prescriptions is expired, remove it from DB
-                if(isValidYet(prescription.getFromDate(), prescription.getDays()))
-                    activePrescriptions.add(prescription);
-                else
-                    deleteExpiredPrescription(prescription);
-            }
-            rs = DatabaseController.getResultSet("SELECT * FROM takenmedication WHERE user_id = '" +
-                    Patient.getInstance().getPatientId() + "'");
-            while (rs.next()) {
-                prescription = new Prescription(rs.getString("medication"),
-                        rs.getString("indications"),
-                        rs.getInt("days"),
-                        rs.getDate("daythatwastaken"));
-                takenMedicine.add(prescription);
-
-            }
-            //se c'e il farmaco su activePrescription ma non c'è su takenMedicines = Ancora da prendere
-            //se c'e il farmaco su activePrescription e c'è su takenMedicines = Già preso oggi
-            //se non c'e su activePrescription ma c'è su taken = Expired, da cancellare;
-            Date today = Date.valueOf(LocalDate.now());
-            for(Prescription p : activePrescriptions){
-                if((p.getFromDate().equals(today) && !takenMedicine.contains(p)) || !takenMedicine.contains(new Prescription(p.getMedication(), p.getIndications(),p.getDays(),today)))
-                    return true;
-            }
-
-        } catch(SQLException e){
-            e.printStackTrace();
-        }
-        return false;
-    }
-
-
     @FXML
     private void reportMedicine(ActionEvent event){
-        Prescription selectedItem;
+        Prescrizione selectedItem;
         if(tableView.getSelectionModel().getSelectedItem() != null) {
             selectedItem = tableView.getSelectionModel().getSelectedItem();
 
@@ -185,13 +142,16 @@ public class Medications implements Initializable {
         return daysPassed <= days;
     }
 
-    private static void deleteExpiredPrescription(Prescription prescription){
+    private static void deleteExpiredPrescription(Prescrizione prescrizione){
+        /*
         DatabaseController.updateItem("DELETE FROM prescriptions WHERE user_id = '" +
-                Patient.getInstance().getPatientId() + "' AND medication LIKE '" +
-                prescription.getMedication() + "' AND indications LIKE '" +
-                prescription.getIndications() +"' AND days LIKE '" +
-                prescription.getDays() + "' AND fromDate LIKE '" +
-                prescription.getFromDate() + "'");
+                Paziente.getInstance().getPatientId() + "' AND medication LIKE '" +
+                prescrizione.getMedication() + "' AND indications LIKE '" +
+                prescrizione.getIndications() +"' AND days LIKE '" +
+                prescrizione.getDays() + "' AND fromDate LIKE '" +
+                prescrizione.getFromDate() + "'");
+
+         */
     }
 
 

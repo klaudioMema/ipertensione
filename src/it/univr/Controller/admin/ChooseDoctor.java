@@ -2,8 +2,8 @@ package it.univr.Controller.admin;
 
 import it.univr.Controller.DatabaseController;
 import it.univr.Functions;
-import it.univr.Model.Medic;
-import it.univr.Model.Patient;
+import it.univr.Model.Medico;
+import it.univr.Model.Paziente;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -22,13 +22,13 @@ import java.util.ResourceBundle;
 public class ChooseDoctor implements Initializable {
 
     @FXML
-    private TableView<Medic> tableView;
+    private TableView<Medico> tableView;
     @FXML
-    private TableColumn<Medic,String> nameColumn;
+    private TableColumn<Medico,String> nameColumn;
     @FXML
-    private TableColumn<Medic, String> surnameColumn;
+    private TableColumn<Medico, String> surnameColumn;
     @FXML
-    private TableColumn<Medic, String> emailColumn;
+    private TableColumn<Medico, String> emailColumn;
     @FXML
     private Label statusLabel;
     @FXML
@@ -36,7 +36,8 @@ public class ChooseDoctor implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        chooseADoctorLabel.setText("Choose a Doctor for: " + Patient.getInstance().getName() + " " + Patient.getInstance().getSurname());
+
+        //chooseADoctorLabel.setText("Choose a Doctor for: " + Paziente.getInstance().getName() + " " + Paziente.getInstance().getSurname());
 
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         surnameColumn.setCellValueFactory(new PropertyValueFactory<>("surname"));
@@ -47,16 +48,16 @@ public class ChooseDoctor implements Initializable {
 
 
     private void loadTable(){
-        ObservableList<Medic> data = FXCollections.observableArrayList();
+        ObservableList<Medico> data = FXCollections.observableArrayList();
         try {
             ResultSet rs = DatabaseController.getResultSet("SELECT * FROM medics");
             while (rs.next()){
-                Medic medic = new Medic();
-                medic.setName(rs.getString("name"));
-                medic.setSurname(rs.getString("surname"));
-                medic.setEmail(rs.getString("email"));
-                medic.setDoctordId(rs.getInt("doctor_id"));
-                data.add(medic);
+                //Medico medico = new Medico();
+                //medico.setName(rs.getString("name"));
+                //medico.setSurname(rs.getString("surname"));
+                //medico.setEmail(rs.getString("email"));
+                //medico.setDoctorId(rs.getInt("doctor_id"));
+                //data.add(medico);
             }
             tableView.setItems(data);
         } catch(SQLException e){
@@ -66,18 +67,20 @@ public class ChooseDoctor implements Initializable {
 
     @FXML
     private void assignDoctor(ActionEvent event){
+        /*
         try {
-            Medic selectedMedic = tableView.getSelectionModel().getSelectedItem();
+
+            Medico selectedMedico = tableView.getSelectionModel().getSelectedItem();
 
             DatabaseController.updateItem("UPDATE bloodmonitor.patients " +
-                    "SET doctor_id = " + selectedMedic.getDoctordId() +
-                    " WHERE user_id = " + Patient.getInstance().getPatientId()  + ";");
+                    "SET doctor_id = " + selectedMedico.getDoctorId() +
+                    " WHERE user_id = " + Paziente.getInstance().getPatientId()  + ";");
 
             Functions.notificationMessage("Doctor Assigned!", "CONFIRM", statusLabel);
         } catch (Exception e){
             Functions.notificationMessage("Couldn't assign doctor to patient", "ERROR", statusLabel);
         }
-
+        */
 
     }
 }

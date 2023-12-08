@@ -33,9 +33,10 @@ public class HomePage implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
            doItLaterPressure = false;
            doItLaterPrescription = false;
-           checkList();
+           //checkList();
     }
 
+    /*
     public void checkList(){
 
         try {
@@ -84,6 +85,8 @@ public class HomePage implements Initializable {
         }
     }
 
+
+     */
 
 
 

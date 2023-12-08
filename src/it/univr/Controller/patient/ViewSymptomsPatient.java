@@ -1,8 +1,8 @@
 package it.univr.Controller.patient;
 
 import it.univr.Controller.DatabaseController;
-import it.univr.Model.Patient;
-import it.univr.Model.Symptom;
+import it.univr.Model.Paziente;
+import it.univr.Model.Sintomo;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -21,11 +21,11 @@ import java.util.Calendar;
 import java.util.ResourceBundle;
 
 public class ViewSymptomsPatient implements Initializable {
-    public TableView<Symptom> tableView;
-    public TableColumn<Symptom, String> nameColumn;
-    public TableColumn<Symptom, String>  descriptionColumn;
-    public TableColumn<Symptom, Date>  startColumn;
-    public TableColumn<Symptom, Date>  endColumn;
+    public TableView<Sintomo> tableView;
+    public TableColumn<Sintomo, String> nameColumn;
+    public TableColumn<Sintomo, String>  descriptionColumn;
+    public TableColumn<Sintomo, Date>  startColumn;
+    public TableColumn<Sintomo, Date>  endColumn;
     public TextField nameField;
     public TextArea descriptionField;
     public DatePicker startField;
@@ -52,13 +52,14 @@ public class ViewSymptomsPatient implements Initializable {
 
     
     private void loadTable(){
-        ObservableList<Symptom> data = FXCollections.observableArrayList();
+        /*
+        ObservableList<Sintomo> data = FXCollections.observableArrayList();
 
         try {
             ResultSet rs = DatabaseController.getResultSet("SELECT * FROM symptoms WHERE user_id = '" +
-                    Patient.getInstance().getPatientId() + "'");
+                    Paziente.getInstance().getPatientId() + "'");
             while (rs.next()){
-                Symptom symptoms = new Symptom(rs.getInt("user_id"),
+                Sintomo symptoms = new Sintomo(rs.getInt("user_id"),
                         rs.getString("name"),
                         rs.getString("description"),
                         rs.getDate("start"),
@@ -69,11 +70,14 @@ public class ViewSymptomsPatient implements Initializable {
         } catch(SQLException e){
             e.printStackTrace();
         }
+
+         */
     }
 
    
     @FXML
     private void addSymptom(ActionEvent event) {
+        /*
         if (nameField.getText().equals("") || descriptionField.getText().equals("") ||
                 startField.getValue() == null) {
             statusLabel.setText("Please fill in the data first");
@@ -85,7 +89,7 @@ public class ViewSymptomsPatient implements Initializable {
             statusLabel.setText("Changed end data for today");
         } else {
             String query = "INSERT INTO symptoms (user_id, name, description, start, end)" +
-                    "VALUES ('"+ Patient.getInstance().getPatientId() +"', '" +
+                    "VALUES ('"+ Paziente.getInstance().getPatientId() +"', '" +
                     nameField.getText() + "', '" +
                     descriptionField.getText() + "', '" +
                     startField.getValue() + "', '" +
@@ -106,12 +110,15 @@ public class ViewSymptomsPatient implements Initializable {
         }
 
         loadTable();
+
+         */
     }
 
     //TODO
     @FXML
     private void removeSelected(){
-        Symptom selectedRow;
+        /*
+        Sintomo selectedRow;
         try {
             if(tableView.getSelectionModel().getSelectedItem() == null){
                 statusLabel.setVisible(true);
@@ -120,7 +127,7 @@ public class ViewSymptomsPatient implements Initializable {
                 selectedRow = tableView.getSelectionModel().getSelectedItem();
 
                 DatabaseController.updateItem("DELETE FROM symptoms " +
-                        "WHERE user_id = '" + Patient.getInstance().getPatientId() +
+                        "WHERE user_id = '" + Paziente.getInstance().getPatientId() +
                         "' AND name = '" + selectedRow.getName() +
                         "' AND description = '" + selectedRow.getDescription() +
                         "' AND end = '" + selectedRow.getEnd() +
@@ -138,6 +145,8 @@ public class ViewSymptomsPatient implements Initializable {
                 statusLabel.setVisible(true);
                 statusLabel.setTextFill(Color.rgb(211,81,81));
             }
+
+         */
     }
 
     public void changeAddButton(){

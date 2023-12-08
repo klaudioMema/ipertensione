@@ -3,7 +3,7 @@ package it.univr.Model;
 
 import java.sql.Date;
 
-public class Patient extends User{
+public class Paziente extends User{
 
     private int patientId;
 
@@ -13,7 +13,7 @@ public class Patient extends User{
     private int doctorId;
 
 
-    public Patient(String name,String cognome,String email,String password,int patientId,String codiceF,Date bDay,String fattoriDiRischio,int doctorId ){
+    public Paziente(String name, String cognome, String email, String password, int patientId, String codiceF, Date bDay, String fattoriDiRischio, int doctorId ){
         super(name, cognome,email,password);
         this.patientId = patientId;
         this.codiceF = codiceF;

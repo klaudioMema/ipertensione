@@ -1,7 +1,7 @@
 package it.univr.Controller.patient;
 
 import it.univr.Controller.LoginPage;
-import it.univr.Model.Patient;
+import it.univr.Model.Paziente;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -70,8 +70,5 @@ public class PatientViewDashboard{
         stage.show();
     }
 
-    public void displayName(){
-        usernameLabel.setText(Patient.getInstance().getName());
-    }
 
 }

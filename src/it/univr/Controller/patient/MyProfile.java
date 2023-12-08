@@ -1,7 +1,7 @@
 package it.univr.Controller.patient;
 
 import it.univr.Controller.DatabaseController;
-import it.univr.Model.Patient;
+import it.univr.Model.Paziente;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.DatePicker;
@@ -34,20 +34,24 @@ public class MyProfile implements Initializable {
     //TODO
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        nameField.setText(Patient.getInstance().getName());
-        surnameField.setText(Patient.getInstance().getSurname());
-        codiceFField.setText(Patient.getInstance().getCodiceF());
-        fattoriDiRischio.setText(Patient.getInstance().getFattoriDiRischio());
-        bDayField.setValue(Patient.getInstance().getbDay().toLocalDate());
+        /*
+        nameField.setText(Paziente.getInstance().getName());
+        surnameField.setText(Paziente.getInstance().getSurname());
+        codiceFField.setText(Paziente.getInstance().getCodiceF());
+        fattoriDiRischio.setText(Paziente.getInstance().getFattoriDiRischio());
+        bDayField.setValue(Paziente.getInstance().getbDay().toLocalDate());
         try {
             getDoctorsData();
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+         */
     }
 
     private void getDoctorsData() throws SQLException {
-        String query =  "SELECT * FROM medics WHERE doctor_id = '" + Patient.getInstance().getDoctorId() + "'";
+        /*
+        String query =  "SELECT * FROM medics WHERE doctor_id = '" + Paziente.getInstance().getDoctorId() + "'";
         ResultSet rs = DatabaseController.getResultSet(query);
 
         try {
@@ -59,6 +63,8 @@ public class MyProfile implements Initializable {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+         */
 
     }
 

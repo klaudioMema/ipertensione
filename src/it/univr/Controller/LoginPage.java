@@ -4,8 +4,8 @@ import it.univr.Controller.admin.AdminViewDashboard;
 import it.univr.Controller.doctor.DoctorViewDashboard;
 import it.univr.Controller.patient.PatientViewDashboard;
 import it.univr.Model.AgenteSanitario;
-import it.univr.Model.Medic;
-import it.univr.Model.Patient;
+import it.univr.Model.Medico;
+import it.univr.Model.Paziente;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -24,7 +24,6 @@ import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
-import java.util.function.Function;
 
 public class LoginPage implements Initializable {
 
@@ -77,6 +76,7 @@ public class LoginPage implements Initializable {
 
     @FXML
     private void login(ActionEvent event) {
+        /*
         String usermail = usernameTextField.getText();
         String userpass = passwordField.getText();
         String userType = choiceBox.getValue();
@@ -124,6 +124,8 @@ public class LoginPage implements Initializable {
         }else{
             login_showPassword.setText(passwordField.getText());
         }
+
+         */
 
     }
     @FXML
@@ -220,17 +222,18 @@ public class LoginPage implements Initializable {
 
     }
 
+    /*
     private void loadDoctorDashboard(String username, ActionEvent event) throws IOException {
         // Load next scene
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/doctor/DoctorDashboard.fxml"));
         root = loader.load();
         //  Get user data
-        Medic activeUser;
+        Medico activeUser;
         try {
             ResultSet rs = DatabaseController.getResultSet("SELECT * FROM medics WHERE email = '" + username + "'");
             rs.next();
 
-            activeUser = new Medic();
+            activeUser = new Medico();
             activeUser.setEmail(rs.getString("email"));
             activeUser.setPassword(rs.getString("password"));
             activeUser.setNome(rs.getString("name"));
@@ -250,7 +253,9 @@ public class LoginPage implements Initializable {
         stage.show();
     }
 
+     */
 
+/*
     private void loadAdminDashboard(String username,ActionEvent event) throws IOException {
         // Load next scene
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/admin/AdminDashboard.fxml"));
@@ -278,18 +283,19 @@ public class LoginPage implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
-
+ */
+/*
     private void loadPatientDashboard(String username, ActionEvent event) throws  IOException {
         // Load next scene
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/patient/PatientDashboard.fxml"));
         root = loader.load();
         // Get user data from DB
-        Patient activeUser;
+        Paziente activeUser;
         try {
 
             ResultSet rs = DatabaseController.getResultSet("SELECT * FROM patients WHERE email = '" + username + "'");
             rs.next();
-            activeUser = Patient.getInstance();
+            activeUser = Paziente.getInstance();
             activeUser.setPatientId(rs.getInt("user_id"));
             activeUser.setEmail(rs.getString("email"));
             activeUser.setPassword(rs.getString("password"));
@@ -315,6 +321,8 @@ public class LoginPage implements Initializable {
         stage.show();
     }
 
+
+ */
     private boolean userExists(String username,String userType) {
         boolean result = false;
 

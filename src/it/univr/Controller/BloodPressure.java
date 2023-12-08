@@ -2,7 +2,7 @@ package it.univr.Controller;
 
 import it.univr.Controller.patient.HomePage;
 import it.univr.Model.BloodPressureData;
-import it.univr.Model.Patient;
+import it.univr.Model.Paziente;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -64,11 +64,12 @@ public class BloodPressure implements Initializable {
 
     // Populate the table
     private void loadTable(){
+        /*
         ObservableList<BloodPressureData> data = FXCollections.observableArrayList();
 
         try {
             ResultSet rs = DatabaseController.getResultSet("SELECT * FROM bloodpressure WHERE user_id = '" +
-                    Patient.getInstance().getPatientId() + "'");
+                    Paziente.getInstance().getPatientId() + "'");
             while (rs.next()){
                 BloodPressureData bloodpressure = new BloodPressureData(rs.getInt("sbp"),
                         rs.getInt("dbp"),
@@ -80,19 +81,22 @@ public class BloodPressure implements Initializable {
             e.printStackTrace();
         }
 
+
+         */
     }
 
     // Add a new measurement
     @FXML
     private void addMeasurement(ActionEvent event){
 
+        /*
         if(SBPField.getText().equals("") || DBPField.getText().equals("") || dateField.getValue() == null) {
             statusLabel.setText("Couldn't Add Blood Data");
             statusLabel.setVisible(true);
             statusLabel.setTextFill(Color.rgb(211,81,81));
         } else {
             String query = "INSERT INTO bloodpressure (user_id, sbp, dbp, date)" +
-                    "VALUES ('"+ Patient.getInstance().getPatientId() +"', '" +
+                    "VALUES ('"+ Paziente.getInstance().getPatientId() +"', '" +
                     Integer.parseInt(SBPField.getText()) + "', '" +
                     Integer.parseInt(DBPField.getText()) + "', '" +
                     dateField.getValue() + "')";
@@ -104,7 +108,7 @@ public class BloodPressure implements Initializable {
 
             if(!(pressure.getCat().equals("Normal") || pressure.getCat().equals("Optimal") || pressure.getCat().equals("Normal - High"))) {
                 // inserisco l'alert nel database
-                query = "INSERT INTO alert (user_id, type, indication) VALUES (" + Patient.getInstance().getPatientId() +
+                query = "INSERT INTO alert (user_id, type, indication) VALUES (" + Paziente.getInstance().getPatientId() +
                         ", 0, '" + pressure.getCat() + "')";
                 DatabaseController.updateItem(query);
             }
@@ -124,16 +128,19 @@ public class BloodPressure implements Initializable {
 
         // reloads the table
         loadTable();
+
+         */
     }
 
     // Remove the selected measurement form table
     @FXML
     private void removeSelected(ActionEvent event){
+        /*
         try {
             BloodPressureData selectedRow = tableView.getSelectionModel().getSelectedItem();
 
             DatabaseController.updateItem("DELETE FROM bloodpressure " +
-                    "WHERE user_id = '" + Patient.getInstance().getPatientId() + "' AND sbp = '" +
+                    "WHERE user_id = '" + Paziente.getInstance().getPatientId() + "' AND sbp = '" +
                     selectedRow.getSBP() + "'  " +
                     " AND dbp = '" + selectedRow.getDBP()  +"' AND date = '" +
                     selectedRow.getDate()  + "'");
@@ -149,14 +156,17 @@ public class BloodPressure implements Initializable {
             statusLabel.setVisible(true);
             statusLabel.setTextFill(Color.rgb(211,81,81));
         }
-    }
 
+         */
+    }
+/*
     // Check if the user already submitted their blood pressure today
     public static boolean hasDailyPressure() throws SQLException {
+
         try {
             Date date = Date.valueOf(LocalDate.now());
             ResultSet rs = DatabaseController.getResultSet("SELECT * FROM bloodpressure WHERE user_id = '" +
-                    Patient.getInstance().getPatientId() + "' AND date = '" + date + "'");
+                    Paziente.getInstance().getPatientId() + "' AND date = '" + date + "'");
             if(rs.next()) {
                 return true;
             }
@@ -164,7 +174,10 @@ public class BloodPressure implements Initializable {
             e.printStackTrace();
         }
         return false;
+
     }
+
+ */
 
     // Support method
     public void changeAddButton(){

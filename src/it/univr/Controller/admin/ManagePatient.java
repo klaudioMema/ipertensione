@@ -2,7 +2,7 @@ package it.univr.Controller.admin;
 
 import it.univr.Controller.DatabaseController;
 import it.univr.Controller.Search;
-import it.univr.Model.Patient;
+import it.univr.Model.Paziente;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -33,9 +33,12 @@ public class ManagePatient extends Search implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        if(Patient.getInstance().getPatientId() != 0){
+        /*
+        if(Paziente.getInstance().getPatientId() != 0){
             setTextSelectedPatient();
         }
+
+         */
     }
 
     // Select a patient
@@ -62,7 +65,8 @@ public class ManagePatient extends Search implements Initializable {
     // Open a new window
     @FXML
     private void changeData(ActionEvent event) {
-        if (Patient.getInstance().getPatientId() == 0) {
+        /*
+        if (Paziente.getInstance().getPatientId() == 0) {
             statusLabel.setVisible(true);
             setStatusLabel("Please search a patient first");
         } else {
@@ -84,12 +88,15 @@ public class ManagePatient extends Search implements Initializable {
                     e.printStackTrace();
                 }
             }
+
+         */
     }
 
     // Change the doctor of a patient
     @FXML
     private void changeDoctor(ActionEvent event) {
-        if (Patient.getInstance().getPatientId() == 0) {
+        /*
+        if (Paziente.getInstance().getPatientId() == 0) {
             statusLabel.setVisible(true);
             setStatusLabel("Please search a patient first");
         } else {
@@ -107,30 +114,39 @@ public class ManagePatient extends Search implements Initializable {
                 e.printStackTrace();
             }
         }
+
+         */
     }
 
     // Remove a patient from DB
     @FXML
     private void removePatient(ActionEvent event){
-        if(Patient.getInstance().getPatientId() == 0) {
+
+        /*
+        if(Paziente.getInstance().getPatientId() == 0) {
             statusLabel.setVisible(true);
             setStatusLabel("Please search a patient first");
         } else {
             try {
-                DatabaseController.updateItem("DELETE FROM patients " + "WHERE user_id = '" + Patient.getInstance().getPatientId() + "'");
+                DatabaseController.updateItem("DELETE FROM patients " + "WHERE user_id = '" + Paziente.getInstance().getPatientId() + "'");
                 statusLabel.setText("Patient removed!");
             } catch (Exception e) {
                 e.printStackTrace();
                 statusLabel.setText("Couldn't remove patient!");
             }
         }
+
+         */
     }
 
 
     private void setTextSelectedPatient(){
-        nameField.setText(Patient.getInstance().getName());
-        surnameField.setText(Patient.getInstance().getSurname());
-        codiceFField.setText(Patient.getInstance().getCodiceF());
+        /*
+        nameField.setText(Paziente.getInstance().getName());
+        surnameField.setText(Paziente.getInstance().getSurname());
+        codiceFField.setText(Paziente.getInstance().getCodiceF());
+
+         */
     }
 
     public void setStatusLabel(String message) {

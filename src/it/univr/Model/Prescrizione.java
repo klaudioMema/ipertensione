@@ -3,7 +3,7 @@ package it.univr.Model;
 
 import java.sql.Date;
 
-public class Prescription {
+public class Prescrizione {
 
     private  int userId;
     private  String medication;
@@ -11,7 +11,7 @@ public class Prescription {
     private  int days;
     private Date fromDate;
 
-    public Prescription(String medication, String indications, int days, Date fromDate){
+    public Prescrizione(String medication, String indications, int days, Date fromDate){
         this.medication = medication;
         this.indications = indications;
         this.days = days;
@@ -65,7 +65,7 @@ public class Prescription {
             return false;
         }
 
-        Prescription other = (Prescription) obj;
+        Prescrizione other = (Prescrizione) obj;
 
         // Compare all instance variables for equality
         return medication.equals(other.medication) &&

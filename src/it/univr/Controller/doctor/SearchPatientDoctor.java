@@ -1,7 +1,7 @@
 package it.univr.Controller.doctor;
 
 import it.univr.Controller.Search;
-import it.univr.Model.Patient;
+import it.univr.Model.Paziente;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -48,15 +48,21 @@ public class SearchPatientDoctor extends Search implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        if(Patient.getInstance().getPatientId() != 0){
+        /*
+        if(Paziente.getInstance().getPatientId() != 0){
             setTextSelectedPatient();
         }
+
+         */
     }
 
     private void setTextSelectedPatient(){
-        nameField.setText(Patient.getInstance().getName());
-        surnameField.setText(Patient.getInstance().getSurname());
-        codiceFField.setText(Patient.getInstance().getCodiceF());
+        /*
+        nameField.setText(Paziente.getInstance().getName());
+        surnameField.setText(Paziente.getInstance().getSurname());
+        codiceFField.setText(Paziente.getInstance().getCodiceF());
+
+         */
     }
 }
 

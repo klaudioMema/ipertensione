@@ -1,8 +1,8 @@
 package it.univr.Controller.doctor;
 
 import it.univr.Controller.DatabaseController;
-import it.univr.Model.Patient;
-import it.univr.Model.Prescription;
+import it.univr.Model.Paziente;
+import it.univr.Model.Prescrizione;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -23,7 +23,7 @@ public class AlertPatient {
     @FXML
     private TableColumn<?, String> alert_Category;
     @FXML
-    private TableView<Prescription> tableView;
+    private TableView<Prescrizione> tableView;
     @FXML
     private TableColumn<?, String> alert_emailPatient;
 
@@ -32,19 +32,19 @@ public class AlertPatient {
 
     @FXML
     private TableColumn<?, String> alert_specific;
-    private Patient selectedPatient;
+    private Paziente selectedPaziente;
     @FXML
     void removeAlert(ActionEvent event) {
 
         try {
-            Prescription selectedPrescription = tableView.getSelectionModel().getSelectedItem();
+            Prescrizione selectedPrescrizione = tableView.getSelectionModel().getSelectedItem();
             //type presciption_id
             DatabaseController.updateItem("DELETE FROM alert WHERE user_id = '" +
-                    selectedPatient.getPatientId() + "' AND Category LIKE '" +
-                    selectedPrescription.getMedication() + "' AND Specify LIKE '" +
+                    selectedPaziente.getPatientId() + "' AND Category LIKE '" +
+                    selectedPrescrizione.getMedication() + "' AND Specify LIKE '" +
                     //selectedPrescription.get +"' AND idPatient LIKE '" +
-                    selectedPrescription.getDays() + "' AND EmailPatient LIKE '" +
-                    selectedPrescription.getFromDate() + "'");
+                    selectedPrescrizione.getDays() + "' AND EmailPatient LIKE '" +
+                    selectedPrescrizione.getFromDate() + "'");
 
             int selectedMedication = tableView.getSelectionModel().getSelectedIndex();
             tableView.getItems().remove(selectedMedication);

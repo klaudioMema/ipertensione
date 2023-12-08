@@ -2,7 +2,7 @@ package it.univr.Model;
 
 import java.sql.Date;
 
-public class Symptom {
+public class Sintomo {
 
     private int userId;
     private String name;
@@ -11,7 +11,7 @@ public class Symptom {
     private Date end;
 
 
-    public Symptom(int userId, String name, String description, Date start, Date end){
+    public Sintomo(int userId, String name, String description, Date start, Date end){
         this.userId = userId;
         this.name = name;
         this.description = description;

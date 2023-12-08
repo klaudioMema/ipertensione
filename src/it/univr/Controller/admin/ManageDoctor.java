@@ -2,7 +2,7 @@ package it.univr.Controller.admin;
 
 import it.univr.Controller.DatabaseController;
 import it.univr.Controller.Search;
-import it.univr.Model.Medic;
+import it.univr.Model.Medico;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -25,7 +25,7 @@ public class ManageDoctor extends Search {
     // Select a doctor
     @FXML
     private void searchDoctor(ActionEvent event) throws SQLException, ParseException {
-
+/*
         String name = nameField.getText();
         String surname = surnameField.getText();
         String email = emailField.getText();
@@ -35,25 +35,28 @@ public class ManageDoctor extends Search {
             if (!searchDoctorDB(name, surname, email)) {
                 setStatusLabel("Doctor Not Found!");
             } else {
-                nameField.setText(Medic.getInstance().getName());
-                surnameField.setText(Medic.getInstance().getSurname());
-                emailField.setText(Medic.getInstance().getEmail());
+                nameField.setText(Medico.getInstance().getName());
+                surnameField.setText(Medico.getInstance().getSurname());
+                emailField.setText(Medico.getInstance().getEmail());
                 setStatusLabel("Doctor Selected!");
             }
         }
+
+ */
     }
 
     // Save chanhes in the DB
     @FXML
     private void saveButton(ActionEvent event) {
-        Medic selectedUser = Medic.getInstance();
-        if (Medic.getInstance().getDoctordId() == 0) {
+        /*
+        Medico selectedUser = Medico.getInstance();
+        if (Medico.getInstance().getDoctordId() == 0) {
             setStatusLabel("Please search a doctor first");
         } else {
             if (DatabaseController.updateItem("UPDATE medics SET name = '" + nameField.getText() +
                     "', surname = '" + surnameField.getText() +
                     "', email = '" + emailField.getText() +
-                    "' WHERE doctor_id = '" + Medic.getInstance().getDoctordId() + "'")) {
+                    "' WHERE doctor_id = '" + Medico.getInstance().getDoctordId() + "'")) {
 
                 selectedUser.setName(nameField.getText());
                 selectedUser.setSurname(surnameField.getText());
@@ -63,22 +66,25 @@ public class ManageDoctor extends Search {
                 setStatusLabel("Update not Successful!");
             }
         }
+         */
     }
 
     // Remove a doctor from DB
     @FXML
     private void removeDoctor(ActionEvent event){
-        if(Medic.getInstance().getDoctordId() == 0) {
+        /*
+        if(Medico.getInstance().getDoctordId() == 0) {
             setStatusLabel("Please search a doctor first");
         } else {
             try {
-                DatabaseController.updateItem("DELETE FROM medics " + "WHERE doctor_id = '" + Medic.getInstance().getDoctordId() + "'");
+                DatabaseController.updateItem("DELETE FROM medics " + "WHERE doctor_id = '" + Medico.getInstance().getDoctordId() + "'");
                 setStatusLabel("Doctor removed!");
             } catch (Exception e) {
                 e.printStackTrace();
                 setStatusLabel("Couldn't remove doctor!");
             }
         }
+        */
     }
 
     // Support method

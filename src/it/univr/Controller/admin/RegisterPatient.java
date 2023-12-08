@@ -2,7 +2,7 @@ package it.univr.Controller.admin;
 
 import it.univr.Controller.DatabaseController;
 import it.univr.Functions;
-import it.univr.Model.Patient;
+import it.univr.Model.Paziente;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -59,7 +59,7 @@ public class RegisterPatient {
 
     @FXML
     private void savePatient(ActionEvent event) throws SQLException {
-
+/*
         // Empty field
         if(nameField.getText().equals("") || surnameField.getText().equals("") || emailField.getText().equals("") ||
                 passwordField.getText().equals("") || codiceFField.getText().equals("") || bDayField.getValue() == null) {
@@ -68,7 +68,7 @@ public class RegisterPatient {
         } else if (passwordField.getText().length() < 8) {
             Functions.notificationMessage("Password needs to be at leat 8 characters long", "ERROR", statusLabel);
         // Codice fiscale
-        } else if (false/*!checkCF()*/) {
+        } else if (false) {
             Functions.notificationMessage("Codice fiscale is not valid", "ERROR", statusLabel);
         // birthdate check
         } else if (bDayField.getValue().getYear() < 1900 || bDayField.getValue().getYear() > LocalDate.now().getYear()) {
@@ -91,21 +91,22 @@ public class RegisterPatient {
                         "ORDER BY user_id DESC LIMIT 1";
                 ResultSet rs = DatabaseController.getResultSet(queryPatientId);
 
-                Patient newPatient = Patient.getInstance();
+                Paziente newPaziente = Paziente.getInstance();
                 if (rs.next())
-                    newPatient.setPatientId(rs.getInt("user_id"));
-                newPatient.setName(nameField.getText());
-                newPatient.setSurname(surnameField.getText());
-                newPatient.setEmail(emailField.getText());
-                newPatient.setPassword(passwordField.getText());
-                newPatient.setCodiceF(codiceFField.getText());
-                newPatient.setbDay(Date.valueOf(bDayField.getValue()));
+                    newPaziente.setPatientId(rs.getInt("user_id"));
+                newPaziente.setName(nameField.getText());
+                newPaziente.setSurname(surnameField.getText());
+                newPaziente.setEmail(emailField.getText());
+                newPaziente.setPassword(passwordField.getText());
+                newPaziente.setCodiceF(codiceFField.getText());
+                newPaziente.setbDay(Date.valueOf(bDayField.getValue()));
                 chooseDoctor();
                 Functions.notificationMessage("Saved!", "CONFIRM", statusLabel);
             }
 
         }
 
+ */
     }
 
     // Check if codice fiscale is valid

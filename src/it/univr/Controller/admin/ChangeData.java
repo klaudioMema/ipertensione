@@ -1,7 +1,7 @@
 package it.univr.Controller.admin;
 
 import it.univr.Controller.DatabaseController;
-import it.univr.Model.Patient;
+import it.univr.Model.Paziente;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -28,7 +28,7 @@ public class ChangeData implements Initializable {
     private TextField codiceFField;
     @FXML
     private DatePicker bDayField;
-    private Patient selectedPatient;
+    private Paziente selectedPaziente;
     @FXML
     private Label statusLabel;
     private ManagePatient managePatientPatientController;
@@ -42,17 +42,20 @@ public class ChangeData implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        selectedPatient = Patient.getInstance();
-        nameField.setText(selectedPatient.getName());
-        surnameField.setText(selectedPatient.getSurname());
-        emailField.setText(selectedPatient.getEmail());
-        codiceFField.setText(selectedPatient.getCodiceF());
-        bDayField.setValue(selectedPatient.getbDay().toLocalDate());
+        /*
+        selectedPaziente = Paziente.getInstance();
+        nameField.setText(selectedPaziente.getName());
+        surnameField.setText(selectedPaziente.getSurname());
+        emailField.setText(selectedPaziente.getEmail());
+        codiceFField.setText(selectedPaziente.getCodiceF());
+        bDayField.setValue(selectedPaziente.getbDay().toLocalDate());
+        */
     }
 
 
     @FXML
     private void saveAndExit(ActionEvent event){
+        /*
         try {
 
             if (bDayField.getValue().getYear() < 1900 || bDayField.getValue().getYear() > LocalDate.now().getYear()) {
@@ -63,13 +66,13 @@ public class ChangeData implements Initializable {
                         "', email = '" + emailField.getText() +
                         "', bday = '" + Date.valueOf(bDayField.getValue()) +
                         "', codicef = '" + codiceFField.getText() +
-                        "' WHERE user_id = '" + selectedPatient.getPatientId() + "'")) {
+                        "' WHERE user_id = '" + selectedPaziente.getPatientId() + "'")) {
 
-                    selectedPatient.setName(nameField.getText());
-                    selectedPatient.setSurname(surnameField.getText());
-                    selectedPatient.setEmail(emailField.getText());
-                    selectedPatient.setbDay(Date.valueOf(bDayField.getValue()));
-                    selectedPatient.setCodiceF(codiceFField.getText());
+                    selectedPaziente.setName(nameField.getText());
+                    selectedPaziente.setSurname(surnameField.getText());
+                    selectedPaziente.setEmail(emailField.getText());
+                    selectedPaziente.setbDay(Date.valueOf(bDayField.getValue()));
+                    selectedPaziente.setCodiceF(codiceFField.getText());
                     ((Stage) (((Button) event.getSource()).getScene().getWindow())).close();
                     managePatientPatientController.setStatusLabel("Update Successful!");
                 } else {
@@ -80,6 +83,7 @@ public class ChangeData implements Initializable {
             statusLabel.setText("Not a valid date");
             statusLabel.setVisible(true);
         }
+        */
 
     }
 }

@@ -1,8 +1,8 @@
 package it.univr.Controller.doctor;
 
 import it.univr.Controller.DatabaseController;
-import it.univr.Model.Patient;
-import it.univr.Model.Prescription;
+import it.univr.Model.Paziente;
+import it.univr.Model.Prescrizione;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -21,15 +21,15 @@ import java.util.ResourceBundle;
 
 public class Prescriptions implements Initializable {
     @FXML
-    private TableView<Prescription> tableView;
+    private TableView<Prescrizione> tableView;
     @FXML
-    private TableColumn<Prescription,String> medicationColumn;
+    private TableColumn<Prescrizione,String> medicationColumn;
     @FXML
-    private TableColumn<Prescription, String> indicationsColumn;
+    private TableColumn<Prescrizione, String> indicationsColumn;
     @FXML
-    private TableColumn<Prescription, Integer> daysColumn;
+    private TableColumn<Prescrizione, Integer> daysColumn;
     @FXML
-    private TableColumn<Prescription, Date> fromDateColumn;
+    private TableColumn<Prescrizione, Date> fromDateColumn;
     @FXML
     private TextField medicationField;
     @FXML
@@ -38,34 +38,37 @@ public class Prescriptions implements Initializable {
     private TextField daysField;
     @FXML
     private Label statusLabel;
-    private Patient selectedPatient;
+    private Paziente selectedPaziente;
 
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         //set cell value -> FACTORY PATTERN
-        selectedPatient = Patient.getInstance();
+        /*
+        selectedPaziente = Paziente.getInstance();
         medicationColumn.setCellValueFactory(new PropertyValueFactory<>("medication"));
         indicationsColumn.setCellValueFactory(new PropertyValueFactory<>("indications"));
         daysColumn.setCellValueFactory(new PropertyValueFactory<>("days"));
         fromDateColumn.setCellValueFactory(new PropertyValueFactory<>("fromDate"));
 
         loadTable();
+
+         */
     }
 
     @FXML
     private void removeSelected(ActionEvent event){
 
         try {
-            Prescription selectedPrescription = tableView.getSelectionModel().getSelectedItem();
+            Prescrizione selectedPrescrizione = tableView.getSelectionModel().getSelectedItem();
 
             DatabaseController.updateItem("DELETE FROM prescriptions WHERE user_id = '" +
-                    selectedPatient.getPatientId() + "' AND medication LIKE '" +
-                    selectedPrescription.getMedication() + "' AND indications LIKE '" +
-                    selectedPrescription.getIndications() +"' AND days LIKE '" +
-                    selectedPrescription.getDays() + "' AND fromDate LIKE '" +
-                    selectedPrescription.getFromDate() + "'");
+                    selectedPaziente.getPatientId() + "' AND medication LIKE '" +
+                    selectedPrescrizione.getMedication() + "' AND indications LIKE '" +
+                    selectedPrescrizione.getIndications() +"' AND days LIKE '" +
+                    selectedPrescrizione.getDays() + "' AND fromDate LIKE '" +
+                    selectedPrescrizione.getFromDate() + "'");
 
 
             int selectedMedication = tableView.getSelectionModel().getSelectedIndex();
@@ -92,7 +95,7 @@ public class Prescriptions implements Initializable {
             statusLabel.setTextFill(Color.rgb(211,81,81));
         } else {
             String query = "INSERT INTO prescriptions (user_id, medication, indications, days, fromDate)" +
-                            "VALUES ('"+ selectedPatient.getPatientId() +"', '" +
+                            "VALUES ('"+ selectedPaziente.getPatientId() +"', '" +
                             medicationField.getText() + "', '" +
                             indicationsField.getText() + "', '" +
                             daysField.getText() + "', '" +
@@ -110,20 +113,20 @@ public class Prescriptions implements Initializable {
     }
 
     private void loadTable(){
-        ObservableList<Prescription> data = FXCollections.observableArrayList();
+        ObservableList<Prescrizione> data = FXCollections.observableArrayList();
         try {
             ResultSet rs = DatabaseController.getResultSet("SELECT * FROM prescriptions WHERE user_id = '" +
-                    selectedPatient.getPatientId() + "'");
+                    selectedPaziente.getPatientId() + "'");
             while (rs.next()){
-                Prescription prescription = new Prescription(rs.getString("medication"),
+                Prescrizione prescrizione = new Prescrizione(rs.getString("medication"),
                         rs.getString("indications"),
                         rs.getInt("days"),
                         rs.getDate("fromDate"));
                 // If prescription is not valid anymore remove it from DB
-                if(isValidYet(prescription.getFromDate(), prescription.getDays()))
-                    data.add(prescription);
+                if(isValidYet(prescrizione.getFromDate(), prescrizione.getDays()))
+                    data.add(prescrizione);
                 else
-                    deleteExpiredPrescription(prescription);
+                    deleteExpiredPrescription(prescrizione);
             }
             tableView.setItems(data);
         } catch(SQLException e){
@@ -138,13 +141,13 @@ public class Prescriptions implements Initializable {
         return daysPassed <= days;
     }
 
-    private void deleteExpiredPrescription(Prescription prescription){
+    private void deleteExpiredPrescription(Prescrizione prescrizione){
         DatabaseController.updateItem("DELETE FROM prescriptions WHERE user_id = '" +
-                selectedPatient.getPatientId() + "' AND medication LIKE '" +
-                prescription.getMedication() + "' AND indications LIKE '" +
-                prescription.getIndications() +"' AND days LIKE '" +
-                prescription.getDays() + "' AND fromDate LIKE '" +
-                prescription.getFromDate() + "'");
+                selectedPaziente.getPatientId() + "' AND medication LIKE '" +
+                prescrizione.getMedication() + "' AND indications LIKE '" +
+                prescrizione.getIndications() +"' AND days LIKE '" +
+                prescrizione.getDays() + "' AND fromDate LIKE '" +
+                prescrizione.getFromDate() + "'");
     }
 
 }

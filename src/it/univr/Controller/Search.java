@@ -1,8 +1,8 @@
 package it.univr.Controller;
 
 
-import it.univr.Model.Medic;
-import it.univr.Model.Patient;
+import it.univr.Model.Medico;
+import it.univr.Model.Paziente;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,9 +12,10 @@ public class Search {
 
     // Search for a patient in the DB
     public boolean searchPatientDB(String name, String surname, String codiceF) {
+        /*
         ResultSet rs;
         boolean exists = false;
-        Patient selectedUser = null;
+        Paziente selectedUser = null;
 
         try {
             rs = DatabaseController.getResultSet("SELECT * FROM patients WHERE codicef = '" + codiceF +
@@ -22,7 +23,7 @@ public class Search {
                     "' AND surname = '" + surname + "')");
 
             if (rs.next()) {
-                selectedUser = new Patient();
+                selectedUser = new Paziente();
                 selectedUser.setPatientId(rs.getInt("user_id"));
                 selectedUser.setEmail(rs.getString("email"));
                 selectedUser.setPassword(rs.getString("password"));
@@ -40,13 +41,18 @@ public class Search {
         }
 
         return selectedUser != null;
+
+         */
+
+        return true;
     }
 
     // Search for a doctor in the DB
     public boolean searchDoctorDB(String name, String surname, String email) {
+        /*
         ResultSet rs;
         boolean exists = false;
-        Medic selectedUser = null;
+        Medico selectedUser = null;
 
         try {
             rs = DatabaseController.getResultSet("SELECT * FROM medics WHERE email = '" + email +
@@ -54,8 +60,8 @@ public class Search {
                     "' AND surname = '" + surname + "')");
 
             if (rs.next()) {
-                selectedUser = Medic.getInstance();
-                selectedUser.setDoctordId(rs.getInt("doctor_id"));
+                selectedUser = Medico.getInstance();
+                selectedUser.setDoctorId(rs.getInt("doctor_id"));
                 selectedUser.setEmail(rs.getString("email"));
                 selectedUser.setPassword(rs.getString("password"));
                 selectedUser.setName(rs.getString("name"));
@@ -66,7 +72,14 @@ public class Search {
         }
 
         return selectedUser != null;
+
+
+         */
+
+        return true;
     }
+
+
 
 
 }

@@ -1,7 +1,7 @@
 package it.univr.Controller.doctor;
 
 import it.univr.Controller.DatabaseController;
-import it.univr.Model.Patient;
+import it.univr.Model.Paziente;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -42,23 +42,26 @@ public class MyPatient implements Initializable {
     @FXML
     private Label selectPatientLabel;
 
-    private Patient selectedPatient;
+    private Paziente selectedPaziente;
     @FXML
     private Rectangle errorRectangle;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        /*
         try {
-            selectedPatient = Patient.getInstance();
-            nameField.setText(selectedPatient.getName());
-            surnameField.setText(selectedPatient.getSurname());
-            codiceFField.setText(selectedPatient.getCodiceF());
-            bDayField.setValue(selectedPatient.getbDay().toLocalDate());
-            fattoriDiRischio.setText(selectedPatient.getFattoriDiRischio());
+            selectedPaziente = Paziente.getInstance();
+            nameField.setText(selectedPaziente.getName());
+            surnameField.setText(selectedPaziente.getSurname());
+            codiceFField.setText(selectedPaziente.getCodiceF());
+            bDayField.setValue(selectedPaziente.getbDay().toLocalDate());
+            fattoriDiRischio.setText(selectedPaziente.getFattoriDiRischio());
         } catch (NullPointerException e){
             errorRectangle.setVisible(true);
             selectPatientLabel.setVisible(true);
         }
+
+         */
 
     }
 
@@ -81,7 +84,7 @@ public class MyPatient implements Initializable {
                 if (DatabaseController.updateItem("UPDATE patients SET name = '" + nameField.getText() +
                         "', surname = '" + surnameField.getText() + "', codiceF = '" + codiceFField.getText() +
                         "', bday = '" + Date.valueOf(bDayField.getValue()) + "', fattoridirischio = '" + fattoriDiRischio.getText() +
-                        "' WHERE user_id = '" + selectedPatient.getPatientId() + "'")) {
+                        "' WHERE user_id = '" + selectedPaziente.getPatientId() + "'")) {
                     statusLabel.setVisible(true);
                     statusLabel.setText("Update Successful!");
                 } else {
