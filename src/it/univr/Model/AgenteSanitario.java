@@ -13,25 +13,22 @@ public class AgenteSanitario extends User{
 
     public User findUserDB(String username, String password) {
         String tableName = "agentesanitario";
-        String query = "SELECT * FROM " + tableName + " WHERE username = " + username + " AND password = " + password;
+        String query = "SELECT * FROM " + tableName + " WHERE email = '" + username + "' AND password = '" + password + "'";
 
-        ResultSet resultSet = DatabaseManager.getItem(query);
+        try (ResultSet resultSet = DatabaseManager.getItem(query)) {
+            resultSet.next();
 
-        if (resultSet != null) {
-            try {
-                String name = resultSet.getString("nome");
-                String cognome = resultSet.getString("cognome");
-                String email = resultSet.getString("email");
-                String psw = resultSet.getString("password");
+            String name = resultSet.getString("nome");
+            String cognome = resultSet.getString("cognome");
+            String email = resultSet.getString("email");
+            String psw = resultSet.getString("password");
 
-                return new AgenteSanitario(name, cognome, email, psw);
+            return new AgenteSanitario(name, cognome, email, psw);
 
-            } catch(SQLException e) {
-                return null;
-            }
-        } else {
+        } catch(SQLException e) {
             return null;
         }
+
     }
 
 }

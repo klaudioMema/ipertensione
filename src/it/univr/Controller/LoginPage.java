@@ -42,7 +42,8 @@ public class LoginPage implements Initializable {
     private TextField login_showPassword;
     @FXML
     private Hyperlink login_forgotPassword;
-    // forget form
+
+    // Form per il cambio password
     @FXML
     private AnchorPane forgot_form;
     @FXML
@@ -68,7 +69,8 @@ public class LoginPage implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         choiceBox.getItems().addAll(users);
-        changePass_choiceBox.getItems().addAll(users);
+
+        // changePass_choiceBox.getItems().addAll(users); // Questo serve per la funzione cambio password
     }
 
 
@@ -138,6 +140,7 @@ public class LoginPage implements Initializable {
             login_showPassword.setText(passwordField.getText());
         }
     }
+
     @FXML
     private void showPassword(){
         if(login_selectShowPass.isSelected()){
@@ -151,21 +154,119 @@ public class LoginPage implements Initializable {
         }
 
     }
-    @FXML
-    private void switchForm(ActionEvent event) {
 
-         if (event.getSource() == login_forgotPassword){
-            login_form.setVisible(false);
-            forgot_form.setVisible(true);
-        }
-         else if (event.getSource() == changePass_back) {
+    private void loadDoctorDashboard(String username, ActionEvent event) {
+        System.out.println("Dashboard del medico");
 
-             login_form.setVisible(true);
-             forgot_form.setVisible(false);
-         }
+        // Carica home del medico
+
+        /*
+        // Load next scene
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/doctor/DoctorDashboard.fxml"));
+        root = loader.load();
+
+        DoctorViewDashboard menuController = loader.getController();
+        menuController.displayName(activeUser.getNome());
+
+        // set new stage;
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+
+         */
     }
+
+    private void loadAdminDashboard(String username,ActionEvent event) {
+        System.out.println("Dashboard dell'admin");
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/admin/AdminDashboard.fxml"));
+        AdminViewDashboard dashboard = loader.getRoot();
+        // Carica home dell'agente sanitario
+
+        /*
+        // Load next scene
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/admin/AdminDashboard.fxml"));
+        root = loader.load();
+        // Get user data
+        AgenteSanitario activeUser = AgenteSanitario.getInstance();
+        try {
+            ResultSet rs = DatabaseController.getResultSet("SELECT * FROM agentesanitario WHERE email = '" + username + "'");
+            rs.next();
+            activeUser.setEmail(rs.getString("email"));
+            activeUser.setPassword(rs.getString("password"));
+            activeUser.setName(rs.getString("name"));
+            rs.close();
+
+            AdminViewDashboard adminViewDashboard = loader.getController();
+            adminViewDashboard.displayName(activeUser.getName());
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        // set new stage;
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+
+         */
+    }
+
+
+    private void loadPatientDashboard(String username, ActionEvent event) {
+    System.out.println("Dashboard del paziente");
+
+        // Carica home del paziente
+
+    /*
+        // Load next scene
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/patient/PatientDashboard.fxml"));
+        root = loader.load();
+        // Get user data from DB
+        Paziente activeUser;
+        try {
+
+            ResultSet rs = DatabaseController.getResultSet("SELECT * FROM patients WHERE email = '" + username + "'");
+            rs.next();
+            activeUser = Paziente.getInstance();
+            activeUser.setPatientId(rs.getInt("user_id"));
+            activeUser.setEmail(rs.getString("email"));
+            activeUser.setPassword(rs.getString("password"));
+            activeUser.setName(rs.getString("name"));
+            activeUser.setSurname(rs.getString("surname"));
+            activeUser.setCodiceF(rs.getString("codiceF"));
+            activeUser.setbDay(java.sql.Date.valueOf(rs.getString("bDay")));
+            activeUser.setDoctorId(Integer.parseInt(rs.getString("doctor_id")));
+            activeUser.setFattoriDiRischio(rs.getString("fattoridirischio"));
+            rs.close();
+
+            PatientViewDashboard menuController = loader.getController();
+            menuController.displayName();
+            menuController.home();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+
+     */
+    }
+
+    public static void changeWidth(int value){
+        if(stage != null)
+            stage.setWidth(value);
+    }
+
+    // Funzioni per il cambio password
     @FXML
     private void changePassword() {
+        /*
         String userType = changePass_choiceBox.getValue();
         try {
             if (changePass_password.getText().isEmpty() ||
@@ -229,174 +330,23 @@ public class LoginPage implements Initializable {
             changePass_password.setText("");
             changePass_Confpassword.setText("");
         }catch (Exception e){e.printStackTrace();}
-
-    }
-
-
-    private void loadDoctorDashboard(String username, ActionEvent event) {
-        System.out.println("Dashboard del medico");
-        /*
-        // Load next scene
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/doctor/DoctorDashboard.fxml"));
-        root = loader.load();
-        //  Get user data
-        Medico activeUser;
-        try {
-            ResultSet rs = DatabaseController.getResultSet("SELECT * FROM medics WHERE email = '" + username + "'");
-            rs.next();
-
-            activeUser = new Medico();
-            activeUser.setEmail(rs.getString("email"));
-            activeUser.setPassword(rs.getString("password"));
-            activeUser.setNome(rs.getString("name"));
-            activeUser.setCognome(rs.getString("surname"));
-
-            rs.close();
-
-            DoctorViewDashboard menuController = loader.getController();
-            menuController.displayName(activeUser.getNome());
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        // set new stage;
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-
          */
+
     }
 
-    private void loadAdminDashboard(String username,ActionEvent event) {
-        System.out.println("Dashboard dell'admin");
+    @FXML
+    private void switchForm(ActionEvent event) {
         /*
-        // Load next scene
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/admin/AdminDashboard.fxml"));
-        root = loader.load();
-        // Get user data
-        AgenteSanitario activeUser = AgenteSanitario.getInstance();
-        try {
-            ResultSet rs = DatabaseController.getResultSet("SELECT * FROM agentesanitario WHERE email = '" + username + "'");
-            rs.next();
-            activeUser.setEmail(rs.getString("email"));
-            activeUser.setPassword(rs.getString("password"));
-            activeUser.setName(rs.getString("name"));
-            rs.close();
-
-            AdminViewDashboard adminViewDashboard = loader.getController();
-            adminViewDashboard.displayName(activeUser.getName());
-
-
-        } catch (SQLException e) {
-            e.printStackTrace();
+        if (event.getSource() == login_forgotPassword){
+            login_form.setVisible(false);
+            forgot_form.setVisible(true);
         }
-        // set new stage;
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        else if (event.getSource() == changePass_back) {
 
+            login_form.setVisible(true);
+            forgot_form.setVisible(false);
+        }
          */
-    }
-
-
-    private void loadPatientDashboard(String username, ActionEvent event) {
-    System.out.println("Dashboard del paziente");
-    /*
-        // Load next scene
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/patient/PatientDashboard.fxml"));
-        root = loader.load();
-        // Get user data from DB
-        Paziente activeUser;
-        try {
-
-            ResultSet rs = DatabaseController.getResultSet("SELECT * FROM patients WHERE email = '" + username + "'");
-            rs.next();
-            activeUser = Paziente.getInstance();
-            activeUser.setPatientId(rs.getInt("user_id"));
-            activeUser.setEmail(rs.getString("email"));
-            activeUser.setPassword(rs.getString("password"));
-            activeUser.setName(rs.getString("name"));
-            activeUser.setSurname(rs.getString("surname"));
-            activeUser.setCodiceF(rs.getString("codiceF"));
-            activeUser.setbDay(java.sql.Date.valueOf(rs.getString("bDay")));
-            activeUser.setDoctorId(Integer.parseInt(rs.getString("doctor_id")));
-            activeUser.setFattoriDiRischio(rs.getString("fattoridirischio"));
-            rs.close();
-
-            PatientViewDashboard menuController = loader.getController();
-            menuController.displayName();
-            menuController.home();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-
-     */
-    }
-
-
-
-    private boolean userExists(String username,String userType) {
-        boolean result = false;
-
-        try {
-
-            ResultSet rs;
-            if(userType.equals(users[2]))
-                rs = DatabaseController.getResultSet("SELECT email FROM agentesanitario WHERE email = '" + username + "'");
-            else if(userType.equals(users[1]))
-                rs = DatabaseController.getResultSet("SELECT email FROM medics WHERE email = '" + username + "'");
-            else
-                rs = DatabaseController.getResultSet("SELECT email FROM patients WHERE email = '" + username + "'");
-
-
-            if (rs.next())
-                result = true;
-
-            rs.close();
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return result;
-    }
-    private boolean passwordCheck(String username, String password,String userType){
-        ResultSet rs;
-        boolean result = false;
-
-
-        try {
-            if(userType.equals(users[2]))
-                rs = DatabaseController.getResultSet("SELECT password FROM agentesanitario WHERE email = '" + username + "'");
-            else if(userType.equals(users[1]))
-                rs = DatabaseController.getResultSet("SELECT password FROM medics WHERE email = '" + username + "'");
-            else
-                rs = DatabaseController.getResultSet("SELECT password FROM patients WHERE email = '" + username + "'");
-
-            rs.next();
-
-            if(rs.getString("password").equals(password))
-                result = true;
-
-            rs.close();
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return result;
-    }
-
-
-    public static void changeWidth(int value){
-        if(stage != null)
-            stage.setWidth(value);
     }
 
 }

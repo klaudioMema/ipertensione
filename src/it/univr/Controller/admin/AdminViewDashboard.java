@@ -12,10 +12,16 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import it.univr.Model.AgenteSanitario;
 
 
 public class AdminViewDashboard {
 
+    AgenteSanitario admin = null;
+
+    public AdminViewDashboard(AgenteSanitario admin) {
+        this.admin = admin;
+    }
 
     @FXML
     private Label usernameLabel;

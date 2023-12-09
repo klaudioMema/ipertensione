@@ -2,13 +2,11 @@ package it.univr.Model;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Date;
 
 public class Medico extends User{
 
     private int doctorId;
 
-    // This should be private, in theory
     public Medico(String name, String cognome, String email, String password, int doctorId){
         super(name, cognome, email, password);
         this.doctorId = doctorId;

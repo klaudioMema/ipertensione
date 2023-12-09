@@ -20,21 +20,15 @@ public class DatabaseManager {
 
     // Recupera uno o più elementi dalle tabelle
     public static ResultSet getItem(String query) {
-        Connection connection = connect();
-        if(connection == null){
-            System.out.println("Connessione con il db fallita");
+        try  {
+            Connection connection = DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD);
+            PreparedStatement stat = connection.prepareStatement(query);
+            ResultSet rs = stat.executeQuery();
+
+            return rs;
+        } catch (SQLException e) {
+            System.out.println("Query fallita");
             return null;
-        }
-        else {
-            try (PreparedStatement stat = connection.prepareStatement(query)) {
-                ResultSet rs = stat.executeQuery();
-                connection.close();
-                stat.close();
-                return rs;
-            } catch (SQLException e){
-                System.out.println("Query fallita");
-                return null;
-            }
         }
 
     }

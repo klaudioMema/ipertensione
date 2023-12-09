@@ -63,6 +63,8 @@ public class DoctorViewDashboard  {
     }
 
     public void checkMedication() {
+        /*
+
         // prendere tutte le prescrizioni dalla tabella
         String query = "SELECT * FROM prescriptions";
         ResultSet rs = DatabaseController.getResultSet(query); // lista prescrizioni
@@ -96,10 +98,9 @@ public class DoctorViewDashboard  {
                     last_alert_date = rs_alert.getDate("date");
                 }
 
-                /*
+
                 query = "SELECT * FROM takenmedication WHERE prescription_id = " + prescription_id;
                 rs_medication = DatabaseController.getResultSet(query);
-                */
 
                 current_date = last_alert_date;
 
@@ -108,7 +109,7 @@ public class DoctorViewDashboard  {
 
                 query = "SELECT * FROM takenmedication WHERE prescription_id = '" + prescription_id + "' AND daythatwastaken = '" + current_date + "'";
 
-                String indication = ""; //
+                String indication = "";
 
                 counter = 0;
                 while(current_date.compareTo(today) <= 0 && diff_date <= prescription_days) {
@@ -147,8 +148,7 @@ public class DoctorViewDashboard  {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-
+         */
     }
 
 }
