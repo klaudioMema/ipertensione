@@ -19,8 +19,17 @@ public class AdminViewDashboard {
 
     AgenteSanitario admin = null;
 
+    public AdminViewDashboard(){}
     public AdminViewDashboard(AgenteSanitario admin) {
         this.admin = admin;
+    }
+
+    public void setAdmin(AgenteSanitario admin) {
+        this.admin = admin;
+    }
+
+    public AgenteSanitario getAdmin() {
+        return this.admin;
     }
 
     @FXML

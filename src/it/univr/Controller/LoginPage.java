@@ -98,7 +98,7 @@ public class LoginPage implements Initializable {
                         statusLabel.setText("Successful login!");
                         statusLabel.setTextFill(Color.color(0, 1, 0));
 
-                        loadAdminDashboard(username, event);
+                        loadAdminDashboard((AgenteSanitario) user, event);
                     }
                 }
                 case MEDICO -> {
@@ -177,12 +177,21 @@ public class LoginPage implements Initializable {
          */
     }
 
-    private void loadAdminDashboard(String username,ActionEvent event) {
+    private void loadAdminDashboard(AgenteSanitario user, ActionEvent event) {
         System.out.println("Dashboard dell'admin");
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/admin/AdminDashboard.fxml"));
-        AdminViewDashboard dashboard = loader.getRoot();
         // Carica home dell'agente sanitario
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/admin/AdminDashboard.fxml"));
+        AdminViewDashboard controller = null;
+
+        try {
+            root = loader.load();
+            controller = loader.getController();
+            controller.setAdmin(user);
+        } catch(IOException e) {
+            System.out.println("Impossibiile caricare la pagina");
+        }
 
         /*
         // Load next scene

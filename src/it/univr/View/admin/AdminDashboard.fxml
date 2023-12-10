@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="400.0" maxWidth="600.0" minHeight="400.0" minWidth="600.0" prefHeight="400.0" prefWidth="600.0" stylesheets="@../Main.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univr.Controller.admin.AdminViewDashboard">
+<AnchorPane maxHeight="400.0" maxWidth="600.0" minHeight="400.0" minWidth="600.0" prefHeight="400.0" prefWidth="600.0" stylesheets="" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univr.Controller.admin.AdminViewDashboard">
    <VBox prefHeight="400.0" prefWidth="174.0" style="-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #2265c3, #d62dfd);">
       <Pane prefHeight="145.0" prefWidth="174.0">
          <Label layoutX="10.0" layoutY="28.0" prefHeight="31.0" prefWidth="143.0" style="-fx-font-family: 'Cabin', sans-serif;" text="Welcome," textFill="WHITE">
