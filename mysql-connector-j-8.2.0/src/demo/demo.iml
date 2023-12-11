@@ -8,8 +8,16 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="mysql-connector-j-8.2.0" level="project" />
-    <orderEntry type="module" module-name="user-api" />
-    <orderEntry type="module" module-name="test" />
+    <orderEntry type="library" name="mysql-connector-j-8.0.33" level="project" />
+    <orderEntry type="library" name="mysql-connector-j-8.2.01" level="project" />
+    <orderEntry type="module" module-name="user-impl1" />
     <orderEntry type="module" module-name="user-impl" />
+    <orderEntry type="module" module-name="user-api" />
+    <orderEntry type="module" module-name="test2" />
+    <orderEntry type="module" module-name="test" />
+    <orderEntry type="module" module-name="user-api2" />
+    <orderEntry type="module" module-name="test1" />
+    <orderEntry type="module" module-name="user-impl2" />
+    <orderEntry type="module" module-name="user-api1" />
   </component>
 </module>
