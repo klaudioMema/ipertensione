@@ -1,5 +1,6 @@
 package it.univr.Controller.admin;
 
+import it.univr.Controller.WindowsManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,14 +13,23 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
+
 import it.univr.Model.AgenteSanitario;
 
 
 public class AdminViewDashboard {
 
+    @FXML
+    private Label usernameLabel;
+    @FXML
+    private HBox contentArea;
+
     AgenteSanitario admin = null;
 
-    public AdminViewDashboard(){}
+    public AdminViewDashboard(){
+
+    }
     public AdminViewDashboard(AgenteSanitario admin) {
         this.admin = admin;
     }
@@ -32,55 +42,52 @@ public class AdminViewDashboard {
         return this.admin;
     }
 
-    @FXML
-    private Label usernameLabel;
-    @FXML
-    private HBox contentArea;
-
     public void displayName(String name){
         usernameLabel.setText(name);
     }
 
-    // Register a new Patient
     @FXML
-    private void registerPatientButton(ActionEvent event) throws IOException {
-        Parent fxml = FXMLLoader.load(getClass().getResource("../../View/admin/RegisterPatient.fxml"));
-        contentArea.getChildren().removeAll();
-        contentArea.getChildren().setAll(fxml);
-        contentArea.setAlignment(Pos.CENTER);
-    }
-
-    // Manage an existing Patient
-    @FXML
-    private void managePatient(ActionEvent event) throws IOException {
-        Parent fxml = FXMLLoader.load(getClass().getResource("../../View/admin/ManagePatient.fxml"));
-        contentArea.getChildren().removeAll();
-        contentArea.getChildren().setAll(fxml);
-        contentArea.setAlignment(Pos.CENTER);
+    private void registerPatientButton(ActionEvent event) {
+        loadPage(getClass().getResource("../../View/admin/RegisterPatient.fxml"));
     }
 
     @FXML
-    private void registerDoctor(ActionEvent event) throws IOException {
-        Parent fxml = FXMLLoader.load(getClass().getResource("../../View/admin/RegisterDoctor.fxml"));
-        contentArea.getChildren().removeAll();
-        contentArea.getChildren().setAll(fxml);
-        contentArea.setAlignment(Pos.CENTER);
+    private void managePatient(ActionEvent event) {
+        loadPage(getClass().getResource("../../View/admin/ManagePatient.fxml"));
     }
 
     @FXML
-    private void manageDoctor(ActionEvent event) throws IOException {
-        Parent fxml = FXMLLoader.load(getClass().getResource("../../View/admin/ManageDoctor.fxml"));
-        contentArea.getChildren().removeAll();
-        contentArea.getChildren().setAll(fxml);
-        contentArea.setAlignment(Pos.CENTER);
+    private void registerDoctor(ActionEvent event) {
+        loadPage(getClass().getResource("../../View/admin/RegisterDoctor.fxml"));
+    }
+
+    @FXML
+    private void manageDoctor(ActionEvent event) {
+        loadPage(getClass().getResource("../../View/admin/ManageDoctor.fxml"));
     }
 
     public void logoutEvent(ActionEvent event) throws IOException {
-        Parent fxml =  FXMLLoader.load(getClass().getResource("../../View/LoginPageView.fxml"));
-        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(fxml);
-        stage.setScene(scene);
-        stage.show();
+        URL location = getClass().getResource("../../View/LoginPageView.fxml");
+
+        if(location == null) {
+            System.out.println("Impossibile caricare la pagina di login");
+        } else {
+            Parent root = FXMLLoader.load(location);
+            WindowsManager.setScene(new Scene(root));
+            WindowsManager.getMainStage().show();
+        }
+    }
+
+    private void loadPage(URL location) {
+        try {
+            Parent fxml = FXMLLoader.load(location);
+
+            contentArea.getChildren().removeAll();
+            contentArea.getChildren().setAll(fxml);
+            contentArea.setAlignment(Pos.CENTER);
+        } catch (IOException e) {
+            System.out.println("Impossibile caricare la pagina");
+        }
     }
 
 }

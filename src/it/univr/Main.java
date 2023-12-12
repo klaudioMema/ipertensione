@@ -1,10 +1,13 @@
 package it.univr;
 
+import it.univr.Controller.WindowsManager;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+
+import java.net.URL;
 
 
 public class Main extends Application {
@@ -12,14 +15,16 @@ public class Main extends Application {
         launch(args);
     }
 
-    public void start(Stage stage) throws Exception{
+    public void start(Stage stage) throws Exception {
+        URL location = getClass().getResource("View/LoginPageView.fxml");
 
-        Scene scene;
-        Parent root = FXMLLoader.load(getClass().getResource("View/LoginPageView.fxml"));
-        scene = new Scene(root);
-        stage.setTitle("BloodMonitor");
-        stage.setResizable(false);
-        stage.setScene(scene);
-        stage.show();
+        if(location == null) {
+            System.out.println("Impossibile caricare la pagina di login");
+        } else {
+            Parent root = FXMLLoader.load(location);
+            WindowsManager.setMainStage(stage, "BloodMonitor");
+            WindowsManager.setScene(new Scene(root));
+            WindowsManager.getMainStage().show();
+        }
     }
 }

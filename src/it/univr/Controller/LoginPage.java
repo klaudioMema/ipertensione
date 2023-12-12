@@ -19,8 +19,6 @@ import javafx.stage.Stage;
 import it.univr.Functions;
 import java.io.IOException;
 import java.net.URL;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class LoginPage implements Initializable {
@@ -80,8 +78,6 @@ public class LoginPage implements Initializable {
         String password = passwordField.getText();
         String userType = choiceBox.getValue();
 
-        // Check if user type is selected
-        //alertMassage alert = new alertMassage();
         if (choiceBox.getValue() == null) {
             Functions.notificationMessage("Seleziona il tipo di utente", "ERROR", statusLabel);
         } else {
@@ -189,43 +185,18 @@ public class LoginPage implements Initializable {
             root = loader.load();
             controller = loader.getController();
             controller.setAdmin(user);
+            controller.displayName(user.getNome());
         } catch(IOException e) {
-            System.out.println("Impossibiile caricare la pagina");
+            System.out.println("Impossibile caricare la pagina");
         }
 
-        /*
-        // Load next scene
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/admin/AdminDashboard.fxml"));
-        root = loader.load();
-        // Get user data
-        AgenteSanitario activeUser = AgenteSanitario.getInstance();
-        try {
-            ResultSet rs = DatabaseController.getResultSet("SELECT * FROM agentesanitario WHERE email = '" + username + "'");
-            rs.next();
-            activeUser.setEmail(rs.getString("email"));
-            activeUser.setPassword(rs.getString("password"));
-            activeUser.setName(rs.getString("name"));
-            rs.close();
-
-            AdminViewDashboard adminViewDashboard = loader.getController();
-            adminViewDashboard.displayName(activeUser.getName());
-
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        // set new stage;
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-
-         */
+        WindowsManager.setScene(new Scene(root));
+        WindowsManager.getMainStage().show();
     }
 
 
     private void loadPatientDashboard(String username, ActionEvent event) {
-    System.out.println("Dashboard del paziente");
+        System.out.println("Dashboard del paziente");
 
         // Carica home del paziente
 
