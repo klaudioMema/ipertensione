@@ -8,27 +8,22 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="400.0" maxWidth="600.0" minHeight="400.0" minWidth="600.0" prefHeight="400.0" prefWidth="600.0" stylesheets="" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univr.Controller.admin.AdminViewDashboard">
-   <VBox prefHeight="400.0" prefWidth="174.0" style="-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #2265c3, #d62dfd);">
-      <Pane prefHeight="145.0" prefWidth="174.0">
-         <Label layoutX="10.0" layoutY="28.0" prefHeight="31.0" prefWidth="143.0" style="-fx-font-family: 'Cabin', sans-serif;" text="Welcome," textFill="WHITE">
-            <font>
-               <Font size="21.0" />
-            </font>
-         </Label>
-         <Label fx:id="usernameLabel" layoutX="26.0" layoutY="73.0" text="USERNAME" textFill="WHITE">
+<AnchorPane maxHeight="400.0" maxWidth="600.0" minHeight="400.0" minWidth="600.0" prefHeight="400.0" prefWidth="600.0" stylesheets="" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univr.Controller.admin.AdminViewDashboard">
+   <VBox prefHeight="400.0" prefWidth="146.0" style="-fx-background-color: ffb444;">
+      <Pane prefHeight="86.0" prefWidth="146.0">
+         <Label fx:id="usernameLabel" layoutX="6.0" layoutY="28.0" text="USERNAME" textFill="WHITE">
             <font>
                <Font size="24.0" />
             </font>
          </Label>
       </Pane>
-      <Button mnemonicParsing="false" onAction="#registerPatientButton" prefHeight="48.0" prefWidth="174.0" styleClass="menuItem" text="Register Patient" textFill="WHITE" />
-      <Button mnemonicParsing="false" onAction="#managePatient" prefHeight="47.0" prefWidth="174.0" styleClass="menuItem" text="Manage Patient" textFill="WHITE" />
-      <Button mnemonicParsing="false" onAction="#registerDoctor" prefHeight="48.0" prefWidth="174.0" styleClass="menuItem" text="Register Doctor" textFill="WHITE" />
-      <Button mnemonicParsing="false" onAction="#manageDoctor" prefHeight="48.0" prefWidth="174.0" styleClass="menuItem" text="Manage Doctor" textFill="WHITE" />
-      <Button mnemonicParsing="false" prefHeight="47.0" prefWidth="174.0" styleClass="menuItem" text="MyAcount" textFill="WHITE" />
-      <Button mnemonicParsing="false" onAction="#logoutEvent" prefHeight="25.0" prefWidth="55.0" styleClass="menuItem" text="Logout" textFill="#ffafaf" />
+      <Button mnemonicParsing="false" onAction="#registerPatientButton" prefHeight="40.0" prefWidth="145.0" styleClass="menuItem" text="Register Patient" />
+      <Button mnemonicParsing="false" onAction="#managePatient" prefHeight="40.0" prefWidth="145.0" styleClass="menuItem" text="Manage Patient" />
+      <Button mnemonicParsing="false" onAction="#registerDoctor" prefHeight="40.0" prefWidth="145.0" styleClass="menuItem" text="Register Doctor" />
+      <Button mnemonicParsing="false" onAction="#manageDoctor" prefHeight="40.0" prefWidth="145.0" styleClass="menuItem" text="Manage Doctor" />
+      <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="145.0" styleClass="menuItem" text="MyAcount" />
+      <Button mnemonicParsing="false" onAction="#logoutEvent" prefHeight="40.0" prefWidth="145.0" styleClass="menuItem" text="Logout" />
    </VBox>
-   <HBox fx:id="contentArea" layoutX="173.0" prefHeight="400.0" prefWidth="427.0" />
+   <HBox fx:id="contentArea" layoutX="146.0" prefHeight="400.0" prefWidth="454.0" />
 
 </AnchorPane>

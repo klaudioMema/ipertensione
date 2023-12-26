@@ -18,7 +18,7 @@ public class DatabaseController {
         }
 
         if(conn != null) {
-            //System.out.println("Connected");
+            System.out.println("Connected");
             return conn;
         }
         return null;

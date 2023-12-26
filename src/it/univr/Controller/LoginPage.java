@@ -17,6 +17,8 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import it.univr.Functions;
+
+import javax.xml.crypto.Data;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -47,9 +49,9 @@ public class LoginPage implements Initializable {
     @FXML
     private ChoiceBox<String> changePass_choiceBox;
     @FXML
-    private Button changePass_back;
-    @FXML
     private PasswordField changePass_password;
+    @FXML
+    private Button changePass_back;
     @FXML
     private PasswordField changePass_Confpassword;
     @FXML
@@ -68,7 +70,7 @@ public class LoginPage implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         choiceBox.getItems().addAll(users);
 
-        // changePass_choiceBox.getItems().addAll(users); // Questo serve per la funzione cambio password
+         changePass_choiceBox.getItems().addAll(users); // Questo serve per la funzione cambio password
     }
 
 
@@ -82,6 +84,7 @@ public class LoginPage implements Initializable {
             Functions.notificationMessage("Seleziona il tipo di utente", "ERROR", statusLabel);
         } else {
             switch(UserType.valueOf(userType)){
+                // CASO  AGENTO SANITARIO
                 case ADMIN -> {
                     User user = new AgenteSanitario();
                     user = user.findUserDB(username, password);
@@ -97,6 +100,7 @@ public class LoginPage implements Initializable {
                         loadAdminDashboard((AgenteSanitario) user, event);
                     }
                 }
+                    //CASO MEDICO
                 case MEDICO -> {
                     User user = new Medico();
                     user = user.findUserDB(username, password);
@@ -112,6 +116,7 @@ public class LoginPage implements Initializable {
                         loadDoctorDashboard(username, event);
                     }
                 }
+                // CASO PAZIENTE
                 case PAZIENTE -> {
                     User user = new Paziente();
                     user = user.findUserDB(username, password);
@@ -136,8 +141,8 @@ public class LoginPage implements Initializable {
             login_showPassword.setText(passwordField.getText());
         }
     }
-
     @FXML
+    // FUNZIONE ShowPassword -> mostra la Password
     private void showPassword(){
         if(login_selectShowPass.isSelected()){
             login_showPassword.setText(passwordField.getText());
@@ -245,7 +250,47 @@ public class LoginPage implements Initializable {
 
     // Funzioni per il cambio password
     @FXML
-    private void changePassword() {
+    private void changePassword() { // da rivedere non funziona il bottone "avanti" non va!!!
+
+        String userType = changePass_choiceBox.getValue();
+        try{
+            if (changePass_username.getText().isEmpty() ||
+                    changePass_password.getText().isEmpty() ||
+                    changePass_Confpassword.getText().isEmpty() ||
+                    changePass_choiceBox.getValue() == null ||
+                    !changePass_back.isPressed()) {
+                statusLabel.setText("completare tutti i campi !!!");
+            }else if(!changePass_password.getText().equals(changePass_Confpassword.getText())) {
+                statusLabel.setText("Le Password sono diverse !!!");
+            }else if(changePass_password.getText().length() < 1) {
+                statusLabel.setText("La password minore di 8 caratteri !!!");
+            }else {
+                if (userType.equals(users[0])){
+                    String query = "UPDATE agentesanitario SET password ='" + changePass_password.getText() +
+                            "'WHERE email ='" + changePass_username.getText() + "'";
+                    DatabaseController.updateItem(query);
+                }
+                else if (userType.equals(users[1])){
+                    String query = "UPDATE medics SET password ='" + changePass_password.getText() +
+                            "'WHERE email ='" + changePass_username.getText() + "'";
+                    DatabaseController.updateItem(query);
+                }else {
+                    if (userType.equals(users[3])){
+                        String query = "UPDATE patients SET password ='" + changePass_password.getText() +
+                                "'WHERE email ='" + changePass_username.getText() + "'";
+                        DatabaseController.updateItem(query);
+                    }
+                }
+                login_form.setVisible(true);
+                forgot_form.setVisible(false);
+                usernameTextField.setText("");
+                passwordField.setVisible(true);
+                passwordField.setText("");
+                login_showPassword.setVisible(false);
+                login_selectShowPass.setSelected(false);
+            }
+            // manca caso del username non trovato!!!
+        }catch (Exception e){e.printStackTrace();}
         /*
         String userType = changePass_choiceBox.getValue();
         try {
@@ -253,20 +298,20 @@ public class LoginPage implements Initializable {
                     changePass_Confpassword.getText().isEmpty() ||
                     changePass_username.getText().isEmpty() ||
                     changePass_choiceBox.getValue() == null || !changePass_back.isPressed()) {
-                //changePass_statusLabel.setText("Please fill in all blank fields.");
+          fatto      //changePass_statusLabel.setText("Please fill in all blank fields.");
                 //changePass_statusLabel.setTextFill(Color.color(1, 0, 0));
                 statusLabel.setText("Please fill in all blank fields.");
                 statusLabel.setTextFill(Color.color(1, 0, 0));
             } else if (!changePass_password.getText().equals(changePass_Confpassword.getText())) {
                 // CHECK IF THE PASSWORD AND CONFIRMATION ARE NOT MATCH
                 //changePass_statusLabel.setText("Passwords do not match.");
-                //changePass_statusLabel.setTextFill(Color.color(1, 0, 0));
+          fatto      //changePass_statusLabel.setTextFill(Color.color(1, 0, 0));
                 statusLabel.setText("Passwords do not match.");
                 statusLabel.setTextFill(Color.color(1, 0, 0));
             } else if (changePass_password.getText().length() < 8) {
                 // CHECK IF THE LENGTH OF PASSWORD IS LESS THAN TO 8
                 //changePass_statusLabel.setText("Invalid Password, at least 8 characters needed");
-                //changePass_statusLabel.setTextFill(Color.color(1, 0, 0));
+           fatto     //changePass_statusLabel.setTextFill(Color.color(1, 0, 0));
                 statusLabel.setText("Invalid Password, at least 8 characters needed");
                 statusLabel.setTextFill(Color.color(1, 0, 0));
             } else if (!userExists(changePass_username.getText(),userType)) {
@@ -277,17 +322,17 @@ public class LoginPage implements Initializable {
             } else {
                 if (userType.equals(users[0])){
                     String query = "UPDATE patients SET password = '" + changePass_password.getText() +
-                                   "' WHERE email = '" + changePass_username.getText() + "'";
+               fatto                    "' WHERE email = '" + changePass_username.getText() + "'";
                     DatabaseController.updateItem(query);
                 }
                 else if (userType.equals(users[1])){
                     String query = "UPDATE medics SET password =  '" + changePass_password.getText() +
-                                   "' WHERE email = '" + changePass_username.getText() + "'";
+                fatto                   "' WHERE email = '" + changePass_username.getText() + "'";
                     DatabaseController.updateItem(query);
                 }else {
                     if (userType.equals(users[3])){
                     String query = "UPDATE agentesanitario SET password =  '" + changePass_password.getText() +
-                                   "' WHERE email = '" + changePass_username.getText() + "'";
+                fatto                   "' WHERE email = '" + changePass_username.getText() + "'";
                     DatabaseController.updateItem(query);
                     }
                 }
@@ -295,9 +340,7 @@ public class LoginPage implements Initializable {
                 statusLabel.setText("");
                 statusLabel.setText("Successfully Changed Password.");
                 statusLabel.setTextFill(Color.color(0, 1, 0));
-
             }
-
             // LOGIN_FORM
             login_form.setVisible(true);
             forgot_form.setVisible(false);
@@ -311,22 +354,16 @@ public class LoginPage implements Initializable {
             changePass_Confpassword.setText("");
         }catch (Exception e){e.printStackTrace();}
          */
-
     }
-
     @FXML
     private void switchForm(ActionEvent event) {
-        /*
         if (event.getSource() == login_forgotPassword){
             login_form.setVisible(false);
             forgot_form.setVisible(true);
         }
         else if (event.getSource() == changePass_back) {
-
             login_form.setVisible(true);
             forgot_form.setVisible(false);
         }
-         */
     }
-
 }

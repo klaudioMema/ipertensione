@@ -25,7 +25,6 @@ import java.util.regex.Pattern;
 
 
 public class RegisterPatient {
-
     @FXML
     private TextField nameField;
     @FXML
@@ -55,12 +54,36 @@ public class RegisterPatient {
             e.printStackTrace();
         }
     }
-
-
     @FXML
     private void savePatient(ActionEvent event) throws SQLException {
-/*
-        // Empty field
+        if(nameField.getText().equals("") || surnameField.getText().equals("") ||
+                passwordField.getText().equals("") || codiceFField.getText().equals("") ||
+                bDayField.getValue() == null){ // controllo se l'utente non inserisce nulla -> provato e funziona !!!
+            statusLabel.setVisible(true);
+        } else if (passwordField.getText().length() < 8) {// controllo password !!! -> provato e funziona
+            statusLabel.setText("Password deve essere lunga 8");
+        } else if (bDayField.getValue().getYear() < 1900 || bDayField.getValue().getYear() > LocalDate.now().getYear()) {
+            statusLabel.setText("Data nascita non valida"); // non funziona  da vedere
+
+        }else{//controllo il codie fiscale:
+            String query = "SELECT * FROM bloodmonitor.patients WHERE codicef = '" + codiceFField.getText() + "'";
+            ResultSet check_codicef = DatabaseController.getResultSet(query);
+            if (check_codicef.next()){
+                statusLabel.setText("Paziente già inserito");
+            }
+
+            else {//inserisco il novo paziente:
+                query = "INSERT INTO bloodmonitor.patients (name, surname, email, password, codicef, bday) " +
+                        "VALUES ('" + nameField.getText() + "', '" + surnameField.getText() + "', '" + emailField.getText() +
+                        "', '" + passwordField.getText() + "', '" + codiceFField.getText() + "', '" + bDayField.getValue() + "')";
+                DatabaseController.updateItem(query);
+                //String queryPatientsID = "SELECT user_id FROM bloodmonitor.patients " + "ORDER  BY user_id DESC LIMIT 1";
+                //ResultSet rs = DatabaseController.getResultSet(queryPatientsID);
+                // aggiunta nuovo paziente: DA FARE.
+            }
+
+        }
+       /* // Empty field
         if(nameField.getText().equals("") || surnameField.getText().equals("") || emailField.getText().equals("") ||
                 passwordField.getText().equals("") || codiceFField.getText().equals("") || bDayField.getValue() == null) {
             statusLabel.setVisible(true);
@@ -74,11 +97,9 @@ public class RegisterPatient {
         } else if (bDayField.getValue().getYear() < 1900 || bDayField.getValue().getYear() > LocalDate.now().getYear()) {
             Functions.notificationMessage("Choose a valid birthdate", "ERROR", statusLabel);
         } else {
-
             // Controllo se il codice fiscale è già esistente
             String query = "SELECT * FROM bloodmonitor.patients WHERE codicef = '" + codiceFField.getText() + "'";
             ResultSet check_codiceF = DatabaseController.getResultSet(query);
-
             if(check_codiceF.next()){ // se c'è un paziente con quel codice fiscale
                 Functions.notificationMessage("Patient already inserted", "ERROR", statusLabel);
             } else {
@@ -111,7 +132,7 @@ public class RegisterPatient {
 
     // Check if codice fiscale is valid
     private boolean checkCF(){
-        String regex = "^[A-Z]{6}\\d{2}[A-Z]\\d{2}[A-Z]\\d{3}[A-Z]$";
+        String regex = "^[A-Z]{6}\\d{2}[0-9]\\d[A-Z]\\d{2}[0-9]\\d[A-Z]\\d{3}[0-9]\\d[A-Z]$";
         Matcher matcher = Pattern.compile(regex).matcher(codiceFField.getText());
         return matcher.matches();
     }

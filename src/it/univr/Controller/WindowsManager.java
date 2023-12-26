@@ -14,6 +14,11 @@ public class WindowsManager {
     public static void setScene(Scene newScene) {
         mainStage.setScene(newScene);
         mainStage.show();
+
+        // ho fissato la finestra cosi non si può rimpicciolire
+        mainStage.setMinHeight(409);
+        mainStage.setMinWidth(638);
+
     }
 
     public static Stage getMainStage() {

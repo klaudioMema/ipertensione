@@ -4,43 +4,72 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="643bca4f-831b-46d0-89ac-4e65659221f5" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+    <list default="true" id="31badb30-b2ca-4952-8647-95205fc048c4" name="Changes" comment="- design fatto ( ne caso da mettere a posto)&#10;- da vedere il pulsante &quot;avanti&quot; della classe Login&#10;- registrazione Paziente funziona.">
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ipertensione.iml" beforeDir="false" afterPath="$PROJECT_DIR$/ipertensione.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mysql-connector-j-8.2.0/src/build/build.iml" beforeDir="false" afterPath="$PROJECT_DIR$/mysql-connector-j-8.2.0/src/build/build.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mysql-connector-j-8.2.0/src/demo/demo.iml" beforeDir="false" afterPath="$PROJECT_DIR$/mysql-connector-j-8.2.0/src/demo/demo.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mysql-connector-j-8.2.0/src/generated/generated.iml" beforeDir="false" afterPath="$PROJECT_DIR$/mysql-connector-j-8.2.0/src/generated/generated.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mysql-connector-j-8.2.0/src/legacy/legacy.iml" beforeDir="false" afterPath="$PROJECT_DIR$/mysql-connector-j-8.2.0/src/legacy/legacy.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mysql-connector-j-8.2.0/src/main/core-impl/core-impl.iml" beforeDir="false" afterPath="$PROJECT_DIR$/mysql-connector-j-8.2.0/src/main/core-impl/core-impl.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mysql-connector-j-8.2.0/src/main/protocol-impl/protocol-impl.iml" beforeDir="false" afterPath="$PROJECT_DIR$/mysql-connector-j-8.2.0/src/main/protocol-impl/protocol-impl.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mysql-connector-j-8.2.0/src/main/user-api/user-api.iml" beforeDir="false" afterPath="$PROJECT_DIR$/mysql-connector-j-8.2.0/src/main/user-api/user-api.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mysql-connector-j-8.2.0/src/main/user-impl/user-impl.iml" beforeDir="false" afterPath="$PROJECT_DIR$/mysql-connector-j-8.2.0/src/main/user-impl/user-impl.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mysql-connector-j-8.2.0/src/test/test.iml" beforeDir="false" afterPath="$PROJECT_DIR$/mysql-connector-j-8.2.0/src/test/test.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/univr/Controller/DatabaseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/univr/Controller/DatabaseController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/univr/Controller/LoginPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/univr/Controller/LoginPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/univr/Controller/WindowsManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/univr/Controller/WindowsManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/univr/Controller/admin/AdminViewDashboard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/univr/Controller/admin/AdminViewDashboard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/univr/Controller/admin/RegisterPatient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/univr/Controller/admin/RegisterPatient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/univr/View/BloodPressure.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/univr/View/BloodPressure.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/univr/View/LoginPageView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/univr/View/LoginPageView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/univr/View/admin/AdminDashboard.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/univr/View/admin/AdminDashboard.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/univr/View/admin/ChangeData.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/univr/View/admin/ChangeData.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/univr/View/admin/ChooseDoctor.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/univr/View/admin/ChooseDoctor.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/univr/View/admin/ManageDoctor.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/univr/View/admin/ManageDoctor.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/univr/View/admin/ManagePatient.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/univr/View/admin/ManagePatient.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/univr/View/admin/RegisterDoctor.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/univr/View/admin/RegisterDoctor.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/univr/View/admin/RegisterPatient.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/univr/View/admin/RegisterPatient.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/univr/View/doctor/AlertPatient.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/univr/View/doctor/AlertPatient.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/univr/View/doctor/DoctorDashboard.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/univr/View/doctor/DoctorDashboard.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/univr/View/doctor/MyPatient.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/univr/View/doctor/MyPatient.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/univr/View/doctor/Prescriptions.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/univr/View/doctor/Prescriptions.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/univr/View/doctor/SearchPatientDoctor.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/univr/View/doctor/SearchPatientDoctor.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/univr/View/doctor/ViewSymptomsDoctor.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/univr/View/doctor/ViewSymptomsDoctor.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/univr/View/patient/HomePage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/univr/View/patient/HomePage.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/univr/View/patient/Medications.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/univr/View/patient/Medications.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/univr/View/patient/MyProfile.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/univr/View/patient/MyProfile.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/univr/View/patient/PatientDashboard.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/univr/View/patient/PatientDashboard.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/univr/View/patient/ViewSymptomsPatient.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/univr/View/patient/ViewSymptomsPatient.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Enum" />
-        <option value="Class" />
-      </list>
-    </option>
-  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectColorInfo">{
-  &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: 5
 }</component>
-  <component name="ProjectId" id="2ZAx9wfAaw35yCNscgllVM1jRWK" />
+  <component name="ProjectId" id="2ZSCxraWIqWbgYNPM4QyCxHExBn" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;Application.main.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/klaudio/ingegneria_sw/prova_installazione/ipertensione&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/yuri/SceneBuilder/data/opt/scenebuilder/bin/SceneBuilder&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -48,8 +77,7 @@
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2992874&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;configurable.group.editor&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
   &quot;keyToStringList&quot;: {
@@ -59,52 +87,88 @@
   }
 }</component>
   <component name="RunManager">
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration name="main" type="Application" factoryName="Application">
+      <option name="ALTERNATIVE_JRE_PATH" value="zulu-20" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="it.univr.Main" />
       <module name="ipertensione" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="it.univr.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Application.Main" />
-      </list>
-    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="jdk-20.0.2-azul-20.0.2-3183f394aec4-18ea16e8" />
+        <option value="jdk-21.0.1-azul-21.0.1-3183f394aec4-811a90db" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="643bca4f-831b-46d0-89ac-4e65659221f5" name="Changes" comment="" />
-      <created>1701878537159</created>
+      <changelist id="31badb30-b2ca-4952-8647-95205fc048c4" name="Changes" comment="" />
+      <created>1702406348813</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1701878537159</updated>
-      <workItem from="1701878538482" duration="16157000" />
-      <workItem from="1702132480919" duration="8761000" />
-      <workItem from="1702236662692" duration="43000" />
-      <workItem from="1702236732346" duration="830000" />
+      <updated>1702406348813</updated>
+      <workItem from="1702406351288" duration="120000" />
+      <workItem from="1702406518875" duration="86000" />
+      <workItem from="1702406626094" duration="2052000" />
+      <workItem from="1702569958324" duration="4132000" />
+      <workItem from="1702649314721" duration="4462000" />
+      <workItem from="1702659591069" duration="1663000" />
+      <workItem from="1702743454670" duration="2065000" />
+      <workItem from="1702751005895" duration="136000" />
+      <workItem from="1702751178293" duration="3753000" />
+      <workItem from="1702832148483" duration="3485000" />
+      <workItem from="1702913086976" duration="3504000" />
+      <workItem from="1702997065560" duration="4376000" />
+      <workItem from="1703001921507" duration="5839000" />
+      <workItem from="1703184045223" duration="311000" />
+      <workItem from="1703262956098" duration="6242000" />
+      <workItem from="1703360484027" duration="773000" />
+      <workItem from="1703440991824" duration="2091000" />
+      <workItem from="1703521037161" duration="1139000" />
+      <workItem from="1703530918684" duration="374000" />
+      <workItem from="1703545847261" duration="1565000" />
     </task>
+    <task id="LOCAL-00001" summary="- design fatto ( ne caso da mettere a posto)&#10;- da vedere il pulsante &quot;avanti&quot; della classe Login&#10;- registrazione Paziente funziona.">
+      <option name="closed" value="true" />
+      <created>1703361255558</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1703361255559</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="- design fatto ( ne caso da mettere a posto)&#10;- da vedere il sulsante &quot;avanti&quot; della classe Login&#10;- registrazione Paziente funziona." />
+    <MESSAGE value="- design fatto ( ne caso da mettere a posto)&#10;- da vedere il pulsante &quot;avanti&quot; della classe Login&#10;- registrazione Paziente funziona." />
+    <option name="LAST_COMMIT_MESSAGE" value="- design fatto ( ne caso da mettere a posto)&#10;- da vedere il pulsante &quot;avanti&quot; della classe Login&#10;- registrazione Paziente funziona." />
+  </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/it/univr/Controller/LoginPage.java</url>
-          <line>188</line>
-          <option name="timeStamp" value="8" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo parentTag="com.mysql.cj.jdbc.result.ResultSetImpl" memberName="thisRow" />
+      </pinned-members>
+    </pin-to-top-manager>
   </component>
 </project>
