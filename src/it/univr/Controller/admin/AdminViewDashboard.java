@@ -24,38 +24,29 @@ public class AdminViewDashboard {
     private Label usernameLabel;
     @FXML
     private HBox contentArea;
-
     AgenteSanitario admin = null;
-
     public AdminViewDashboard(){
-
     }
     public AdminViewDashboard(AgenteSanitario admin) {
         this.admin = admin;
     }
-
     public void setAdmin(AgenteSanitario admin) {
         this.admin = admin;
     }
-
     public AgenteSanitario getAdmin() {
         return this.admin;
     }
-
     public void displayName(String name){
         usernameLabel.setText(name);
     }
-
     @FXML
     private void registerPatientButton(ActionEvent event) {
         loadPage(getClass().getResource("../../View/admin/RegisterPatient.fxml"));
     }
-
     @FXML
     private void managePatient(ActionEvent event) {
         loadPage(getClass().getResource("../../View/admin/ManagePatient.fxml"));
     }
-
     @FXML
     private void registerDoctor(ActionEvent event) {
         loadPage(getClass().getResource("../../View/admin/RegisterDoctor.fxml"));
@@ -65,10 +56,8 @@ public class AdminViewDashboard {
     private void manageDoctor(ActionEvent event) {
         loadPage(getClass().getResource("../../View/admin/ManageDoctor.fxml"));
     }
-
     public void logoutEvent(ActionEvent event) throws IOException {
         URL location = getClass().getResource("../../View/LoginPageView.fxml");
-
         if(location == null) {
             System.out.println("Impossibile caricare la pagina di login");
         } else {
@@ -77,11 +66,9 @@ public class AdminViewDashboard {
             WindowsManager.getMainStage().show();
         }
     }
-
     private void loadPage(URL location) {
         try {
             Parent fxml = FXMLLoader.load(location);
-
             contentArea.getChildren().removeAll();
             contentArea.getChildren().setAll(fxml);
             contentArea.setAlignment(Pos.CENTER);
@@ -89,5 +76,4 @@ public class AdminViewDashboard {
             System.out.println("Impossibile caricare la pagina");
         }
     }
-
 }

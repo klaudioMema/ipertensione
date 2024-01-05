@@ -9,19 +9,19 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="427.0" stylesheets="@../Main.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univr.Controller.admin.RegisterPatient">
-    <Label id="titleLabel" layoutX="75.0" layoutY="8.0" prefHeight="17.0" prefWidth="275.0" text="Register Patient">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="427.0" stylesheets="@../Main.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univr.Controller.admin.RegisterPatient">
+    <Label id="titleLabel" alignment="TOP_CENTER" layoutX="28.0" layoutY="7.0" prefHeight="53.0" prefWidth="375.0" text="Registra Paziente">
         <font>
             <Font name="Arial Black" size="35.0" />
         </font>
     </Label>
     <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#80878d" height="327.0" layoutX="14.0" layoutY="60.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="402.0" />
-    <Label id="nameLabel" layoutX="29.0" layoutY="86.0" text="Name" textFill="WHITE">
+    <Label id="nameLabel" layoutX="29.0" layoutY="86.0" text="Nome" textFill="WHITE">
         <font>
             <Font size="16.0" />
         </font>
     </Label>
-    <Label id="surnameLabel" layoutX="29.0" layoutY="121.0" text="Surname" textFill="WHITE">
+    <Label id="surnameLabel" layoutX="29.0" layoutY="121.0" text="Cognome" textFill="WHITE">
         <font>
             <Font size="16.0" />
         </font>
@@ -36,12 +36,12 @@
             <Font size="16.0" />
         </font>
     </Label>
-    <Label id="bdateLabel" layoutX="29.0" layoutY="261.0" text="Birth Date" textFill="WHITE">
+    <Label id="bdateLabel" layoutX="29.0" layoutY="261.0" text="Data Nascita" textFill="WHITE">
         <font>
             <Font size="16.0" />
         </font>
     </Label>
-    <Label id="bdateLabel" layoutX="29.0" layoutY="226.0" text="Codice Fiscale" textFill="WHITE">
+    <Label id="bdateLabel" layoutX="23.0" layoutY="229.0" text="Codice Fiscale" textFill="WHITE">
         <font>
             <Font size="16.0" />
         </font>
@@ -57,5 +57,5 @@
             <Font size="18.0" />
         </font>
     </Label>
-    <Button layoutX="133.0" layoutY="338.0" mnemonicParsing="false" onAction="#savePatient" prefHeight="40.0" prefWidth="162.0" text="Save and Choose Doctor" textFill="WHITE" />
+    <Button layoutX="138.0" layoutY="338.0" mnemonicParsing="false" onAction="#savePatient" prefHeight="40.0" prefWidth="170.0" text="Salve e Scegli Dottore" />
 </Pane>

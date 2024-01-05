@@ -9,25 +9,25 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../Main.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univr.Controller.admin.ChooseDoctor">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../Main.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univr.Controller.admin.ChooseDoctor">
     <BorderPane prefHeight="400.0" prefWidth="600.0">
         <center>
             <TableView fx:id="tableView" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                 <columns>
-                    <TableColumn fx:id="nameColumn" prefWidth="231.0" text="Name" />
-                    <TableColumn fx:id="surnameColumn" prefWidth="111.0" text="Surname" />
-                    <TableColumn fx:id="emailColumn" prefWidth="114.0" text="Email" />
+                    <TableColumn fx:id="nameColumn" prefWidth="182.0" text="Nome" />
+                    <TableColumn fx:id="surnameColumn" prefWidth="204.0" text="Cognome" />
+                    <TableColumn fx:id="emailColumn" prefWidth="212.0" text="Email" />
                 </columns>
             </TableView>
         </center>
         <bottom>
-            <Pane prefHeight="181.0" prefWidth="600.0" style="-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #2265c3, #d62dfd);;" BorderPane.alignment="CENTER">
+            <Pane prefHeight="181.0" prefWidth="600.0" style="-fx-background-color: ffb444;" BorderPane.alignment="CENTER">
                 <Label fx:id="chooseADoctorLabel" layoutX="25.0" layoutY="6.0" textFill="WHITE">
                     <font>
                         <Font size="25.0" />
                     </font>
                 </Label>
-                <Button layoutX="377.0" layoutY="39.0" mnemonicParsing="false" onAction="#assignDoctor" prefHeight="104.0" prefWidth="194.0" text="Choose" textFill="WHITE" />
+                <Button layoutX="223.0" layoutY="51.0" mnemonicParsing="false" onAction="#assignDoctor" prefHeight="67.0" prefWidth="155.0" text="Scegli" />
                 <Label fx:id="statusLabel" layoutX="14.0" layoutY="106.0" prefHeight="50.0" prefWidth="327.0" styleClass="normal" text="Couldn't remove data" textFill="#ffdada" visible="false">
                     <font>
                         <Font size="25.0" />
