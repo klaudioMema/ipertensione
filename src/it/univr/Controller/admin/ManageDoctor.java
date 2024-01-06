@@ -25,24 +25,28 @@ public class ManageDoctor extends Search {
     // Select a doctor
     @FXML
     private void searchDoctor(ActionEvent event) throws SQLException, ParseException {
-/*
+
         String name = nameField.getText();
         String surname = surnameField.getText();
         String email = emailField.getText();
         if ((name.equals("") || surname.equals("")) && email.equals("")) {
-            setStatusLabel("Please fill in the data first");
+            statusLabel.setText("Prima inserisci i dati");
         } else {
             if (!searchDoctorDB(name, surname, email)) {
-                setStatusLabel("Doctor Not Found!");
-            } else {
+                statusLabel.setText("Dottore non trovato!");
+            }
+            /*
+            else {
                 nameField.setText(Medico.getInstance().getName());
                 surnameField.setText(Medico.getInstance().getSurname());
                 emailField.setText(Medico.getInstance().getEmail());
                 setStatusLabel("Doctor Selected!");
             }
+            */
+
         }
 
- */
+
     }
 
     // Save chanhes in the DB

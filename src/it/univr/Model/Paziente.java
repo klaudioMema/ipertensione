@@ -67,14 +67,15 @@ public class Paziente extends User{
 
     public User findUserDB(String username, String password) {
         String tableName = "patients";
-        String query = "SELECT * FROM " + tableName + " WHERE username = " + username + " AND password = " + password;
+        String query = "SELECT * FROM " + tableName + " WHERE email = '" + username + "' AND password = '" + password + "'";
 
-        ResultSet resultSet = DatabaseManager.getItem(query);
 
-        if (resultSet != null) {
-            try {
-                String name = resultSet.getString("nome");
-                String cognome = resultSet.getString("cognome");
+
+        try(ResultSet resultSet = DatabaseManager.getItem(query)) {
+                resultSet.next();
+
+                String name = resultSet.getString("name");
+                String cognome = resultSet.getString("surname");
                 String email = resultSet.getString("email");
                 String psw = resultSet.getString("password");
                 int patientId = resultSet.getInt("patientId");
@@ -85,11 +86,8 @@ public class Paziente extends User{
 
                 return new Paziente(name, cognome, email, psw, patientId, codiceF, bDay, fattoriDiRischio, patientDoctorId);
 
-            } catch(SQLException e) {
+        } catch(SQLException e) {
                 return null;
-            }
-        } else {
-            return null;
         }
     }
 
