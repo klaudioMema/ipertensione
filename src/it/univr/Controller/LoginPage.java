@@ -24,8 +24,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class LoginPage implements Initializable {
-
-
     @FXML
     private AnchorPane login_form;
     @FXML
@@ -42,7 +40,6 @@ public class LoginPage implements Initializable {
     private TextField login_showPassword;
     @FXML
     private Hyperlink login_forgotPassword;
-
     // Form per il cambio password
     @FXML
     private AnchorPane forgot_form;
@@ -58,8 +55,6 @@ public class LoginPage implements Initializable {
     private TextField changePass_username;
     @FXML
     private Label changePass_statusLabel;
-
-
     private final String[] users = {"ADMIN", "PAZIENTE", "MEDICO"};
 
     private static Stage stage;
@@ -69,11 +64,8 @@ public class LoginPage implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         choiceBox.getItems().addAll(users);
-
          changePass_choiceBox.getItems().addAll(users); // Questo serve per la funzione cambio password
     }
-
-
     @FXML
     private void login(ActionEvent event) {
         String username = usernameTextField.getText();
@@ -88,7 +80,6 @@ public class LoginPage implements Initializable {
                 case ADMIN -> {
                     User user = new AgenteSanitario();
                     user = user.findUserDB(username, password);
-
                     if(user == null) {
                         System.out.println("Account non trovato");
                         statusLabel.setText("Email o password sbagliati");
@@ -96,7 +87,6 @@ public class LoginPage implements Initializable {
                     } else {
                         statusLabel.setText("Successful login!");
                         statusLabel.setTextFill(Color.color(0, 1, 0));
-
                         loadAdminDashboard((AgenteSanitario) user, event);
                     }
                 }
@@ -104,7 +94,6 @@ public class LoginPage implements Initializable {
                 case MEDICO -> {
                     User user = new Medico();
                     user = user.findUserDB(username, password);
-
                     if(user == null) {
                         System.out.println("Account non trovato");
                         statusLabel.setText("Email o password sbagliati");
@@ -112,15 +101,13 @@ public class LoginPage implements Initializable {
                     } else {
                         statusLabel.setText("Successful login!");
                         statusLabel.setTextFill(Color.color(0, 1, 0));
-
-                        loadDoctorDashboard(username, event);
+                        loadDoctorDashboard((Medico) user, event);
                     }
                 }
                 // CASO PAZIENTE
                 case PAZIENTE -> {
                     User user = new Paziente();
                     user = user.findUserDB(username, password);
-
                     if(user == null) {
                         System.out.println("Account non trovato");
                         statusLabel.setText("Email o password sbagliati");
@@ -128,8 +115,7 @@ public class LoginPage implements Initializable {
                     } else {
                         statusLabel.setText("Successful login!");
                         statusLabel.setTextFill(Color.color(0, 1, 0));
-
-                        loadPatientDashboard(username, event);
+                        loadPatientDashboard((Paziente) user, event);
                     }
                 }
             }
@@ -155,37 +141,26 @@ public class LoginPage implements Initializable {
         }
 
     }
-
-    private void loadDoctorDashboard(String username, ActionEvent event) {
+    private void loadDoctorDashboard(Medico user, ActionEvent event) {
         System.out.println("Dashboard del medico");
-
         // Carica home del medico
-
-        /*
-        // Load next scene
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/doctor/DoctorDashboard.fxml"));
-        root = loader.load();
-
-        DoctorViewDashboard menuController = loader.getController();
-        menuController.displayName(activeUser.getNome());
-
-        // set new stage;
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-
-         */
+        DoctorViewDashboard controller = null;
+        try {
+            root = loader.load();
+            controller = loader.getController();
+            controller.displayName(user.getNome());
+        } catch (IOException e){
+            System.out.println("Impossibile caricare la pagina");
+        }
+        WindowsManager.setScene(new Scene(root));
+        WindowsManager.getMainStage().show();
     }
-
     private void loadAdminDashboard(AgenteSanitario user, ActionEvent event) {
         System.out.println("Dashboard dell'admin");
-
         // Carica home dell'agente sanitario
-
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/admin/AdminDashboard.fxml"));
         AdminViewDashboard controller = null;
-
         try {
             root = loader.load();
             controller = loader.getController();
@@ -194,21 +169,22 @@ public class LoginPage implements Initializable {
         } catch(IOException e) {
             System.out.println("Impossibile caricare la pagina");
         }
-
         WindowsManager.setScene(new Scene(root));
         WindowsManager.getMainStage().show();
     }
-
-
-    private void loadPatientDashboard(String username, ActionEvent event) {
+    private void loadPatientDashboard(Paziente user, ActionEvent event) {
         System.out.println("Dashboard del paziente");
-
         // Carica home del paziente
-
-    /*
-        // Load next scene
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/patient/PatientDashboard.fxml"));
-        root = loader.load();
+        PatientViewDashboard controller = null;
+        try{
+            root = loader.load();
+            controller = loader.getController();
+            controller.home();
+        }catch (IOException e) {
+            System.out.println("Impossibile caricare la pagina");
+        }
+        /*
         // Get user data from DB
         Paziente activeUser;
         try {
@@ -233,16 +209,10 @@ public class LoginPage implements Initializable {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-
-     */
+    */
+        WindowsManager.setScene(new Scene(root));
+        WindowsManager.getMainStage().show();
     }
-
     public static void changeWidth(int value){
         if(stage != null)
             stage.setWidth(value);

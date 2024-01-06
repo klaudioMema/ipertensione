@@ -4,6 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="31badb30-b2ca-4952-8647-95205fc048c4" name="Changes" comment="- design fatto ( ne caso da mettere a posto)&#10;- da vedere il pulsante &quot;avanti&quot; della classe Login&#10;- registrazione Paziente funziona.">
       <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
@@ -11,6 +12,16 @@
       <change beforePath="$PROJECT_DIR$/src/it/univr/Controller/admin/RegisterDoctor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/univr/Controller/admin/RegisterDoctor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/it/univr/Model/Medico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/univr/Model/Medico.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/it/univr/Model/Paziente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/univr/Model/Paziente.java" afterDir="false" />
+=======
+    <list default="true" id="31badb30-b2ca-4952-8647-95205fc048c4" name="Changes" comment="- design fatto ( ne caso da mettere a posto)&#10;- da vede- design fatto ( ne caso da mettere a posto)&#10;- da vedere il pulsante &quot;avanti&quot; della classe Login&#10;- registrazione Paziente funziona.re il pulsante &quot;avanti&quot; della classe Login&#10;- registrazione Paziente funziona.">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/univr/Controller/LoginPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/univr/Controller/LoginPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/univr/Controller/admin/ManageDoctor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/univr/Controller/admin/ManageDoctor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/univr/Model/Medico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/univr/Model/Medico.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/univr/Model/Paziente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/univr/Model/Paziente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/univr/View/doctor/DoctorDashboard.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/univr/View/doctor/DoctorDashboard.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/univr/View/patient/PatientDashboard.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/univr/View/patient/PatientDashboard.fxml" afterDir="false" />
+>>>>>>> cefc9348be106ada79f4e2da651976d29591f2b9
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,30 +39,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.main.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/yuri/SceneBuilder/data/opt/scenebuilder/bin/SceneBuilder&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.main.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/home/yuri/SceneBuilder/data/opt/scenebuilder/bin/SceneBuilder",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;mysql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mysql"
     ]
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="main" type="Application" factoryName="Application">
       <option name="ALTERNATIVE_JRE_PATH" value="zulu-20" />
@@ -98,7 +109,9 @@
       <workItem from="1703440991824" duration="2091000" />
       <workItem from="1703521037161" duration="1139000" />
       <workItem from="1703530918684" duration="374000" />
-      <workItem from="1703545847261" duration="1565000" />
+      <workItem from="1703545847261" duration="1917000" />
+      <workItem from="1703610353248" duration="1829000" />
+      <workItem from="1704550197523" duration="12878000" />
     </task>
     <task id="LOCAL-00001" summary="- design fatto ( ne caso da mettere a posto)&#10;- da vedere il pulsante &quot;avanti&quot; della classe Login&#10;- registrazione Paziente funziona.">
       <option name="closed" value="true" />
@@ -108,7 +121,15 @@
       <option name="project" value="LOCAL" />
       <updated>1703361255559</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="- design fatto ( ne caso da mettere a posto)&#10;- da vede- design fatto ( ne caso da mettere a posto)&#10;- da vedere il pulsante &quot;avanti&quot; della classe Login&#10;- registrazione Paziente funziona.re il pulsante &quot;avanti&quot; della classe Login&#10;- registrazione Paziente funziona.">
+      <option name="closed" value="true" />
+      <created>1703548918349</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1703548918349</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -128,7 +149,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="- design fatto ( ne caso da mettere a posto)&#10;- da vedere il sulsante &quot;avanti&quot; della classe Login&#10;- registrazione Paziente funziona." />
     <MESSAGE value="- design fatto ( ne caso da mettere a posto)&#10;- da vedere il pulsante &quot;avanti&quot; della classe Login&#10;- registrazione Paziente funziona." />
-    <option name="LAST_COMMIT_MESSAGE" value="- design fatto ( ne caso da mettere a posto)&#10;- da vedere il pulsante &quot;avanti&quot; della classe Login&#10;- registrazione Paziente funziona." />
+    <MESSAGE value="- design fatto ( ne caso da mettere a posto)&#10;- da vede- design fatto ( ne caso da mettere a posto)&#10;- da vedere il pulsante &quot;avanti&quot; della classe Login&#10;- registrazione Paziente funziona.re il pulsante &quot;avanti&quot; della classe Login&#10;- registrazione Paziente funziona." />
+    <option name="LAST_COMMIT_MESSAGE" value="- design fatto ( ne caso da mettere a posto)&#10;- da vede- design fatto ( ne caso da mettere a posto)&#10;- da vedere il pulsante &quot;avanti&quot; della classe Login&#10;- registrazione Paziente funziona.re il pulsante &quot;avanti&quot; della classe Login&#10;- registrazione Paziente funziona." />
   </component>
   <component name="XDebuggerManager">
     <pin-to-top-manager>

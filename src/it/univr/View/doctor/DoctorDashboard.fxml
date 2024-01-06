@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../Main.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univr.Controller.doctor.DoctorViewDashboard">
+<AnchorPane prefHeight="400.0" prefWidth="600.0"  xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univr.Controller.doctor.DoctorViewDashboard">
     <HBox fx:id="contentArea" layoutX="145.0" prefHeight="400.0" prefWidth="455.0" />
     <VBox prefHeight="400.0" prefWidth="144.0" style="-fx-background-color: #77dd77;">
         <Pane prefHeight="102.0" prefWidth="174.0">
