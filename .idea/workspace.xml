@@ -5,46 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="31badb30-b2ca-4952-8647-95205fc048c4" name="Changes" comment="- design fatto ( ne caso da mettere a posto)&#10;- da vedere il pulsante &quot;avanti&quot; della classe Login&#10;- registrazione Paziente funziona.">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ipertensione.iml" beforeDir="false" afterPath="$PROJECT_DIR$/ipertensione.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysql-connector-j-8.2.0/src/build/build.iml" beforeDir="false" afterPath="$PROJECT_DIR$/mysql-connector-j-8.2.0/src/build/build.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysql-connector-j-8.2.0/src/demo/demo.iml" beforeDir="false" afterPath="$PROJECT_DIR$/mysql-connector-j-8.2.0/src/demo/demo.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysql-connector-j-8.2.0/src/generated/generated.iml" beforeDir="false" afterPath="$PROJECT_DIR$/mysql-connector-j-8.2.0/src/generated/generated.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysql-connector-j-8.2.0/src/legacy/legacy.iml" beforeDir="false" afterPath="$PROJECT_DIR$/mysql-connector-j-8.2.0/src/legacy/legacy.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysql-connector-j-8.2.0/src/main/core-impl/core-impl.iml" beforeDir="false" afterPath="$PROJECT_DIR$/mysql-connector-j-8.2.0/src/main/core-impl/core-impl.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysql-connector-j-8.2.0/src/main/protocol-impl/protocol-impl.iml" beforeDir="false" afterPath="$PROJECT_DIR$/mysql-connector-j-8.2.0/src/main/protocol-impl/protocol-impl.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysql-connector-j-8.2.0/src/main/user-api/user-api.iml" beforeDir="false" afterPath="$PROJECT_DIR$/mysql-connector-j-8.2.0/src/main/user-api/user-api.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysql-connector-j-8.2.0/src/main/user-impl/user-impl.iml" beforeDir="false" afterPath="$PROJECT_DIR$/mysql-connector-j-8.2.0/src/main/user-impl/user-impl.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysql-connector-j-8.2.0/src/test/test.iml" beforeDir="false" afterPath="$PROJECT_DIR$/mysql-connector-j-8.2.0/src/test/test.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/univr/Controller/DatabaseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/univr/Controller/DatabaseController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/univr/Controller/LoginPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/univr/Controller/LoginPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/univr/Controller/WindowsManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/univr/Controller/WindowsManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/it/univr/Controller/admin/AdminViewDashboard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/univr/Controller/admin/AdminViewDashboard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/univr/Controller/admin/RegisterPatient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/univr/Controller/admin/RegisterPatient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/univr/View/BloodPressure.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/univr/View/BloodPressure.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/univr/View/LoginPageView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/univr/View/LoginPageView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/univr/View/admin/AdminDashboard.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/univr/View/admin/AdminDashboard.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/univr/View/admin/ChangeData.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/univr/View/admin/ChangeData.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/univr/View/admin/ChooseDoctor.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/univr/View/admin/ChooseDoctor.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/univr/View/admin/ManageDoctor.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/univr/View/admin/ManageDoctor.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/univr/View/admin/ManagePatient.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/univr/View/admin/ManagePatient.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/univr/View/admin/RegisterDoctor.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/univr/View/admin/RegisterDoctor.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/univr/View/admin/RegisterPatient.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/univr/View/admin/RegisterPatient.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/univr/View/doctor/AlertPatient.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/univr/View/doctor/AlertPatient.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/univr/View/doctor/DoctorDashboard.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/univr/View/doctor/DoctorDashboard.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/univr/View/doctor/MyPatient.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/univr/View/doctor/MyPatient.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/univr/View/doctor/Prescriptions.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/univr/View/doctor/Prescriptions.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/univr/View/doctor/SearchPatientDoctor.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/univr/View/doctor/SearchPatientDoctor.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/univr/View/doctor/ViewSymptomsDoctor.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/univr/View/doctor/ViewSymptomsDoctor.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/univr/View/patient/HomePage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/univr/View/patient/HomePage.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/univr/View/patient/Medications.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/univr/View/patient/Medications.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/univr/View/patient/MyProfile.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/univr/View/patient/MyProfile.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/univr/View/patient/PatientDashboard.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/univr/View/patient/PatientDashboard.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/it/univr/View/patient/ViewSymptomsPatient.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/univr/View/patient/ViewSymptomsPatient.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/univr/Controller/admin/RegisterDoctor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/univr/Controller/admin/RegisterDoctor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/univr/Model/Medico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/univr/Model/Medico.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/it/univr/Model/Paziente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/it/univr/Model/Paziente.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
