@@ -6,6 +6,7 @@ import java.sql.SQLException;
 public class Medico extends User{
 
     private int doctorId;
+    private final static String nameTable = "medic";
 
     public Medico(String name, String cognome, String email, String password, int doctorId){
         super(name, cognome, email, password);
@@ -22,6 +23,7 @@ public class Medico extends User{
         this.doctorId = doctorId;
     }
 
+    // cerca un medico nel db e lo ritorna se lo trova
     public User findUserDB(String username, String password) {
         String tableName = "medics";
         String query = "SELECT * FROM " + tableName + " WHERE username = " + username + " AND password = " + password;

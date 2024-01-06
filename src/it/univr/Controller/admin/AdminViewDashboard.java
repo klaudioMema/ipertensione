@@ -25,8 +25,10 @@ public class AdminViewDashboard {
     @FXML
     private HBox contentArea;
     AgenteSanitario admin = null;
+
     public AdminViewDashboard(){
     }
+
     public AdminViewDashboard(AgenteSanitario admin) {
         this.admin = admin;
     }
@@ -39,14 +41,17 @@ public class AdminViewDashboard {
     public void displayName(String name){
         usernameLabel.setText(name);
     }
+
     @FXML
     private void registerPatientButton(ActionEvent event) {
         loadPage(getClass().getResource("../../View/admin/RegisterPatient.fxml"));
     }
+
     @FXML
     private void managePatient(ActionEvent event) {
         loadPage(getClass().getResource("../../View/admin/ManagePatient.fxml"));
     }
+
     @FXML
     private void registerDoctor(ActionEvent event) {
         loadPage(getClass().getResource("../../View/admin/RegisterDoctor.fxml"));
@@ -56,6 +61,7 @@ public class AdminViewDashboard {
     private void manageDoctor(ActionEvent event) {
         loadPage(getClass().getResource("../../View/admin/ManageDoctor.fxml"));
     }
+
     public void logoutEvent(ActionEvent event) throws IOException {
         URL location = getClass().getResource("../../View/LoginPageView.fxml");
         if(location == null) {
@@ -66,6 +72,7 @@ public class AdminViewDashboard {
             WindowsManager.getMainStage().show();
         }
     }
+
     private void loadPage(URL location) {
         try {
             Parent fxml = FXMLLoader.load(location);

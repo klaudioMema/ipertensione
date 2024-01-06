@@ -1,6 +1,7 @@
 package it.univr.Controller.admin;
 
 import it.univr.Controller.DatabaseController;
+import it.univr.Functions;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -23,16 +24,19 @@ public class RegisterDoctor {
 
     @FXML
     private void saveDoctor(ActionEvent event) {
-        if (nameField.getText().equals("") || surnameField.getText().equals("") ||
+        if (    nameField.getText().equals("") || surnameField.getText().equals("") ||
                 emailField.getText().equals("") || passwordField.getText().equals("")) {
-            statusLabel.setText("Please fill all fields before proceeding");
-            statusLabel.setVisible(true);
+
+            Functions.notificationMessage("Compilare tutti i campi", "ERROR", statusLabel);
+
         } else {
             String query = "INSERT INTO bloodmonitor.medics (name, surname, email, password) " +
                     "VALUES ('" + nameField.getText() + "', '" + surnameField.getText() + "', '" + emailField.getText() +
                     "', '" + passwordField.getText() + "')";
             DatabaseController.updateItem(query);
             // Get Primary Key for the new Patient
+
+            Functions.notificationMessage("Salvato!", );
 
             statusLabel.setText("Saved!");
             statusLabel.setTextFill(Color.rgb(155, 222, 111));

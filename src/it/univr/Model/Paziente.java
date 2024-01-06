@@ -65,6 +65,7 @@ public class Paziente extends User{
         this.doctorId = doctorId;
     }
 
+    // cerca il paziente nel database e ritorna i suoi dati
     public User findUserDB(String username, String password) {
         String tableName = "patients";
         String query = "SELECT * FROM " + tableName + " WHERE username = " + username + " AND password = " + password;
