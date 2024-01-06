@@ -24,9 +24,10 @@ DROP TABLE IF EXISTS `agentesanitario`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `agentesanitario` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) DEFAULT NULL,
+  `nome` varchar(50) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
   `password` text,
+  `cognome` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -37,7 +38,7 @@ CREATE TABLE `agentesanitario` (
 
 LOCK TABLES `agentesanitario` WRITE;
 /*!40000 ALTER TABLE `agentesanitario` DISABLE KEYS */;
-INSERT INTO `agentesanitario` VALUES (1,'adminX','admin','1');
+INSERT INTO `agentesanitario` VALUES (1,'adminX','admin','1',NULL);
 /*!40000 ALTER TABLE `agentesanitario` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -75,8 +76,8 @@ DROP TABLE IF EXISTS `medics`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `medics` (
   `doctor_id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) DEFAULT NULL,
-  `surname` varchar(50) DEFAULT NULL,
+  `nome` varchar(50) DEFAULT NULL,
+  `cognome` varchar(50) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
   `password` text,
   PRIMARY KEY (`doctor_id`)
@@ -102,8 +103,8 @@ DROP TABLE IF EXISTS `patients`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `patients` (
   `user_id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) DEFAULT NULL,
-  `surname` varchar(50) DEFAULT NULL,
+  `nome` varchar(50) DEFAULT NULL,
+  `cognome` varchar(50) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
   `password` text,
   `codicef` varchar(16) DEFAULT NULL,
@@ -186,4 +187,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-12-06 17:07:29
+-- Dump completed on 2024-01-06 19:29:03
