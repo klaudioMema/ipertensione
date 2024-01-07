@@ -27,7 +27,7 @@ public class RegisterDoctor {
         if (    nameField.getText().equals("") || surnameField.getText().equals("") ||
                 emailField.getText().equals("") || passwordField.getText().equals("")) {
 
-            Functions.notificationMessage("Compilare tutti i campi", "ERROR", statusLabel);
+            Functions.notificationMessage("Compilare tutti i campi", Functions.notificationType.ERROR, statusLabel);
 
         } else {
             String query = "INSERT INTO bloodmonitor.medics (name, surname, email, password) " +
@@ -36,7 +36,7 @@ public class RegisterDoctor {
             DatabaseController.updateItem(query);
             // Get Primary Key for the new Patient
 
-            Functions.notificationMessage("Salvato!", );
+            Functions.notificationMessage("Salvato!", Functions.notificationType.CONFIRM, statusLabel);
 
             statusLabel.setText("Saved!");
             statusLabel.setTextFill(Color.rgb(155, 222, 111));

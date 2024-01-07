@@ -43,13 +43,9 @@ public abstract class User {
     public String getPassword() {
         return password;
     }
+
     public void setPassword(String password) {
         this.password = password;
     }
-
-    //funzione in ingresso la email, tipo di utente, va a cerarlo
-    // nel database e carica l'oggetto se riesce a trovarlo ok senno un null
-
-    public abstract User findUserDB(String username, String password);
 
 }

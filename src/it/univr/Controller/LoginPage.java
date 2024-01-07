@@ -64,61 +64,52 @@ public class LoginPage implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         choiceBox.getItems().addAll(users);
-         changePass_choiceBox.getItems().addAll(users); // Questo serve per la funzione cambio password
+        changePass_choiceBox.getItems().addAll(users); // Questo serve per la funzione cambio password
     }
+
     @FXML
     private void login(ActionEvent event) {
         String username = usernameTextField.getText();
         String password = passwordField.getText();
         String userType = choiceBox.getValue();
+        User user = null; // utente da cercare nel database
 
         if (choiceBox.getValue() == null) {
-            Functions.notificationMessage("Seleziona il tipo di utente", "ERROR", statusLabel);
+            Functions.notificationMessage("Seleziona il tipo di utente", Functions.notificationType.ERROR, statusLabel);
         } else {
             switch(UserType.valueOf(userType)){
-                // CASO  AGENTO SANITARIO
                 case ADMIN -> {
-                    User user = new AgenteSanitario();
-                    user = user.findUserDB(username, password);
+                    user = AgenteSanitario.findUserDB(username, password);
                     if(user == null) {
                         System.out.println("Account non trovato");
-                        statusLabel.setText("Email o password sbagliati");
-                        statusLabel.setTextFill(Color.color(1, 0, 0));
+                        Functions.notificationMessage("Email o passwor errati", Functions.notificationType.ERROR, statusLabel);
                     } else {
-                        statusLabel.setText("Successful login!");
-                        statusLabel.setTextFill(Color.color(0, 1, 0));
+                        Functions.notificationMessage("Login effettuato", Functions.notificationType.CONFIRM, statusLabel);
                         loadAdminDashboard((AgenteSanitario) user, event);
                     }
                 }
-                    //CASO MEDICO
                 case MEDICO -> {
-                    User user = new Medico();
-                    user = user.findUserDB(username, password);
+                    user = Medico.findUserDB(username, password);
                     if(user == null) {
                         System.out.println("Account non trovato");
-                        statusLabel.setText("Email o password sbagliati");
-                        statusLabel.setTextFill(Color.color(1, 0, 0));
+                        Functions.notificationMessage("Email o passwor errati", Functions.notificationType.ERROR, statusLabel);
                     } else {
-                        statusLabel.setText("Successful login!");
-                        statusLabel.setTextFill(Color.color(0, 1, 0));
+                        Functions.notificationMessage("Login effettuato", Functions.notificationType.CONFIRM, statusLabel);
                         loadDoctorDashboard((Medico) user, event);
                     }
                 }
-                // CASO PAZIENTE
                 case PAZIENTE -> {
-                    User user = new Paziente();
-                    user = user.findUserDB(username, password);
+                    user = Paziente.findUserDB(username, password);
                     if(user == null) {
                         System.out.println("Account non trovato");
-                        statusLabel.setText("Email o password sbagliati");
-                        statusLabel.setTextFill(Color.color(1, 0, 0));
+                        Functions.notificationMessage("Email o passwor errati", Functions.notificationType.ERROR, statusLabel);
                     } else {
-                        statusLabel.setText("Successful login!");
-                        statusLabel.setTextFill(Color.color(0, 1, 0));
+                        Functions.notificationMessage("Login effettuato", Functions.notificationType.CONFIRM, statusLabel);
                         loadPatientDashboard((Paziente) user, event);
                     }
                 }
             }
+
         }
         //SHOW PASSWORD
         if(login_selectShowPass.isSelected()){
@@ -156,6 +147,7 @@ public class LoginPage implements Initializable {
         WindowsManager.setScene(new Scene(root));
         WindowsManager.getMainStage().show();
     }
+
     private void loadAdminDashboard(AgenteSanitario user, ActionEvent event) {
         System.out.println("Dashboard dell'admin");
         // Carica home dell'agente sanitario
@@ -172,6 +164,7 @@ public class LoginPage implements Initializable {
         WindowsManager.setScene(new Scene(root));
         WindowsManager.getMainStage().show();
     }
+
     private void loadPatientDashboard(Paziente user, ActionEvent event) {
         System.out.println("Dashboard del paziente");
         // Carica home del paziente
@@ -184,35 +177,11 @@ public class LoginPage implements Initializable {
         }catch (IOException e) {
             System.out.println("Impossibile caricare la pagina");
         }
-        /*
-        // Get user data from DB
-        Paziente activeUser;
-        try {
 
-            ResultSet rs = DatabaseController.getResultSet("SELECT * FROM patients WHERE email = '" + username + "'");
-            rs.next();
-            activeUser = Paziente.getInstance();
-            activeUser.setPatientId(rs.getInt("user_id"));
-            activeUser.setEmail(rs.getString("email"));
-            activeUser.setPassword(rs.getString("password"));
-            activeUser.setName(rs.getString("name"));
-            activeUser.setSurname(rs.getString("surname"));
-            activeUser.setCodiceF(rs.getString("codiceF"));
-            activeUser.setbDay(java.sql.Date.valueOf(rs.getString("bDay")));
-            activeUser.setDoctorId(Integer.parseInt(rs.getString("doctor_id")));
-            activeUser.setFattoriDiRischio(rs.getString("fattoridirischio"));
-            rs.close();
-
-            PatientViewDashboard menuController = loader.getController();
-            menuController.displayName();
-            menuController.home();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    */
         WindowsManager.setScene(new Scene(root));
         WindowsManager.getMainStage().show();
     }
+
     public static void changeWidth(int value){
         if(stage != null)
             stage.setWidth(value);

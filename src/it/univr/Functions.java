@@ -5,10 +5,15 @@ import javafx.scene.paint.Color;
 
 public class Functions {
 
-    public static void notificationMessage(String msg, String type, Label status){
-        if(type.equals("ERROR")){
+    public enum notificationType{
+        ERROR,
+        CONFIRM
+    }
+
+    public static void notificationMessage(String msg, notificationType type, Label status){
+        if(type == notificationType.ERROR){
             status.setTextFill(Color.rgb(255, 0, 0));
-        } else if(type.equals("CONFIRM")){
+        } else if(type == notificationType.CONFIRM){
             status.setTextFill(Color.rgb(0, 255, 0));
         }
 
