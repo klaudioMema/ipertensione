@@ -6,7 +6,7 @@ import javafx.fxml.FXML;
 
 public class DoctorMenu {
 
-    private static final String directory = "../../View/doctor/";
+    private static final String directory = "doctor/";
 
     @FXML
     private void myPatient(ActionEvent event) {
@@ -21,8 +21,8 @@ public class DoctorMenu {
     }
 
     @FXML
-    private void searchPatient(ActionEvent event) {
-        String path = directory + "SearchPatient.fxml";
+    private void prescription(ActionEvent event) {
+        String path = directory + "Prescription.fxml";
         WindowsManager.loadPage(WindowsManager.mainClass.getResource(path), path);
     }
 
