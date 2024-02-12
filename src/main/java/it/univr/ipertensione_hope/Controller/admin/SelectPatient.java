@@ -81,6 +81,4 @@ public class SelectPatient  implements Initializable {
         }
 
     }
-
-    
 }
