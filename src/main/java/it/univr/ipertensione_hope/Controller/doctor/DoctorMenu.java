@@ -15,6 +15,12 @@ public class DoctorMenu {
     }
 
     @FXML
+    private void selectPatient(ActionEvent event) {
+        String path = directory + "SelectPatient.fxml";
+        WindowsManager.loadPage(WindowsManager.mainClass.getResource(path), path);
+    }
+
+    @FXML
     private void alertPatient(ActionEvent event) {
         String path = directory + "AlertPatient.fxml";
         WindowsManager.loadPage(WindowsManager.mainClass.getResource(path), path);

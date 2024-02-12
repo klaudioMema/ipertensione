@@ -1,8 +1,10 @@
 package it.univr.ipertensione_hope.Controller.doctor;
 
 import it.univr.ipertensione_hope.Controller.DatabaseController;
+import it.univr.ipertensione_hope.Functions;
 import it.univr.ipertensione_hope.Model.Paziente;
 import it.univr.ipertensione_hope.Model.Prescrizione;
+import it.univr.ipertensione_hope.View.WindowsManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -10,18 +12,15 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.paint.Color;
 
 import java.net.URL;
 import java.sql.Date;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.time.temporal.ChronoUnit;
 import java.util.ResourceBundle;
 
 public class Prescriptions implements Initializable {
     @FXML
-    private TableView<Prescrizione> tableView;
+    private TableView<Prescrizione> listaPrescrizioni;
     @FXML
     private TableColumn<Prescrizione,String> medicationColumn;
     @FXML
@@ -35,102 +34,57 @@ public class Prescriptions implements Initializable {
     @FXML
     private TextArea indicationsField;
     @FXML
-    private TextField daysField;
-    @FXML
-    private Label statusLabel;
+    private DatePicker FromDateField;
+
+    @FXML DatePicker ToDateField;
+
     private Paziente selectedPaziente;
-
-
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        //set cell value -> FACTORY PATTERN
-        /*
-        selectedPaziente = Paziente.getInstance();
+        // controllo se il paziente è stato selezionato
+
+        Prescrizione[] prescrizioni = Prescrizione.getAllByPatient(selectedPaziente);
+
         medicationColumn.setCellValueFactory(new PropertyValueFactory<>("medication"));
         indicationsColumn.setCellValueFactory(new PropertyValueFactory<>("indications"));
         daysColumn.setCellValueFactory(new PropertyValueFactory<>("days"));
         fromDateColumn.setCellValueFactory(new PropertyValueFactory<>("fromDate"));
 
-        loadTable();
-
-         */
-    }
-
-    @FXML
-    private void removeSelected(ActionEvent event){
-
-        try {
-            Prescrizione selectedPrescrizione = tableView.getSelectionModel().getSelectedItem();
-
-            DatabaseController.updateItem("DELETE FROM prescriptions WHERE user_id = '" +
-                    selectedPaziente.getPatientId() + "' AND medication LIKE '" +
-                    selectedPrescrizione.getMedication() + "' AND indications LIKE '" +
-                    selectedPrescrizione.getIndications() +"' AND days LIKE '" +
-                    selectedPrescrizione.getDays() + "' AND fromDate LIKE '" +
-                    selectedPrescrizione.getFromDate() + "'");
-
-
-            int selectedMedication = tableView.getSelectionModel().getSelectedIndex();
-            tableView.getItems().remove(selectedMedication);
-
-            statusLabel.setText("Therapy Removed!");
-            statusLabel.setVisible(true);
-            statusLabel.setTextFill(Color.rgb(60,176,80));
-        } catch (Exception e){
-            statusLabel.setText("Couldn't remove therapy");
-            statusLabel.setVisible(true);
-            statusLabel.setTextFill(Color.rgb(211,81,81));
+        // Caricamento dei dati nella tabella
+        if (prescrizioni != null) {
+            listaPrescrizioni.setItems(FXCollections.observableArrayList(prescrizioni));
+        } else {
+            // Gestione dell'errore se non ci sono prescrizioni
+            ObservableList<Prescrizione> emptyList = FXCollections.observableArrayList();
+            emptyList.add(new Prescrizione("Nessuna prescrizione trovata", "", 0, null));
+            listaPrescrizioni.setItems(emptyList);
         }
 
     }
 
     @FXML
     private void addTherapy(ActionEvent event){
-
-
-        if(medicationField.getText().equals("") || indicationsField.getText().equals("") || daysField.getText().equals("")) {
-            statusLabel.setText("Couldn't add therapy");
-            statusLabel.setVisible(true);
-            statusLabel.setTextFill(Color.rgb(211,81,81));
+        if(     medicationField.getText().isEmpty() ||
+                indicationsField.getText().isEmpty() ||
+                FromDateField == null ||
+                ToDateField == null
+        ) {
+            Functions.alert("Riempire tutti i campi", Alert.AlertType.ERROR, null);
         } else {
-            String query = "INSERT INTO prescriptions (user_id, medication, indications, days, fromDate)" +
-                            "VALUES ('"+ selectedPaziente.getPatientId() +"', '" +
-                            medicationField.getText() + "', '" +
-                            indicationsField.getText() + "', '" +
-                            daysField.getText() + "', '" +
-                            new Date(System.currentTimeMillis()) + "')";
-
-            DatabaseController.updateItem(query);
-            statusLabel.setText("Therapy Added!");
-            statusLabel.setVisible(true);
-            statusLabel.setTextFill(Color.rgb(60,176,80));
-            medicationField.clear();
-            indicationsField.clear();
-            daysField.clear();
-        }
-        loadTable();
-    }
-
-    private void loadTable(){
-        ObservableList<Prescrizione> data = FXCollections.observableArrayList();
-        try {
-            ResultSet rs = DatabaseController.getResultSet("SELECT * FROM prescriptions WHERE user_id = '" +
-                    selectedPaziente.getPatientId() + "'");
-            while (rs.next()){
-                Prescrizione prescrizione = new Prescrizione(rs.getString("medication"),
-                        rs.getString("indications"),
-                        rs.getInt("days"),
-                        rs.getDate("fromDate"));
-                // If prescription is not valid anymore remove it from DB
-                if(isValidYet(prescrizione.getFromDate(), prescrizione.getDays()))
-                    data.add(prescrizione);
-                else
-                    deleteExpiredPrescription(prescrizione);
+            Prescrizione prescrizione = new Prescrizione(
+                    selectedPaziente.getPatientId(),
+                    medicationField.getText(),
+                    indicationsField.getText(),
+                    Date.valueOf(FromDateField.getValue()),
+                    Date.valueOf(ToDateField.getValue())
+            );
+            if(prescrizione.add()) {
+                Functions.alert("Prescrizione aggiunta", Alert.AlertType.INFORMATION, (ButtonType button) -> {
+                    WindowsManager.reloadPage();
+                });
             }
-            tableView.setItems(data);
-        } catch(SQLException e){
-            e.printStackTrace();
+
         }
     }
 
