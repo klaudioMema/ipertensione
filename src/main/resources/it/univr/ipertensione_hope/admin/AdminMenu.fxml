@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="it.univr.ipertensione_hope.Controller.admin.AdminMenu" prefHeight="400.0" prefWidth="146.0" style="-fx-background-color: ffb444;">
+    <Pane prefHeight="86.0" prefWidth="146.0">
+        <Label fx:id="usernameLabel" layoutX="6.0" layoutY="28.0" text="USERNAME" textFill="WHITE">
+            <font>
+                <Font size="24.0" />
+            </font>
+        </Label>
+    </Pane>
+    <Button mnemonicParsing="false" onAction="#registerPatient" prefHeight="40.0" prefWidth="145.0" styleClass="menuItem" text="Register Patient" />
+    <Button mnemonicParsing="false" onAction="#managePatient" prefHeight="40.0" prefWidth="145.0" styleClass="menuItem" text="Manage Patient" />
+    <Button mnemonicParsing="false" onAction="#registerDoctor" prefHeight="40.0" prefWidth="145.0" styleClass="menuItem" text="Register Doctor" />
+    <Button mnemonicParsing="false" onAction="#manageDoctor" prefHeight="40.0" prefWidth="145.0" styleClass="menuItem" text="Manage Doctor" />
+    <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="145.0" styleClass="menuItem" text="MyAcount" />
+    <Button mnemonicParsing="false" onAction="#logoutEvent" prefHeight="40.0" prefWidth="145.0" styleClass="menuItem" text="Logout" />
+</VBox>

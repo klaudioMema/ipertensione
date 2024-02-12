@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<HBox prefHeight="409.0" prefWidth="572.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univr.ipertensione_hope.Controller.admin.SelectPatient">
+    <fx:include source="AdminMenu.fxml" />
+    <Pane prefHeight="411.0" prefWidth="454.0">
+        <Label layoutX="83.0" layoutY="14.0" text="Seleziona il paziente">
+            <font>
+                <Font size="29.0" />
+            </font>
+        </Label>
+        <TableView fx:id="listaPazienti" editable="true" layoutY="64.0" prefHeight="240.0" prefWidth="435.0">
+            <columns>
+                <!-- Colonne per le informazioni dei medici -->
+                <TableColumn prefWidth="131.0" text="Nome">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="nome" />
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn prefWidth="128.0" text="Cognome">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="cognome" />
+                    </cellValueFactory>
+                </TableColumn>
+                <!-- Altre colonne per altre informazioni dei medici -->
+                <TableColumn prefWidth="175.0" text="Email">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="mail" />
+                    </cellValueFactory>
+                </TableColumn>
+            </columns>
+        </TableView>
+        <Button fx:id="eliminaButton" layoutX="257.0" layoutY="331.0" mnemonicParsing="false" onAction="#elimina" prefHeight="41.0" prefWidth="115.0" text="Elimina" />
+        <Button fx:id="modificaButton" layoutX="35.0" layoutY="331.0" mnemonicParsing="false" onAction="#modifica" prefHeight="41.0" prefWidth="96.0" text="Modifica" />
+    </Pane>
+</HBox>

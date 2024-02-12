@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+
+<AnchorPane maxHeight="400.0" maxWidth="600.0" minHeight="400.0" minWidth="600.0" xmlns="http://javafx.com/javafx/20.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univr.ipertensione_hope.Controller.admin.AdminViewDashboard">
+   <fx:include source="AdminMenu.fxml"/>
+
+   <HBox fx:id="contentArea" layoutX="146.0" prefHeight="400.0" prefWidth="454.0" />
+
+</AnchorPane>

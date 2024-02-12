@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<?import javafx.scene.layout.HBox?>
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../Main.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univr.ipertensione_hope.Controller.admin.ChangeData">
+   <HBox>
+      <fx:include source="AdminMenu.fxml"/>
+      <AnchorPane>
+         <Label layoutX="181.0" layoutY="21.0" styleClass="titles" text="Cambio Dati Paziente">
+            <font>
+               <Font size="24.0" />
+            </font>
+         </Label>
+         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="321.0" layoutX="23.0" layoutY="65.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: ffb444;" width="554.0" />
+         <Label layoutX="32.0" layoutY="103.0" styleClass="normal" text="Nome">
+            <font>
+               <Font size="18.0" />
+            </font>
+         </Label>
+         <Label layoutX="300.0" layoutY="103.0" styleClass="normal" text="Cognome">
+            <font>
+               <Font size="18.0" />
+            </font>
+         </Label>
+         <Label layoutX="32.0" layoutY="167.0" styleClass="normal" text="Email">
+            <font>
+               <Font size="18.0" />
+            </font>
+         </Label>
+         <Label layoutX="267.0" layoutY="167.0" styleClass="normal" text="Codice Fiscale">
+            <font>
+               <Font size="18.0" />
+            </font>
+         </Label>
+         <Label layoutX="100.0" layoutY="244.0" styleClass="normal" text="Data Nascita">
+            <font>
+               <Font size="18.0" />
+            </font>
+         </Label>
+         <TextField fx:id="nameField" layoutX="87.0" layoutY="104.0" promptText="Nome Paziente" />
+         <TextField fx:id="surnameField" layoutX="387.0" layoutY="104.0" promptText="Cognome Paziente" />
+         <TextField fx:id="emailField" layoutX="87.0" layoutY="168.0" promptText="Email Paziente" />
+         <TextField fx:id="codiceFField" layoutX="396.0" layoutY="166.0" promptText="Codice Fiscale Paziente" />
+         <DatePicker fx:id="bDayField" layoutX="225.0" layoutY="242.0" promptText="Data Nascita Paziente" />
+         <Button layoutX="216.0" layoutY="299.0" mnemonicParsing="false" onAction="#saveAndExit" prefHeight="50.0" prefWidth="168.0" text="Salva ed Esci">
+            <font>
+               <Font size="18.0" />
+            </font>
+         </Button>
+         <Label fx:id="statusLabel" layoutX="210.0" layoutY="285.0" prefHeight="50.0" prefWidth="181.0" styleClass="normal" text="Year not valid" textFill="#d35f5f" visible="false">
+            <font>
+               <Font size="29.0" />
+            </font>
+         </Label>
+      </AnchorPane>
+   </HBox>
+</AnchorPane>
