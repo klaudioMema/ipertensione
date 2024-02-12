@@ -19,7 +19,7 @@ import java.util.ResourceBundle;
 
 
 public class SelectPatient  implements Initializable {
-    private final String directory = "../../View/admin/";
+    private final String directory = "admin/";
     private TableView<Paziente> listaPaziente;
 
     @FXML

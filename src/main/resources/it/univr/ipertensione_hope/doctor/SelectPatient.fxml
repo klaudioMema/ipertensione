@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.text.Font?>
+<HBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="it.univr.ipertensione_hope.Controller.doctor.SelectPatient" prefHeight="400.0" prefWidth="600.0">
+    <fx:include source="DoctorMenu.fxml"/>
+    <VBox>
+
+        <!-->Paziente selezionato<-->
+        <HBox>
+           <Label layoutX="180.0" layoutY="14.0" text="Paziente selezionato">
+              <font>
+                 <Font size="25.0" />
+              </font>
+           </Label>
+        </HBox>
+    </VBox>
+</HBox>
