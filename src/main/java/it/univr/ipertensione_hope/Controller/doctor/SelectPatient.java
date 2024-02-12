@@ -45,7 +45,7 @@ public class SelectPatient implements Initializable {
         } else {
             DoctorAppData.getInstance().setSelectedPatient(selectedPatient);
             Functions.alert("Paziente selezionato correttamente", Alert.AlertType.INFORMATION, (ButtonType button) -> {
-                WindowsManager.previousPage();
+                WindowsManager.loadPage(WindowsManager.mainClass.getResource(directory + "DoctorViewDashboard.fxml"), directory + "DoctorViewDashboard.fxml");
             });
         }
     }
