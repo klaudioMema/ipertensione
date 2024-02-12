@@ -33,7 +33,7 @@ public class DoctorMenu {
     }
 
     public void logoutEvent(ActionEvent event) {
-        String path = "../../View/LoginPageView.fxml";
+        String path = "LoginPageView.fxml";
         WindowsManager.logout(WindowsManager.mainClass.getResource(path), path);
     }
 

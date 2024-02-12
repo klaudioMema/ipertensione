@@ -1,19 +1,18 @@
 package it.univr.ipertensione_hope.Controller.doctor;
 
+import it.univr.ipertensione_hope.Functions;
 import it.univr.ipertensione_hope.Model.Paziente;
+import it.univr.ipertensione_hope.View.WindowsManager;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class SelectPatient implements Initializable {
     private final String directory = "doctor/";
-    private TableView<Paziente> listaPaziente;
 
     @FXML
     private Button selezionaButton;
@@ -39,6 +38,15 @@ public class SelectPatient implements Initializable {
 
     @FXML
     private void seleziona() {
+        Paziente selectedPatient = listaPazienti.getSelectionModel().getSelectedItem();
 
+        if(selectedPatient == null) {
+            Functions.alert("Seleziona prima un paziente dalla tabella", Alert.AlertType.ERROR, null);
+        } else {
+            DoctorAppData.getInstance().setSelectedPatient(selectedPatient);
+            Functions.alert("Paziente selezionato correttamente", Alert.AlertType.INFORMATION, (ButtonType button) -> {
+                WindowsManager.previousPage();
+            });
+        }
     }
 }
