@@ -191,5 +191,13 @@ public class Paziente extends User{
         return pazientiList.toArray(new Paziente[0]);
 
     }
+    // elimina dal database il paziente
+    public boolean delete() {
+        String query = "DELETE FROM " + Paziente.tableName +
+                " WHERE " + Paziente.idField + " = " +
+                this.getPatientId();
+
+        return DatabaseManager.updateItem(query);
+    }
 
 }

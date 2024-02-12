@@ -28,8 +28,8 @@ public class Main extends Application {
             System.out.println("Impossibile connettersi al database");
         }
 
-        if(location == null) {
-            System.out.println("Impossibile caricare la pagina di login");
+       if(location == null) {
+          System.out.println("Impossibile caricare la pagina di login");
         } else {
             FXMLLoader loader = new FXMLLoader(location);
             Parent root = loader.load();
@@ -38,6 +38,8 @@ public class Main extends Application {
             WindowsManager.setMainStage(stage, "BloodMonitor");
             WindowsManager.getMainStage().setScene(tree.getCurrentScene().getScene());
             WindowsManager.getMainStage().show();
-        }
+       }
+
+
     }
 }

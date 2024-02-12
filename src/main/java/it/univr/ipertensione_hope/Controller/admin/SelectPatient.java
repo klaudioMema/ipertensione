@@ -1,6 +1,7 @@
 package it.univr.ipertensione_hope.Controller.admin;
 
 import it.univr.ipertensione_hope.Functions;
+import it.univr.ipertensione_hope.Model.Medico;
 import it.univr.ipertensione_hope.Model.Paziente;
 import it.univr.ipertensione_hope.View.WindowsManager;
 import javafx.collections.FXCollections;
@@ -20,7 +21,6 @@ import java.util.ResourceBundle;
 
 public class SelectPatient  implements Initializable {
     private final String directory = "admin/";
-    private TableView<Paziente> listaPaziente;
 
     @FXML
     private Button eliminaButton;
@@ -49,7 +49,7 @@ public class SelectPatient  implements Initializable {
 
     @FXML
     void modifica(ActionEvent event) {
-        Paziente pazienteSelezionato = listaPaziente.getSelectionModel().getSelectedItem();
+        Paziente pazienteSelezionato = listaPazienti.getSelectionModel().getSelectedItem();
         if (pazienteSelezionato == null){
             Functions.alert("Il paziente non è stato selezionato", Alert.AlertType.ERROR, null);
         }else {
@@ -67,6 +67,18 @@ public class SelectPatient  implements Initializable {
     
     @FXML
     void elimina(ActionEvent event) {
+        Paziente pazienteSelezionato = listaPazienti.getSelectionModel().getSelectedItem();
+
+        if(pazienteSelezionato == null) {
+            Functions.alert("Selezionare prima un medico dalla tabella", Alert.AlertType.INFORMATION, null);
+        } else {
+            if(pazienteSelezionato.delete()){
+                WindowsManager.reloadPage();
+            } else {
+                Functions.alert("Errore inaspettato durnte l'eliminazione", Alert.AlertType.ERROR, null);
+            }
+
+        }
 
     }
 
