@@ -26,6 +26,10 @@ import java.util.regex.Pattern;
 
 
 public class MyPatient implements Initializable {
+    @FXML
+    private Label PatientLabel;
+    @FXML
+    private Label SelectPatient;
 
     @FXML
     private Label nameField;
@@ -48,9 +52,11 @@ public class MyPatient implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        if (DoctorAppData.getInstance().getSelectedPatient()== null)
+        selectedPaziente=DoctorAppData.getInstance().getSelectedPatient();
+        if ( selectedPaziente == null)
             Functions.alert("Paziente non selezionato", Alert.AlertType.ERROR, null);
         else{
+            SelectPatient.setText(selectedPaziente.getNome() +" "+ selectedPaziente.getCognome());
             nameField.setText(selectedPaziente.getNome());
             surnameField.setText(selectedPaziente.getCognome());
             codiceFField.setText(selectedPaziente.getCodiceF());

@@ -64,7 +64,12 @@
       </Pane>
       <!-->Paziente selezionato<-->
       <HBox>
-         <Label layoutX="180.0" layoutY="14.0" text="Paziente selezionato">
+         <Label fx:id="PatientLabel" layoutX="180.0" layoutY="14.0" text="Paziente selezionato: ">
+            <font>
+               <Font size="25.0" />
+            </font>
+         </Label>
+         <Label fx:id="SelectPatient" prefHeight="30.0" prefWidth="209.0">
             <font>
                <Font size="25.0" />
             </font>
