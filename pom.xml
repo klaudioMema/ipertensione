@@ -128,7 +128,7 @@
                         <!-- Default configuration for running with: mvn clean javafx:run -->
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>it.univr.ipertensione_hope/it.univr.ipertensione_hope.HelloApplication
+                            <mainClass>it.univr.ipertensione_hope/it.univr.ipertensione_hope.Main
                             </mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
