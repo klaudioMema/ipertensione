@@ -47,8 +47,6 @@ public class SelectDoctor implements Initializable {
 
         TableColumn<Medico, String> mailCol = new TableColumn<>("mail");
         mailCol.setCellValueFactory(cellData -> cellData.getValue().mailProperty());
-
-
     }
 
     public void modifica() {

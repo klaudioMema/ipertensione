@@ -41,7 +41,6 @@ public class Prescriptions implements Initializable {
     private DatePicker ToDateField;
     @FXML
     private Label patientLabel;
-
     private Paziente selectedPaziente;
 
     private final String directory = "doctor/";

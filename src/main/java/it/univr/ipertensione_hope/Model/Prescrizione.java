@@ -2,6 +2,8 @@ package it.univr.ipertensione_hope.Model;
 
 
 import it.univr.ipertensione_hope.Controller.DatabaseController;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
@@ -162,4 +164,13 @@ public class Prescrizione {
 
         return prescrizioniList.toArray(new Prescrizione[0]);
     }
+
+    public boolean delete() {
+        String query = "DELETE FROM " + Prescrizione.tableName +
+                " WHERE " + Prescrizione.patientIdField+ " = " +
+                this.getUserId();
+        return DatabaseManager.updateItem(query);
+    }
+    public StringProperty medicationProperty() { return new SimpleStringProperty(this.getMedication());}
+    public StringProperty indicationsProperty() { return new SimpleStringProperty(this.getIndications());}
 }
