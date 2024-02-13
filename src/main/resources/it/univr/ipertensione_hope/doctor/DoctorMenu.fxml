@@ -1,21 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.layout.*?>
 
-<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="it.univr.ipertensione_hope.Controller.doctor.DoctorMenu" prefHeight="400.0" prefWidth="144.0" style="-fx-background-color: #77dd77;">
-    <Pane prefHeight="102.0" prefWidth="174.0">
+<VBox prefHeight="422.0" prefWidth="144.0" style="-fx-background-color: #77dd77;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univr.ipertensione_hope.Controller.doctor.DoctorMenu">
+    <Pane prefHeight="102.0" prefWidth="139.0">
         <Label fx:id="usernameLabel" layoutX="5.0" layoutY="36.0" text="USERNAME">
             <font>
                 <Font size="24.0" />
             </font>
         </Label>
     </Pane>
-    <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="144.0" text="Home"/>
-    <Button mnemonicParsing="false" onAction="#myPatient" prefHeight="45.0" prefWidth="144.0" text="Dati paziente"/>
-    <Button mnemonicParsing="false" onAction="#selectPatient" prefHeight="45.0" prefWidth="144.0" text="Seleziona paziente"/>
-    <Button mnemonicParsing="false" onAction="#prescription" prefHeight="45.0" prefWidth="144.0" text="Prescrivi"/>
-    <Button mnemonicParsing="false" onAction="#alertPatient" prefHeight="45.0" prefWidth="145.0" text="Alerts"/>
-    <Button mnemonicParsing="false" onAction="#logoutEvent" prefHeight="45.0" prefWidth="145.0" text="Logout"/>
+    <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="144.0" text="Home" />
+    <Button mnemonicParsing="false" onAction="#myPatient" prefHeight="45.0" prefWidth="144.0" text="Dati paziente" />
+    <Button mnemonicParsing="false" onAction="#selectPatient" prefHeight="45.0" prefWidth="144.0" text="Seleziona paziente" />
+    <Button mnemonicParsing="false" onAction="#prescription" prefHeight="45.0" prefWidth="144.0" text="Prescrivi" />
+   <Button layoutX="10.0" layoutY="247.0" mnemonicParsing="false" onAction="#ManagePrescription" prefHeight="45.0" prefWidth="153.0" text="ManagePrescription" />
+    <Button mnemonicParsing="false" onAction="#alertPatient" prefHeight="45.0" prefWidth="145.0" text="Alerts" />
+    <Button mnemonicParsing="false" onAction="#logoutEvent" prefHeight="45.0" prefWidth="145.0" text="Logout" />
 </VBox>

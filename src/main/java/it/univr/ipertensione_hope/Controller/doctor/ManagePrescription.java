@@ -10,6 +10,7 @@ import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
@@ -18,7 +19,7 @@ import javafx.scene.control.TableView;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ManagePrescription {
+public class ManagePrescription implements Initializable {
     @FXML
     private Button eliminaButton;
     @FXML
@@ -32,7 +33,7 @@ public class ManagePrescription {
         // Creazione della tabella
         listaPrescizioni.setItems(FXCollections.observableArrayList(prescrizione));
 
-        // Colonne per le informazioni dei medici
+        // Colonne per le informazioni dei Prescizioni
         TableColumn<Prescrizione, String> medicationCol = new TableColumn<>("medication");
         medicationCol.setCellValueFactory(cellData -> cellData.getValue().medicationProperty());
 
@@ -44,7 +45,6 @@ public class ManagePrescription {
     @FXML
     void elimina() {
         Prescrizione prescrizioneSelezionata = listaPrescizioni.getSelectionModel().getSelectedItem();
-
         if(prescrizioneSelezionata == null) {
             Functions.alert("Selezionare prima un medico dalla tabella", Alert.AlertType.INFORMATION, null);
         } else {

@@ -43,6 +43,20 @@ public class DoctorMenu {
         }
 
     }
+    @FXML
+    private void ManagePrescription(ActionEvent event) {
+        String path = directory + "ManagePrescription.fxml";
+
+        if(DoctorAppData.getInstance().getSelectedPatient() == null) {
+            Functions.alert("Prima devi selezionare un paziente", Alert.AlertType.ERROR, (ButtonType button) -> {
+                selectPatient(new ActionEvent());
+            });
+        } else {
+            WindowsManager.loadPage(WindowsManager.mainClass.getResource(path), path);
+            WindowsManager.reloadPage();
+        }
+
+    }
 
     public void logoutEvent(ActionEvent event) {
         String path = "LoginPageView.fxml";
