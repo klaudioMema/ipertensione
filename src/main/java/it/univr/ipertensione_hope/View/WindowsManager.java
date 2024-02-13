@@ -119,7 +119,8 @@ public class WindowsManager {
             	FXMLLoader loader = new FXMLLoader(url);
                 Parent root = loader.load();
                 getNavigationTree().switchSiblingScene(new Scene(root), location, loader);
-                reloadPage();
+                showCurrentScene();
+                //reloadPage();
 
             } catch(IOException e) {
                 System.out.println("Impossibile caricare la pagina: " + location);

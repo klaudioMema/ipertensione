@@ -21,24 +21,28 @@ public class AdminMenu {
     private void registerPatient(ActionEvent event) {
         String path = directory + "RegisterPatient.fxml";
         WindowsManager.loadPage(WindowsManager.mainClass.getResource(path), path);
+        WindowsManager.reloadPage();
     }
 
     @FXML
     private void managePatient(ActionEvent event) {
         String path = directory + "SelectPatient.fxml";
         WindowsManager.loadPage(WindowsManager.mainClass.getResource(path), path);
+        WindowsManager.reloadPage();
     }
 
     @FXML
     private void registerDoctor(ActionEvent event) {
         String path = directory + "RegisterDoctor.fxml";
         WindowsManager.loadPage(WindowsManager.mainClass.getResource(path), path);
+        WindowsManager.reloadPage();
     }
 
     @FXML
     private void manageDoctor(ActionEvent event) {
         String path = directory + "SelectDoctor.fxml";
         WindowsManager.loadPage(WindowsManager.mainClass.getResource(path), path);
+        WindowsManager.reloadPage();
     }
 
     public void logoutEvent(ActionEvent event) {

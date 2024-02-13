@@ -3,11 +3,13 @@ package it.univr.ipertensione_hope.Model;
 
 import it.univr.ipertensione_hope.Controller.DatabaseController;
 
-import java.sql.Date;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class Prescrizione {
 
@@ -17,51 +19,80 @@ public class Prescrizione {
     private final static String indicationField = "indications";
     private final static String fromDateField = "fromDate";
     private final static String toDateField = "toDate";
+    private final static String assumptionField = "assumption";
 
     private int userId;
     private String medication;
     private String indications;
     private int days;
-    private Date fromDate;
-    private Date toDate;
+    private LocalDate fromDate;
+    private LocalDate toDate;
+    private int assumption;
 
-    public Prescrizione(String medication, String indications, int days, Date fromDate){
+    @Deprecated
+    public Prescrizione(String medication, String indications, int days, LocalDate fromDate){
         this.medication = medication;
         this.indications = indications;
         this.days = days;
         this.fromDate = fromDate;
     }
 
-    public Prescrizione(int userId, String medication, String indications, Date fromDate, Date toDate) {
+    public Prescrizione(int userId, String medication, String indications, LocalDate fromDate, LocalDate toDate) {
         this.userId = userId;
         this.medication = medication;
         this.indications = indications;
         this.fromDate = fromDate;
         this.toDate = toDate;
+        this.assumption = calculateAssumption();
     }
 
+    /*Calcolo dei giorni consecutivi di assunzione del farmaco
+    *
+    *
+    *
+    * */
+    private int calculateAssumption() {
+        int assumption;
+        LocalDate today = LocalDate.now();
 
-    public String getMedication(){
+        if(!today.isBefore(fromDate) && !today.isAfter(toDate)) { // se today è compresa tra le altre due
+            assumption = (int) ChronoUnit.DAYS.between(fromDate, today) + 1;
+        } else {
+            assumption = 0;
+        }
+
+        System.out.println("Assumption: " + assumption);
+
+        return assumption;
+    }
+
+    public String getMedication() {
         return medication;
     }
-    public void setMedication(String medication){
+    public void setMedication(String medication) {
         this.medication = medication;
     }
 
-
-    public String getIndications(){
+    public String getIndications() {
         return indications;
     }
-    public void setWhen(String indication) {
-        this.indications = indication;
+    public void setIndications(String indications) {
+        this.indications = indications;
     }
-    public Date getFromDate() {
+
+    public LocalDate getFromDate() {
         return fromDate;
     }
-    public void setFromDate(Date fromDate){
+    public void setFromDate(LocalDate fromDate){
         this.fromDate = fromDate;
     }
 
+    public LocalDate getToDate() {
+        return toDate;
+    }
+    public void setToDate(LocalDate toDate) {
+        this.toDate = toDate;
+    }
 
     public int getDays(){
         return days;
@@ -99,8 +130,8 @@ public class Prescrizione {
     // aggiunge una prescrizione nella tabella
     public boolean add() {
         String query = "INSERT INTO " + tableName + " (" + patientIdField + ", " + prescriptionNameField + ", " +
-                   indicationField + ", " + fromDateField + ", " + toDateField + ") VALUES (" + userId + ", '" +
-                   medication + "', '" + indications + "', '" + fromDate + "', '" + toDate + "')";
+                   indicationField + ", " + fromDateField + ", " + toDateField + ", " + assumptionField + ") VALUES (" + userId + ", '" +
+                   medication + "', '" + indications + "', '" + fromDate + "', '" + toDate + "', " + assumption + ")";
 
         return DatabaseManager.updateItem(query);
     }
@@ -118,8 +149,8 @@ public class Prescrizione {
                 int userId = set.getInt(patientIdField);
                 String prescriptionName = set.getString(prescriptionNameField);
                 String indication = set.getString(indicationField);
-                Date fromDate = set.getDate(fromDateField);
-                Date toDate = set.getDate(toDateField);
+                LocalDate fromDate = set.getDate(fromDateField).toLocalDate();
+                LocalDate toDate = set.getDate(toDateField).toLocalDate();
 
                 Prescrizione prescrizione = new Prescrizione(userId, prescriptionName, indication, fromDate, toDate);
                 prescrizioniList.add(prescrizione);

@@ -162,8 +162,6 @@ public class LoginPage implements Initializable {
         PatientViewDashboard controller;
         try{
             root = loader.load();
-            controller = loader.getController();
-            controller.home();
 
             WindowsManager.getNavigationTree().newNextScene(new Scene(root), file, loader);
             WindowsManager.showCurrentScene();

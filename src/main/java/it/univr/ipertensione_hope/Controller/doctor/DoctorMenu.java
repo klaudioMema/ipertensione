@@ -1,8 +1,11 @@
 package it.univr.ipertensione_hope.Controller.doctor;
 
+import it.univr.ipertensione_hope.Functions;
 import it.univr.ipertensione_hope.View.WindowsManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 
 public class DoctorMenu {
 
@@ -28,8 +31,17 @@ public class DoctorMenu {
 
     @FXML
     private void prescription(ActionEvent event) {
-        String path = directory + "Prescription.fxml";
-        WindowsManager.loadPage(WindowsManager.mainClass.getResource(path), path);
+        String path = directory + "Prescriptions.fxml";
+
+        if(DoctorAppData.getInstance().getSelectedPatient() == null) {
+            Functions.alert("Prima devi selezionare un paziente", Alert.AlertType.ERROR, (ButtonType button) -> {
+                selectPatient(new ActionEvent());
+            });
+        } else {
+            WindowsManager.loadPage(WindowsManager.mainClass.getResource(path), path);
+            WindowsManager.reloadPage();
+        }
+
     }
 
     public void logoutEvent(ActionEvent event) {

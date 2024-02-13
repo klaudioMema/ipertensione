@@ -29,13 +29,11 @@ public class SelectPatient implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Paziente[] pazienti = Paziente.getAll();
-        selectedPaziente=DoctorAppData.getInstance().getSelectedPatient();
-        if ( selectedPaziente == null)
-            Functions.alert("Paziente non selezionato", Alert.AlertType.ERROR, null);
-        else{
-            SelectPatient.setText(selectedPaziente.getNome() +" "+ selectedPaziente.getCognome());
+        selectedPaziente = DoctorAppData.getInstance().getSelectedPatient();
 
-        }
+        if(selectedPaziente != null)
+            SelectPatient.setText(selectedPaziente.getNome() + " " + selectedPaziente.getCognome());
+
         listaPazienti.setItems(FXCollections.observableArrayList(pazienti));
 
         TableColumn<Paziente, String> nomeCol = new TableColumn<>("nome");

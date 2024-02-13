@@ -66,52 +66,7 @@ public class Medications implements Initializable {
 
 
     private void loadTable(){
-        ObservableList<Prescrizione> data = FXCollections.observableArrayList();
-        ArrayList<Prescrizione> activePrescriziones = new ArrayList<>();
-        ArrayList<Prescrizione> takenMedicine = new ArrayList<>();
-        Prescrizione prescrizione;
-        try {
-            // Get all active prescriptions from DB
-            ResultSet rs = DatabaseController.getResultSet("SELECT * FROM prescriptions WHERE user_id = '" +
-                    activeUser.getPatientId() + "'");
-            while (rs.next()){
-                 prescrizione = new Prescrizione(rs.getString("medication"),
-                        rs.getString("indications"),
-                        rs.getInt("days"),
-                        rs.getDate("fromDate"));
-                // If any prescriptions is expired, remove it from DB
-                if(isValidYet(prescrizione.getFromDate(), prescrizione.getDays()))
-                        activePrescriziones.add(prescrizione);
-                else
-                    deleteExpiredPrescription(prescrizione);
-            }
-            rs = DatabaseController.getResultSet("SELECT * FROM takenmedication WHERE user_id = '" +
-                    activeUser.getPatientId() + "'");
-            while (rs.next()) {
-                 prescrizione = new Prescrizione(rs.getString("medication"),
-                        rs.getString("indications"),
-                        rs.getInt("days"),
-                        rs.getDate("daythatwastaken"));
-                        takenMedicine.add(prescrizione);
 
-            }
-            //se c'e il farmaco su activePrescription ma non c'è su takenMedicines = Ancora da prendere
-            //se c'e il farmaco su activePrescription e c'è su takenMedicines = Già preso oggi
-            //se non c'e su activePrescription ma c'è su taken = Expired, da cancellare;
-            Date today = Date.valueOf(LocalDate.now());
-            for(Prescrizione p : activePrescriziones){
-                if((p.getFromDate().equals(today) && !takenMedicine.contains(p)) || !takenMedicine.contains(new Prescrizione(p.getMedication(), p.getIndications(),p.getDays(),today)))
-                        data.add(p);
-            }
-            tableView.setItems(data);
-            if(data.size() == 0){
-                statusLabel.setVisible(true);
-                statusLabel.setText("You're all set for today :)");
-                todayLabel.setVisible(false);
-            }
-        } catch(SQLException e){
-            e.printStackTrace();
-        }
     }
 
     @FXML

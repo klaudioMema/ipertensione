@@ -30,26 +30,34 @@ public class Prescriptions implements Initializable {
     @FXML
     private TableColumn<Prescrizione, Date> fromDateColumn;
     @FXML
+    private TableColumn<Prescrizione, Date> toDateColumn;
+    @FXML
     private TextField medicationField;
     @FXML
     private TextArea indicationsField;
     @FXML
     private DatePicker FromDateField;
-
-    @FXML DatePicker ToDateField;
+    @FXML
+    private DatePicker ToDateField;
+    @FXML
+    private Label patientLabel;
 
     private Paziente selectedPaziente;
 
+    private final String directory = "doctor/";
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        // controllo se il paziente è stato selezionato
+        selectedPaziente = DoctorAppData.getInstance().getSelectedPatient();
+
+        patientLabel.setText("Paziente selezionato: " + selectedPaziente.getNome() + " " + selectedPaziente.getCognome());
 
         Prescrizione[] prescrizioni = Prescrizione.getAllByPatient(selectedPaziente);
 
         medicationColumn.setCellValueFactory(new PropertyValueFactory<>("medication"));
         indicationsColumn.setCellValueFactory(new PropertyValueFactory<>("indications"));
-        daysColumn.setCellValueFactory(new PropertyValueFactory<>("days"));
         fromDateColumn.setCellValueFactory(new PropertyValueFactory<>("fromDate"));
+        toDateColumn.setCellValueFactory(new PropertyValueFactory<>("toDate"));
 
         // Caricamento dei dati nella tabella
         if (prescrizioni != null) {
@@ -66,7 +74,6 @@ public class Prescriptions implements Initializable {
     @FXML
     private void addTherapy(ActionEvent event){
         if(     medicationField.getText().isEmpty() ||
-                indicationsField.getText().isEmpty() ||
                 FromDateField == null ||
                 ToDateField == null
         ) {
@@ -76,8 +83,8 @@ public class Prescriptions implements Initializable {
                     selectedPaziente.getPatientId(),
                     medicationField.getText(),
                     indicationsField.getText(),
-                    Date.valueOf(FromDateField.getValue()),
-                    Date.valueOf(ToDateField.getValue())
+                    FromDateField.getValue(),
+                    ToDateField.getValue()
             );
             if(prescrizione.add()) {
                 Functions.alert("Prescrizione aggiunta", Alert.AlertType.INFORMATION, (ButtonType button) -> {

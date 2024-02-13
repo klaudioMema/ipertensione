@@ -87,6 +87,7 @@ public class RegisterPatient implements Initializable {
                 if(Paziente.addPatient(paziente)){
                     Functions.alert("Il paziente è stato correttamente inserito nel database", Alert.AlertType.INFORMATION, (ButtonType button) -> {
                         WindowsManager.loadPage(WindowsManager.mainClass.getResource("admin/AdminDashboard.fxml"), "admin/AdminDashboard.fxml");
+                        WindowsManager.reloadPage();
                     });
                 } else {
                     Functions.alert("Errore inaspettato durante l'inserimento", Alert.AlertType.ERROR, null);
