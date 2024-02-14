@@ -22,35 +22,38 @@ public class PatientMenu {
     private static final String directory = "patient/";
 
     public void home() throws IOException {
-        Parent fxml = FXMLLoader.load(WindowsManager.mainClass.getResource("../../View/patient/HomePage.fxml"));
+        String path = directory + "HomePage.fxml";
+        WindowsManager.loadPage(WindowsManager.mainClass.getResource(path), path);
 
     }
 
     public void myProfile(ActionEvent event) throws IOException {
-        Parent fxml = FXMLLoader.load(WindowsManager.mainClass.getResource("../../View/patient/MyProfile.fxml"));
+        String path = directory + "MyProfile.fxml";
+        WindowsManager.loadPage(WindowsManager.mainClass.getResource(path), path);
 
     }
 
     public void bloodData(ActionEvent event) throws IOException {
-        Parent fxml = FXMLLoader.load(WindowsManager.mainClass.getResource("../../View/BloodPressure.fxml"));
+        String path = directory + "BloodPressure.fxml";
+        WindowsManager.loadPage(WindowsManager.mainClass.getResource(path), path);
 
     }
 
     public void therapies(ActionEvent event) throws IOException {
-        Parent fxml = FXMLLoader.load(WindowsManager.mainClass.getResource("../../View/patient/Medications.fxml"));
+        String path = directory + "Medications.fxml";
+        WindowsManager.loadPage(WindowsManager.mainClass.getResource(path), path);
 
     }
 
     public void reportSymptoms(ActionEvent event) throws IOException {
-        Parent fxml = FXMLLoader.load(WindowsManager.mainClass.getResource("../../View/patient/ViewSymptomsPatient.fxml"));
+        String path = directory + "ViewSymptomsPatient.fxml";
+        WindowsManager.loadPage(WindowsManager.mainClass.getResource(path), path);
 
     }
 
     public void logoutEvent(ActionEvent event) throws IOException {
-        Parent fxml =  FXMLLoader.load(WindowsManager.mainClass.getResource(""));
-        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(fxml);
-        stage.setScene(scene);
-        stage.show();
+        String path = directory + "LoginPageView.fxml";
+        WindowsManager.logout(WindowsManager.mainClass.getResource(path), path);
+
     }
 }
