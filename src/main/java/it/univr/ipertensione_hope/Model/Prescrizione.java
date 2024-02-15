@@ -1,6 +1,5 @@
 package it.univr.ipertensione_hope.Model;
 
-
 import it.univr.ipertensione_hope.Controller.DatabaseController;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -11,7 +10,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 public class Prescrizione {
 
@@ -39,6 +37,7 @@ public class Prescrizione {
         this.fromDate = fromDate;
     }
 
+    // metodo dove l'assumption viene calcolato in automatico
     public Prescrizione(int userId, String medication, String indications, LocalDate fromDate, LocalDate toDate) {
         this.userId = userId;
         this.medication = medication;
@@ -46,6 +45,13 @@ public class Prescrizione {
         this.fromDate = fromDate;
         this.toDate = toDate;
         this.assumption = calculateAssumption();
+    }
+
+    // l'assumption viene deciso da parametro
+    // per caricare i dati dal database
+    public Prescrizione(int userId, String medication, String indications, LocalDate fromDate, LocalDate toDate, int assumption) {
+        this(userId, medication, indications, fromDate, toDate);
+        this.assumption = assumption;
     }
 
     /*Calcolo dei giorni consecutivi di assunzione del farmaco
@@ -62,8 +68,6 @@ public class Prescrizione {
         } else {
             assumption = 0;
         }
-
-        System.out.println("Assumption: " + assumption);
 
         return assumption;
     }
@@ -110,29 +114,13 @@ public class Prescrizione {
         this.userId = userId;
     }
 
-/*
-    public static Prescrizione findPrescrizioneDB(String medication) {
-        String query = "SELECT * FROM " + tableName + " WHERE medication = '" + medication + "'";
-        return findPrescrizioneDBAux(query);
+    public int getAssumption() {
+        return this.assumption;
     }
-    private static Prescrizione findPrescrizioneDBAux(String query) {
-        try {
-            ResultSet resultSet = DatabaseManager.getItem(query);
-            resultSet.next();
-
-            String medication = resultSet.getString(prescriptionNameField);
-            String indications = resultSet.getString(indicationField);
-            LocalDate fromDate = resultSet.getDate(fromDateField).toLocalDate();
-            LocalDate toDate = resultSet.getDate(toDateField).toLocalDate();
-            //int doctorId = resultSet.getInt(assumption);
-
-            //return new Prescrizione(medication,indications,fromDate);
-        } catch(SQLException e) {
-            return null;
-        }
-        return null;
+    public void setAssumption(int assumption) {
+        this.assumption = assumption;
     }
-*/
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -152,7 +140,7 @@ public class Prescrizione {
                 fromDate.equals(other.fromDate);
     }
 
-    // aggiunge una prescrizione nella tabella
+    // aggiunge la prescrizione nella tabella
     public boolean add() {
         String query = "INSERT INTO " + tableName + " (" + patientIdField + ", " + prescriptionNameField + ", " +
                    indicationField + ", " + fromDateField + ", " + toDateField + ", " + assumptionField + ") VALUES (" + userId + ", '" +
@@ -176,8 +164,10 @@ public class Prescrizione {
                 String indication = set.getString(indicationField);
                 LocalDate fromDate = set.getDate(fromDateField).toLocalDate();
                 LocalDate toDate = set.getDate(toDateField).toLocalDate();
+                int assumption = set.getInt(assumptionField);
 
-                Prescrizione prescrizione = new Prescrizione(userId, prescriptionName, indication, fromDate, toDate);
+                // vogliamo l'assumption così come è nel database
+                Prescrizione prescrizione = new Prescrizione(userId, prescriptionName, indication, fromDate, toDate, assumption);
                 prescrizioniList.add(prescrizione);
 
             }
@@ -194,6 +184,26 @@ public class Prescrizione {
                 this.getUserId();
         return DatabaseManager.updateItem(query);
     }
+
+    public boolean reportPrescription() {
+        // Costruisci la query SQL per aggiornare il campo assumption nel database
+        String query = "UPDATE " + tableName + " SET " + assumptionField + " = 0 WHERE " + patientIdField + " = " + userId +
+                   " AND " + prescriptionNameField + " = '" + medication + "' AND " + fromDateField + " = '" + fromDate + "'";
+
+        // Esegui l'aggiornamento nel database e restituisci true se è stato eseguito con successo, altrimenti false
+        return DatabaseManager.updateItem(query);
+    }
+
+    // funzione che aggiorna il campo assumption di ogni prescrizione aggiungendo della quantità passata
+    public static boolean updateAllAssumptionField (int increment) {
+        // Query per aggiornare il campo assumption di tutte le prescrizioni
+        String query = "UPDATE " + tableName + " SET " + assumptionField + " = " + assumptionField + " + " + increment;
+
+        // Esegui l'aggiornamento nel database
+        return DatabaseManager.updateItem(query);
+    }
+
     public StringProperty medicationProperty() { return new SimpleStringProperty(this.getMedication());}
     public StringProperty indicationsProperty() { return new SimpleStringProperty(this.getIndications());}
+
 }
