@@ -40,7 +40,7 @@ public class ReportBloodPressure {
 
                 if(dati.add()) {
                     Functions.alert("Dati inseriti correttamente", Alert.AlertType.INFORMATION, (ButtonType button) -> {
-                        String page = "patient/patientDashboard.fxml";
+                        String page = "patient/PatientDashboard.fxml";
                         WindowsManager.loadPage(getClass().getResource(page), page);
                     });
                 } else {

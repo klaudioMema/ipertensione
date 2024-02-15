@@ -18,7 +18,7 @@
     <Button mnemonicParsing="false" onAction="#myPatient" prefHeight="45.0" prefWidth="144.0" text="Dati paziente" />
     <Button mnemonicParsing="false" onAction="#selectPatient" prefHeight="45.0" prefWidth="144.0" text="Seleziona paziente" />
     <Button mnemonicParsing="false" onAction="#prescription" prefHeight="45.0" prefWidth="144.0" text="Prescrivi" />
-    <Button layoutX="10.0" layoutY="247.0" mnemonicParsing="false" onAction="#managePrescription" prefHeight="45.0" prefWidth="153.0" text="ManagePrescription" />
+    <Button layoutX="10.0" layoutY="247.0" mnemonicParsing="false" onAction="#managePrescription" prefHeight="45.0" prefWidth="153.0" text="Modifica prescrizione" />
     <Button mnemonicParsing="false" onAction="#alertPatient" prefHeight="45.0" prefWidth="145.0" text="Alerts" />
     <Button mnemonicParsing="false" onAction="#logoutEvent" prefHeight="45.0" prefWidth="145.0" text="Logout" />
 </VBox>
