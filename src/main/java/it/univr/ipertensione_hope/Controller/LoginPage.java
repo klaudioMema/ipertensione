@@ -1,5 +1,6 @@
 package it.univr.ipertensione_hope.Controller;
 
+import it.univr.ipertensione_hope.Controller.patient.PatientAppData;
 import it.univr.ipertensione_hope.Functions;
 import it.univr.ipertensione_hope.Controller.admin.AdminViewDashboard;
 import it.univr.ipertensione_hope.Controller.doctor.DoctorViewDashboard;
@@ -153,9 +154,7 @@ public class LoginPage implements Initializable {
     }
 
     private void loadPatientDashboard(Paziente user, ActionEvent event) {
-        System.out.println("Dashboard del paziente");
-
-        // Carica home del paziente
+        PatientAppData.getInstance().setLoggedPatient(user); // imposto il paziente loggato
 
         String file = "patient/PatientDashboard.fxml";
         FXMLLoader loader = new FXMLLoader(WindowsManager.mainClass.getResource(location + file));
@@ -167,7 +166,7 @@ public class LoginPage implements Initializable {
             WindowsManager.showCurrentScene();
 
         }catch (IOException e) {
-            System.out.println("Impossibile caricare la pagina");
+            System.out.println("Impossibile caricare la pagina del paziente");
         }
     }
 

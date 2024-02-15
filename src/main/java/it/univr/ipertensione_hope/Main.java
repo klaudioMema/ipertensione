@@ -30,14 +30,17 @@ public class Main extends Application {
 
        if(location == null) {
           System.out.println("Impossibile caricare la pagina di login");
-        } else {
-            FXMLLoader loader = new FXMLLoader(location);
-            Parent root = loader.load();
-            WindowsManager.setRootScene(new Scene(root), path, loader);
-            NavigationTree tree = WindowsManager.getNavigationTree();
-            WindowsManager.setMainStage(stage, "BloodMonitor");
-            WindowsManager.getMainStage().setScene(tree.getCurrentScene().getScene());
-            WindowsManager.getMainStage().show();
+       } else {
+           // funzioni di routine
+           PrescriptionScheduler.updateAssumption();
+
+           FXMLLoader loader = new FXMLLoader(location);
+           Parent root = loader.load();
+           WindowsManager.setRootScene(new Scene(root), path, loader);
+           NavigationTree tree = WindowsManager.getNavigationTree();
+           WindowsManager.setMainStage(stage, "BloodMonitor");
+           WindowsManager.getMainStage().setScene(tree.getCurrentScene().getScene());
+           WindowsManager.getMainStage().show();
        }
 
 
