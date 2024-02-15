@@ -119,7 +119,6 @@ public class HomePage implements Initializable {
             Parent root1 = fxmlLoader.load();
 
             Medications medications = fxmlLoader.getController();
-            medications.setHomePageController(this);
 
             Stage stage = new Stage();
             stage.initModality(Modality.WINDOW_MODAL);

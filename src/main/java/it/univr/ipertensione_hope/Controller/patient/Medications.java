@@ -21,8 +21,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
-import java.util.ArrayList;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class Medications implements Initializable {
 
@@ -33,82 +32,84 @@ public class Medications implements Initializable {
     @FXML
     private TableColumn<Prescrizione, String> indicationsColumn;
     @FXML
-    private TableColumn<Prescrizione, Integer> daysLeftColumn;
+    private TableColumn<Prescrizione, Date> fromDateColumn;
     @FXML
-    private TableColumn<Prescrizione, Date> untilDateColumn;
+    private TableColumn<Prescrizione, Date> toDateColumn;
     @FXML
     private Label todayLabel;
-    @FXML
-    private Label statusLabel;
-    private Paziente activeUser;
-    private HomePage homePageController;
-
-    public void setHomePageController(HomePage homePageController){
-        this.homePageController = homePageController;
-    }
-
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        //set cell value -> FACTORY PATTERN
-        /*
-        activeUser = Paziente.getInstance();
-        medicationColumn.setCellValueFactory(new PropertyValueFactory<>("medication"));
-        indicationsColumn.setCellValueFactory(new PropertyValueFactory<>("indications"));
-        daysLeftColumn.setCellValueFactory(new PropertyValueFactory<>("days"));
-        untilDateColumn.setCellValueFactory(new PropertyValueFactory<>("fromDate"));
-        todayLabel.setText("Medications I have to take today: " + LocalDate.now());
+        // Ottieni tutte le prescrizioni del paziente attivo
+        Prescrizione[] prescrizioni = Prescrizione.getAllByPatient(PatientAppData.getInstance().getLoggedPatient());
 
-        loadTable();
+        // Lista per memorizzare le prescrizioni cliccabili
+        List<Prescrizione> prescrizioniCliccabili = new ArrayList<>();
 
-         */
-    }
+        // Lista per memorizzare le prescrizioni non cliccabili
+        List<Prescrizione> prescrizioniNonCliccabili = new ArrayList<>();
 
+        // Filtra le prescrizioni in base al valore del campo assumption
+        // E se la data di oggi è compresa nel range di assunzione
+        for (Prescrizione prescrizione : prescrizioni) {
+            if (    prescrizione.getAssumption() > 0 &&
+                    !LocalDate.now().isBefore(prescrizione.getFromDate()) &&
+                    !LocalDate.now().isAfter(prescrizione.getToDate())) {
+                prescrizioniCliccabili.add(prescrizione);
+            } else {
+                prescrizioniNonCliccabili.add(prescrizione);
+            }
+        }
 
-    private void loadTable(){
+        // Se non ci sono prescrizioni, stampa un messaggio nella tabella
+        if (prescrizioniCliccabili.isEmpty() && prescrizioniNonCliccabili.isEmpty()) {
+            Label messageLabel = new Label("Nessuna prescrizione disponibile.");
+            tableView.setPlaceholder(messageLabel);
+        } else {
+            // Ordina le prescrizioni cliccabili per farle apparire all'inizio della tabella
+            prescrizioniCliccabili.sort(Comparator.comparing(Prescrizione::getAssumption).reversed());
 
+            // Aggiungi le prescrizioni cliccabili alla tabella
+            tableView.getItems().addAll(prescrizioniCliccabili);
+
+            // Per ora non mostro le prescrizioni vecchie
+            // Aggiungi le prescrizioni non cliccabili alla fine della tabella
+            // tableView.getItems().addAll(prescrizioniNonCliccabili);
+
+            medicationColumn.setCellValueFactory(new PropertyValueFactory<>("medication"));
+            indicationsColumn.setCellValueFactory(new PropertyValueFactory<>("indications"));
+            fromDateColumn.setCellValueFactory(new PropertyValueFactory<>("fromDate"));
+            toDateColumn.setCellValueFactory(new PropertyValueFactory<>("toDate"));
+
+        }
     }
 
     @FXML
     private void reportMedicine(ActionEvent event){
-        Prescrizione selectedItem;
-        if(tableView.getSelectionModel().getSelectedItem() != null) {
-            selectedItem = tableView.getSelectionModel().getSelectedItem();
+        // Ottieni la prescrizione selezionata dalla tabella
+        Prescrizione selectedPrescription = tableView.getSelectionModel().getSelectedItem();
 
-            String query = "INSERT INTO takenmedication (user_id, medication, indications, days, daythatwastaken)" +
-                    "VALUES ('" + activeUser.getPatientId() + "', '" +
-                    selectedItem.getMedication() + "', '" +
-                    selectedItem.getIndications() + "', '" +
-                    selectedItem.getDays() + "', '" +
-                    new Date(System.currentTimeMillis()) + "')";
-            DatabaseController.updateItem(query);
-            loadTable();
-            if(tableView.getItems().size() == 0)
-                ((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
+        if (selectedPrescription != null) {
+            // Azzerare l'assunzione per la prescrizione selezionata
+            selectedPrescription.setAssumption(0);
+
+            // Chiamare reportPrescription per aggiornare il campo assumption nel database
+            boolean reportGenerated = selectedPrescription.reportPrescription();
+
+            if (reportGenerated) {
+                // Se il report è stato generato con successo, aggiorna la tabella
+                // Rimuovi la prescrizione dalla tabella e aggiungila nuovamente
+                tableView.getItems().remove(selectedPrescription);
+
+                // Notifica all'utente che il report è stato generato e il conteggio di assumption è stato azzerato
+                System.out.println("Report generato e conteggio di assumption azzerato per la prescrizione selezionata.");
+            } else {
+                // Se il report non è stato generato con successo, mostra un messaggio di errore
+                System.out.println("Errore durante la generazione del report della prescrizione.");
+           }
         } else {
-            statusLabel.setVisible(true);
-            statusLabel.setText("You need to select an item first!");
+            // Se nessuna prescrizione è selezionata, mostra un messaggio di avviso
+            System.out.println("Seleziona una prescrizione per generare il report.");
         }
     }
-
-    private static boolean isValidYet(Date fromDate, int days){
-        Date today = new Date(System.currentTimeMillis());
-        long daysPassed = ChronoUnit.DAYS.between(fromDate.toLocalDate(), today.toLocalDate());
-        return daysPassed <= days;
-    }
-
-    private static void deleteExpiredPrescription(Prescrizione prescrizione){
-        /*
-        DatabaseController.updateItem("DELETE FROM prescriptions WHERE user_id = '" +
-                Paziente.getInstance().getPatientId() + "' AND medication LIKE '" +
-                prescrizione.getMedication() + "' AND indications LIKE '" +
-                prescrizione.getIndications() +"' AND days LIKE '" +
-                prescrizione.getDays() + "' AND fromDate LIKE '" +
-                prescrizione.getFromDate() + "'");
-
-         */
-    }
-
-
-
 }

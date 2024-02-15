@@ -11,25 +11,26 @@
 <?import javafx.scene.text.Font?>
 
 <HBox prefHeight="500.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univr.ipertensione_hope.Controller.patient.Medications">
-
     <fx:include source="PatientMenu.fxml" />
     <VBox prefHeight="400.0" prefWidth="855.0">
-                <TableView fx:id="tableView" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-                    <columns>
-                        <TableColumn fx:id="medicationColumn" prefWidth="168.5" text="Medicazione" />
-                        <TableColumn fx:id="indicationsColumn" prefWidth="229.0" text="Indicazione" />
-                        <TableColumn fx:id="daysLeftColumn" prefWidth="62.0" text="Giorni" />
-                        <TableColumn fx:id="untilDateColumn" prefWidth="139.0" sortType="DESCENDING" text="Start Date" />
-                    </columns>
-                </TableView>
-                <Pane prefHeight="173.0" prefWidth="855.0" style="-fx-background-color: #afeeee;" BorderPane.alignment="CENTER">
-                    <Label fx:id="todayLabel" layoutX="14.0" layoutY="14.0" prefHeight="36.0" prefWidth="349.0" styleClass="normal" text="Farmaci da assumere">
-                        <font>
-                            <Font size="25.0" />
-                        </font>
-                    </Label>
-                    <Button layoutX="27.0" layoutY="91.0" mnemonicParsing="false" onAction="#reportMedicine" prefHeight="58.0" prefWidth="143.0" text=" Report" />
-                </Pane>
+        <HBox>
+            <Label fx:id="todayLabel" layoutX="14.0" layoutY="14.0" text="Farmaci da assumere">
+                <font>
+                    <Font size="25.0" />
+                </font>
+            </Label>
+        </HBox>
+        <TableView fx:id="tableView" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <columns>
+                <TableColumn fx:id="medicationColumn" prefWidth="168.5" text="Medicazione" />
+                <TableColumn fx:id="indicationsColumn" prefWidth="229.0" text="Indicazione" />
+                <TableColumn fx:id="fromDateColumn" prefWidth="139.0" sortType="DESCENDING" text="Da" />
+                <TableColumn fx:id="toDateColumn" text="A"/>
+            </columns>
+        </TableView>
+        <Pane style="-fx-background-color: #afeeee;" BorderPane.alignment="CENTER">
+            <Button layoutX="27.0" layoutY="91.0" mnemonicParsing="false" onAction="#reportMedicine" text=" Report" />
+        </Pane>
     </VBox>
 
 </HBox>
