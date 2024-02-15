@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
@@ -14,6 +13,7 @@
     </Pane>
     <Button mnemonicParsing="false" onAction="#home" prefHeight="47.0" prefWidth="142.0" text="Home" />
     <Button mnemonicParsing="false" onAction="#myProfile" prefHeight="48.0" prefWidth="145.0" text="My Profile" />
+    <Button mnemonicParsing="false" onAction="#myDoctor" prefHeight="48.0" prefWidth="145.0" text="My Doctor" />
     <Button mnemonicParsing="false" onAction="#bloodData" prefHeight="47.0" prefWidth="143.0" text="Blood Data" />
     <Button mnemonicParsing="false" onAction="#therapies" prefHeight="47.0" prefWidth="145.0" text="Therapies" />
     <Button mnemonicParsing="false" onAction="#reportSymptoms" prefHeight="47.0" prefWidth="145.0" text="Report Symptoms" />

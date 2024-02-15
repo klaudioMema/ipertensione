@@ -30,8 +30,12 @@ public class PatientMenu {
     public void myProfile(ActionEvent event) throws IOException {
         String path = directory + "MyProfile.fxml";
         WindowsManager.loadPage(WindowsManager.mainClass.getResource(path), path);
-
     }
+    public void myDoctor(ActionEvent event) throws IOException {
+        String path = directory + "MyDoctor.fxml";
+        WindowsManager.loadPage(WindowsManager.mainClass.getResource(path), path);
+    }
+
 
     public void bloodData(ActionEvent event) throws IOException {
         String path = directory + "BloodPressure.fxml";

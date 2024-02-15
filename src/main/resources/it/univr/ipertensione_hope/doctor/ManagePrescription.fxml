@@ -4,12 +4,11 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<HBox prefHeight="409.0" prefWidth="572.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univr.ipertensione_hope.Controller.admin.SelectDoctor">
+<HBox prefHeight="409.0" prefWidth="572.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univr.ipertensione_hope.Controller.doctor.ManagePrescription">
     <fx:include source="DoctorMenu.fxml" />
     <Pane prefHeight="411.0" prefWidth="454.0">
         <Label layoutX="83.0" layoutY="14.0" text="Seleziona Prescrizione">
@@ -17,18 +16,12 @@
                 <Font size="29.0" />
             </font>
         </Label>
-        <TableView fx:id="listaPrescizioni" editable="true" layoutY="64.0" prefHeight="240.0" prefWidth="435.0">
+        <TableView fx:id="listaPrescrizioni" editable="true" layoutY="64.0" prefHeight="240.0" prefWidth="435.0">
         <columns>
-            <TableColumn prefWidth="200.0" text="Medicazione">
-               <cellValueFactory>
-                  <PropertyValueFactory property="cognome" />
-               </cellValueFactory>
-            </TableColumn>
-            <TableColumn prefWidth="232.0" text="Indicazione">
-               <cellValueFactory>
-                  <PropertyValueFactory property="cognome" />
-               </cellValueFactory>
-            </TableColumn>
+            <TableColumn fx:id="medicationColumn" prefWidth="136.0" text="Medicazione" />
+            <TableColumn fx:id="indicationsColumn" prefWidth="105.0" text="Indicazione" />
+            <TableColumn fx:id="fromDateColumn" prefWidth="100.0" text="FromDate" />
+            <TableColumn fx:id="toDateColumn" prefWidth="93.0" text="ToDate" />
         </columns>
     </TableView>
       <Button fx:id="eliminaButton" layoutX="257.0" layoutY="331.0" mnemonicParsing="false" onAction="#elimina" prefHeight="41.0" prefWidth="115.0" text="Elimina" />

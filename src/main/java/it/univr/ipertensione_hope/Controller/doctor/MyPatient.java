@@ -23,14 +23,11 @@ import java.time.format.DateTimeParseException;
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-
 public class MyPatient implements Initializable {
     @FXML
     private Label PatientLabel;
     @FXML
     private Label SelectPatient;
-
     @FXML
     private Label nameField;
     @FXML
@@ -45,11 +42,9 @@ public class MyPatient implements Initializable {
     private Label statusLabel;
     @FXML
     private Label selectPatientLabel;
-
     private Paziente selectedPaziente;
     @FXML
     private Rectangle errorRectangle;
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         selectedPaziente=DoctorAppData.getInstance().getSelectedPatient();
@@ -64,8 +59,6 @@ public class MyPatient implements Initializable {
             fattoriDiRischio.setText(selectedPaziente.getFattoriDiRischio());
         }
     }
-
-
     @FXML
     public void viewPrescriptions(ActionEvent event) {
         try {
@@ -114,11 +107,9 @@ public class MyPatient implements Initializable {
             e.printStackTrace();
         }
     }
-
     private boolean checkCF(){
         String regex = "^[A-Z]{6}\\d{2}[A-Z]\\d{2}[A-Z]\\d{3}[A-Z]$";
         Matcher matcher = Pattern.compile(regex).matcher(codiceFField.getText());
         return matcher.matches();
     }
-
 }

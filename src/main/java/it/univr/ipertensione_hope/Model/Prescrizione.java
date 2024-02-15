@@ -110,6 +110,29 @@ public class Prescrizione {
         this.userId = userId;
     }
 
+/*
+    public static Prescrizione findPrescrizioneDB(String medication) {
+        String query = "SELECT * FROM " + tableName + " WHERE medication = '" + medication + "'";
+        return findPrescrizioneDBAux(query);
+    }
+    private static Prescrizione findPrescrizioneDBAux(String query) {
+        try {
+            ResultSet resultSet = DatabaseManager.getItem(query);
+            resultSet.next();
+
+            String medication = resultSet.getString(prescriptionNameField);
+            String indications = resultSet.getString(indicationField);
+            LocalDate fromDate = resultSet.getDate(fromDateField).toLocalDate();
+            LocalDate toDate = resultSet.getDate(toDateField).toLocalDate();
+            //int doctorId = resultSet.getInt(assumption);
+
+            //return new Prescrizione(medication,indications,fromDate);
+        } catch(SQLException e) {
+            return null;
+        }
+        return null;
+    }
+*/
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {

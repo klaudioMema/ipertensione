@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<HBox prefHeight="432.0" prefWidth="633.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univr.ipertensione_hope.Controller.patient.MyDoctor">
+    <fx:include source="PatientMenu.fxml" />
+    <VBox>
+        <Pane prefHeight="432.0" prefWidth="496.0">
+            <Label layoutX="180.0" layoutY="14.0" prefHeight="36.0" prefWidth="114.0" styleClass="titles" text="Medico">
+                <font>
+                    <Font size="25.0" />
+                </font>
+            </Label>
+            <Label layoutX="33.0" layoutY="70.0" prefHeight="17.0" prefWidth="49.0" styleClass="normal" text="Nome">
+                <font>
+                    <Font size="16.0" />
+                </font>
+            </Label>
+            <Label layoutX="227.0" layoutY="70.0" styleClass="normal" text="Cognome">
+                <font>
+                    <Font size="16.0" />
+                </font>
+            </Label>
+            <Label layoutX="25.0" layoutY="201.0" styleClass="normal" text="Codice Fiscale">
+                <font>
+                    <Font size="16.0" />
+                </font>
+            </Label>
+            <Label layoutX="233.0" layoutY="201.0" styleClass="normal" text="Data di Nascita">
+                <font>
+                    <Font size="16.0" />
+                </font>
+            </Label>
+            <Rectangle fx:id="errorRectangle" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="327.0" layoutX="14.0" layoutY="59.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: linear-gradient(from 25% 25% to 100% 100%, #2265c3, #d62dfd);;" visible="false" width="402.0" />
+            <Label fx:id="nameField" layoutX="33.0" layoutY="94.0" prefHeight="25.0" prefWidth="138.0" />
+            <Label fx:id="surnameField" layoutX="227.0" layoutY="94.0" prefHeight="25.0" prefWidth="189.0" />
+            <Label fx:id="codiceFField" layoutX="22.0" layoutY="223.0" prefHeight="25.0" prefWidth="156.0" />
+            <Label fx:id="bDayField" layoutX="225.0" layoutY="223.0" prefHeight="25.0" prefWidth="156.0" />
+        </Pane>
+    </VBox>
+
+
+</HBox>
