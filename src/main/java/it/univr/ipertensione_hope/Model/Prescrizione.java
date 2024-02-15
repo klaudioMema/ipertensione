@@ -1,6 +1,5 @@
 package it.univr.ipertensione_hope.Model;
 
-
 import it.univr.ipertensione_hope.Controller.DatabaseController;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
