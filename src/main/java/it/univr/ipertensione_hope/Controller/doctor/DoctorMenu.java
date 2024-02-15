@@ -44,7 +44,7 @@ public class DoctorMenu {
 
     }
     @FXML
-    private void ManagePrescription(ActionEvent event) {
+    private void managePrescription(ActionEvent event) {
         String path = directory + "ManagePrescription.fxml";
 
         if(DoctorAppData.getInstance().getSelectedPatient() == null) {
