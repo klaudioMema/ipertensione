@@ -40,6 +40,7 @@ public class ManagePrescription implements Initializable {
     private Paziente selectedPaziente;
     private Prescrizione selectPrescription;
     private final  String directory = "doctor/";
+
     public void initialize(URL location, ResourceBundle resources) {
         Prescrizione[] prescrizioni = Prescrizione.getAllByPatient(selectedPaziente);
 
@@ -62,6 +63,7 @@ public class ManagePrescription implements Initializable {
         }
 
     }
+
     public void elimina() {
         Prescrizione prescrizioneSelezionata = listaPrescrizioni.getSelectionModel().getSelectedItem();
         if(prescrizioneSelezionata == null) {

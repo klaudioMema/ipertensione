@@ -24,7 +24,6 @@ public class PatientMenu {
     public void home() throws IOException {
         String path = directory + "HomePage.fxml";
         WindowsManager.loadPage(WindowsManager.mainClass.getResource(path), path);
-
     }
 
     public void myProfile(ActionEvent event) throws IOException {
@@ -38,26 +37,22 @@ public class PatientMenu {
 
 
     public void bloodData(ActionEvent event) throws IOException {
-        String path = directory + "BloodPressure.fxml";
+        String path = directory + "ReportBloodPressure.fxml";
         WindowsManager.loadPage(WindowsManager.mainClass.getResource(path), path);
-
     }
 
     public void therapies(ActionEvent event) throws IOException {
         String path = directory + "Medications.fxml";
         WindowsManager.loadPage(WindowsManager.mainClass.getResource(path), path);
-
     }
 
     public void reportSymptoms(ActionEvent event) throws IOException {
         String path = directory + "ViewSymptomsPatient.fxml";
         WindowsManager.loadPage(WindowsManager.mainClass.getResource(path), path);
-
     }
 
     public void logoutEvent(ActionEvent event) throws IOException {
         String path = directory + "LoginPageView.fxml";
         WindowsManager.logout(WindowsManager.mainClass.getResource(path), path);
-
     }
 }
