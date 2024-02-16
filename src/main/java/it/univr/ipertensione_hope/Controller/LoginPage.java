@@ -1,5 +1,6 @@
 package it.univr.ipertensione_hope.Controller;
 
+import it.univr.ipertensione_hope.Controller.doctor.DoctorAppData;
 import it.univr.ipertensione_hope.Controller.patient.PatientAppData;
 import it.univr.ipertensione_hope.Functions;
 import it.univr.ipertensione_hope.Controller.admin.AdminViewDashboard;
@@ -109,9 +110,7 @@ public class LoginPage implements Initializable {
     }
 
     private void loadDoctorDashboard(Medico user, ActionEvent event) {
-        System.out.println("Dashboard del medico");
-
-        // Carica home del medico
+        DoctorAppData.getInstance().setMedicoLoggato(user);
 
         String file = "doctor/DoctorDashboard.fxml";
         FXMLLoader loader = new FXMLLoader(WindowsManager.mainClass.getResource(location + file));

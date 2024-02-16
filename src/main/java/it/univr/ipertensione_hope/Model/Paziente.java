@@ -160,13 +160,11 @@ public class Paziente extends User{
 
         return DatabaseManager.updateItem(query);
     }
-    
-    public static Paziente[] getAll() {
-        String query = "SELECT * FROM " + tableName;
-        List<Paziente> pazientiList = new ArrayList<>();
-        ResultSet set;
 
-        set = DatabaseController.getResultSet(query);
+    // funzione che carica i pazienti ottenuti dal database in un vettore
+    private static Paziente[] loadPatients(ResultSet set) {
+        List<Paziente> pazientiList = new ArrayList<>();
+
         try {
             while(set.next()) {
                 int patientId = set.getInt(idField);
@@ -179,8 +177,6 @@ public class Paziente extends User{
                 Date bDay = set.getDate(bdayField);
                 String fattoriDiRischio = set.getString(riskField);
 
-
-
                 Paziente paziente = new Paziente(name,cognome,email,password,patientId,codiceF,bDay,fattoriDiRischio,doctorId);
                 pazientiList.add(paziente);
             }
@@ -189,8 +185,23 @@ public class Paziente extends User{
         }
 
         return pazientiList.toArray(new Paziente[0]);
-
     }
+
+    // ritorna i pazienti di un certo dottore
+    public static Paziente[] getAllByDoctor(Medico medico) {
+        String query = "SELECT * FROM " + tableName + " WHERE " + doctorIdField + " = " + medico.getDoctorId();
+        ResultSet set = DatabaseManager.getItem(query);
+
+        return loadPatients(set);
+    }
+    
+    public static Paziente[] getAll() {
+        String query = "SELECT * FROM " + tableName;
+        ResultSet set = DatabaseManager.getItem(query);
+
+        return loadPatients(set);
+    }
+
     // elimina dal database il paziente
     public boolean delete() {
         String query = "DELETE FROM " + Paziente.tableName +

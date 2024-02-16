@@ -63,4 +63,8 @@ public class DoctorMenu {
         WindowsManager.logout(WindowsManager.mainClass.getResource(path), path);
     }
 
+    public void pressureData(ActionEvent event) {
+        String path = directory + "PressureData.fxml";
+        WindowsManager.loadPage(WindowsManager.mainClass.getResource(path), path);
+    }
 }

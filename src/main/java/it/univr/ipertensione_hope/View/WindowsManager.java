@@ -14,7 +14,6 @@ public class WindowsManager {
     private static Scene currentScene = null;   // scena corrente
     private static NavigationTree navigationTree = null;
 
-
     public static NavigationTree getNavigationTree() {
         return navigationTree;
     }

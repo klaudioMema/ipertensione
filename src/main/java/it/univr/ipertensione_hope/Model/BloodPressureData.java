@@ -1,6 +1,10 @@
 package it.univr.ipertensione_hope.Model;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class BloodPressureData {
 
@@ -59,8 +63,8 @@ public class BloodPressureData {
         this.date = date;
     }
 
+    // Classificazione della pressione
     public BloodPressureCategory classifyBloodPressure() {
-        // Classificazione della pressione
         if (SBP >= 180 || DBP >= 120) {
             return BloodPressureCategory.HYPERTENSIVE_CRISIS;
         } else if (SBP >= 160 || DBP >= 100) {
@@ -89,6 +93,32 @@ public class BloodPressureData {
         return DatabaseManager.updateItem(query);
     }
 
+    // carica i dati di pressione ottenuti dal db in un vettore
+    private static BloodPressureData[] loadBloodData(ResultSet set) {
+        List<BloodPressureData> pressureDataList = new ArrayList<>();
 
+        try {
+            while (set.next()) {
+                int patientId = set.getInt(userIdFieldName);
+                int SBP = set.getInt(sbpFieldName);
+                int DBP = set.getInt(dbpFieldName);
+                LocalDate date = set.getDate(dateFieldName).toLocalDate();
+
+                BloodPressureData pressureData = new BloodPressureData(patientId, SBP, DBP, date);
+                pressureDataList.add(pressureData);
+            }
+        } catch (SQLException | NullPointerException e) {
+            e.printStackTrace();
+        }
+
+        return pressureDataList.toArray(new BloodPressureData[0]);
+    }
+
+    public static BloodPressureData[] getAllByPatient(int patientId) {
+        String query = "SELECT * FROM bloodpressure WHERE user_id = " + patientId;
+        ResultSet set = DatabaseManager.getItem(query);
+
+        return loadBloodData(set);
+    }
 
 }

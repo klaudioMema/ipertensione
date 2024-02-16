@@ -22,13 +22,12 @@ public class SelectPatient implements Initializable {
     private Label PatientLabel;
     @FXML
     private Label SelectPatient;
+
     private Paziente selectedPaziente;
-
-
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        Paziente[] pazienti = Paziente.getAll();
+        Paziente[] pazienti = Paziente.getAllByDoctor(DoctorAppData.getInstance().getMedicoLoggato());
         selectedPaziente = DoctorAppData.getInstance().getSelectedPatient();
 
         if(selectedPaziente != null)
@@ -45,7 +44,6 @@ public class SelectPatient implements Initializable {
         TableColumn<Paziente, String> mailCol = new TableColumn<>("mail");
         mailCol.setCellValueFactory(cellData -> cellData.getValue().mailProperty());
     }
-
 
     @FXML
     private void seleziona() {
