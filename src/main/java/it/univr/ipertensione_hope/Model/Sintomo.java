@@ -1,6 +1,9 @@
 package it.univr.ipertensione_hope.Model;
 
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class Sintomo {
 
     private int id;
@@ -12,13 +15,17 @@ public class Sintomo {
     private static final String idField = "id";
     private static final String descrizioneField = "descrizione";
     private static final String tipologiaField = "tipologia";
-    private static final String gravitaField = "gravità";
+    private static final String gravitaField = "gravita";
 
-    public Sintomo(int id, String descrizione, String tipologia, int gravita) {
-        this.id = id;
+    public Sintomo(String descrizione, String tipologia, int gravita) {
         this.descrizione = descrizione;
         this.tipologia = tipologia;
         this.gravita = gravita;
+    }
+
+    public Sintomo(int id, String descrizione, String tipologia, int gravita) {
+        this(descrizione, tipologia, gravita);
+        this.id = id;
     }
 
     public int getId() {
@@ -60,6 +67,19 @@ public class Sintomo {
         return DatabaseManager.updateItem(query);
     }
 
+    // recupera l'id del sintomo che è stato appena inserito tramite add()
+    public int getIdFromDB() {
+        String query = "SELECT LAST_INSERT_ID() AS last_id";
+        ResultSet resultSet = DatabaseManager.getItem(query);
+        int lastInsertedId = -1;
 
-
+        try {
+            if (resultSet.next()) {
+                lastInsertedId = resultSet.getInt("last_id");
+            }
+            return lastInsertedId;
+        } catch (SQLException e) {
+            return -1;
+        }
+    }
 }

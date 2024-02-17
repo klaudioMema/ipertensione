@@ -1,7 +1,11 @@
 package it.univr.ipertensione_hope.Controller.patient;
 
 import it.univr.ipertensione_hope.Functions;
+import it.univr.ipertensione_hope.Model.BloodPressureData;
+import it.univr.ipertensione_hope.Model.Sintomo;
+import it.univr.ipertensione_hope.View.WindowsManager;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 
 public class SegnalaSintomi{
@@ -49,14 +53,15 @@ public class SegnalaSintomi{
         int gravita = (int) gravitaSlider.getValue(); // Converte il valore in intero
 
         if (tipoSintomo.isEmpty() || descrizione.isEmpty()) {
-            // Mostra un messaggio di errore se uno dei campi è vuoto
             Functions.alert("Per favore, compila tutti i campi.", Alert.AlertType.ERROR, null);
-            return;
+        } else {
+            Sintomo sintomo = new Sintomo(tipoSintomo, descrizione, gravita);
+            Functions.alert("Sintomo aggiunto correttamente", Alert.AlertType.INFORMATION, (ButtonType button) -> {
+                FXMLLoader pressureDataLoader = WindowsManager.getPreviousPage().getLoader(); // prendo il loader della pagina precedente
+                ((ReportBloodPressure) pressureDataLoader.getController()).setSintomoSegnalato(sintomo); // setto il sintomo
+                WindowsManager.previousPage(); // ritorno alla pagina precedente
+            });
         }
 
-
-
-        // Ora puoi procedere con l'aggiunta del sintomo al database
-        // Esegui la query o chiama il metodo per l'aggiunta del sintomo al database
     }
 }
