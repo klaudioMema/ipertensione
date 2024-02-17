@@ -1,60 +1,65 @@
 package it.univr.ipertensione_hope.Model;
 
-import java.sql.Date;
 
 public class Sintomo {
 
-    private int userId;
-    private String name;
-    private String description;
-    private Date start;
-    private Date end;
+    private int id;
+    private String descrizione;
+    private String tipologia;
+    private int gravita;
 
+    private static final String tableName = "Sintomi";
+    private static final String idField = "id";
+    private static final String descrizioneField = "descrizione";
+    private static final String tipologiaField = "tipologia";
+    private static final String gravitaField = "gravità";
 
-    public Sintomo(int userId, String name, String description, Date start, Date end){
-        this.userId = userId;
-        this.name = name;
-        this.description = description;
-        this.start = start;
-        this.end = end;
+    public Sintomo(int id, String descrizione, String tipologia, int gravita) {
+        this.id = id;
+        this.descrizione = descrizione;
+        this.tipologia = tipologia;
+        this.gravita = gravita;
     }
 
-    public int getUserId(){
-        return userId;
-    }
-    public void setUserId(int userId){
-        this.userId = userId;
+    public int getId() {
+        return id;
     }
 
-    public String getName() {
-        return name;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public String getDescrizione() {
+        return descrizione;
     }
 
-    public String getDescription() {
-        return description;
+    public void setDescrizione(String descrizione) {
+        this.descrizione = descrizione;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public String getTipologia() {
+        return tipologia;
     }
 
-    public Date getStart() {
-        return start;
+    public void setTipologia(String tipologia) {
+        this.tipologia = tipologia;
     }
 
-    public void setStart(Date start) {
-        this.start = start;
+    public int getGravita() {
+        return gravita;
     }
 
-    public Date getEnd() {
-        return end;
+    public void setGravita(int gravita) {
+        this.gravita = gravita;
     }
 
-    public void setEnd(Date end) {
-        this.end = end;
+    public boolean add() {
+        String query = "INSERT INTO " + tableName + " (" + descrizioneField + ", " + tipologiaField + ", " + gravitaField + ") " +
+                       "VALUES ('" + descrizione + "', '" + tipologia + "', " + gravita + ")";
+
+        return DatabaseManager.updateItem(query);
     }
+
+
+
 }

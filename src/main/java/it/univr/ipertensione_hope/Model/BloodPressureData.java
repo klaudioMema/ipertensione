@@ -13,6 +13,7 @@ public class BloodPressureData {
     private int DBP;
     private LocalDate date;
     private BloodPressureCategory category;
+    private int sintomoId;
 
     private static final int MAX_SBP = 300;
     private static final int MAX_DBP = 200;
@@ -22,7 +23,7 @@ public class BloodPressureData {
     private static final String dbpFieldName = "dbp";
     private static final String dateFieldName = "date";
     private static final String userIdFieldName = "user_id";
-
+    private static final String sintomoIdFieldName = "sintomo_id";
 
     public BloodPressureData(int userId, int SBP, int DBP, LocalDate date){
         this.userId = userId;
@@ -30,6 +31,11 @@ public class BloodPressureData {
         this.DBP = DBP;
         this.date = date;
         this.category = classifyBloodPressure();
+    }
+
+    public BloodPressureData(int userId, int SBP, int DBP, LocalDate date, int sintomoId) {
+        this(userId, SBP, DBP, date);
+        this.sintomoId = sintomoId;
     }
 
     public int getUserId() {
@@ -63,6 +69,13 @@ public class BloodPressureData {
         this.date = date;
     }
 
+    public int getSintomoId() {
+        return sintomoId;
+    }
+    public void setSintomoId(int sintomoId) {
+        this.sintomoId = sintomoId;
+    }
+
     // Classificazione della pressione
     public BloodPressureCategory classifyBloodPressure() {
         if (SBP >= 180 || DBP >= 120) {
@@ -90,6 +103,14 @@ public class BloodPressureData {
                 "VALUES (" + userId + ", " + SBP + ", " + DBP + ", '" + date + "')";
 
         // Esegui la query per inserire i dati nel database
+        return DatabaseManager.updateItem(query);
+    }
+
+    // aggiunge i dati assieme anche al sintomo associato
+    public boolean addWithSymptom() {
+        String query = "INSERT INTO " + tableName + " (" + userIdFieldName + ", " + sbpFieldName + ", " + dbpFieldName + ", " + dateFieldName + ", " + sintomoIdFieldName + ") " +
+            "VALUES (" + userId + ", " + SBP + ", " + DBP + ", '" + date + "', " + sintomoId + ")";
+
         return DatabaseManager.updateItem(query);
     }
 

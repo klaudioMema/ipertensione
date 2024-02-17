@@ -33,11 +33,6 @@ public class ViewSymptomsPatient implements Initializable {
     public Label statusLabel;
     @FXML
     public Button addButton;
-    private HomePage homePageController;
-
-    public void setHomePageController(HomePage homePageController){
-        this.homePageController = homePageController;
-    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

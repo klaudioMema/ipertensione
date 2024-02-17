@@ -5,8 +5,10 @@ import it.univr.ipertensione_hope.Model.Paziente;
 
 public class DoctorAppData {
     private static DoctorAppData instance;
+
     private Paziente selectedPatient;
     private Medico medicoLoggato;
+    private final String directory = "doctor/"; // memorizza la directory dei file fxml per il medico
 
     private DoctorAppData() {
         // Costruttore privato per impedire l'istanziazione diretta

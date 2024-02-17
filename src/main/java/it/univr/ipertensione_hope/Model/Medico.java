@@ -1,9 +1,6 @@
 package it.univr.ipertensione_hope.Model;
 
-import it.univr.ipertensione_hope.Controller.DatabaseController;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.value.ObservableValue;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -103,7 +100,7 @@ public class Medico extends User{
         List<Medico> mediciList = new ArrayList<>();
         ResultSet set;
 
-        set = DatabaseController.getResultSet(query);
+        set = DatabaseManager.getItem(query);
         try {
             while(set.next()) {
                 int doctorId = set.getInt(idField);

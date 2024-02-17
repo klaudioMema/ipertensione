@@ -114,12 +114,9 @@ public class LoginPage implements Initializable {
 
         String file = "doctor/DoctorDashboard.fxml";
         FXMLLoader loader = new FXMLLoader(WindowsManager.mainClass.getResource(location + file));
-        DoctorViewDashboard controller;
         try {
         	
             root = loader.load();
-            controller = loader.getController();
-            controller.displayName(user.getNome());
 
             WindowsManager.getNavigationTree().newNextScene(new Scene(root), file, loader);
             WindowsManager.showCurrentScene();
@@ -139,9 +136,6 @@ public class LoginPage implements Initializable {
         AdminViewDashboard controller;
         try {
             root = loader.load();
-            controller = loader.getController();
-            controller.setAdmin(user);
-            controller.displayName(user.getNome());
 
             WindowsManager.getNavigationTree().newNextScene(new Scene(root), file, loader);
             WindowsManager.showCurrentScene();
