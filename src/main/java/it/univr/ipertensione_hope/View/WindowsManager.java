@@ -68,9 +68,6 @@ public class WindowsManager {
     public static void previousPage() {
         getNavigationTree().previousScene();
         showCurrentScene();
-        
-        reloadPage();
-        
     }
 
     // per ricaricare la pagina e visualizzare le eventuali modifiche

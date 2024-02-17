@@ -57,6 +57,10 @@ public class ReportBloodPressure {
                     }
 
                 } else {
+                    // aggiungiamo prima nel database il sintomo
+                    sintomoSegnalato.add();
+                    sintomoSegnalato.setId(sintomoSegnalato.getIdFromDB());
+
                     dati = new BloodPressureData(PatientAppData.getInstance().getLoggedPatient().getPatientId(), sbp, dbp, LocalDate.now(), getSintomoSegnalato().getId());
 
                     // !! stampa qualche messaggio per avvertire l'utente sullo stato della pressione
@@ -65,7 +69,7 @@ public class ReportBloodPressure {
                     if(dati.addWithSymptom()) {
                         Functions.alert("Dati inseriti correttamente", Alert.AlertType.INFORMATION, (ButtonType button) -> {
                             String page = "patient/PatientDashboard.fxml";
-                            WindowsManager.loadPage(getClass().getResource(page), page);
+                            WindowsManager.loadPage(WindowsManager.mainClass.getResource(page), page);
                         });
                     } else {
                         Functions.alert("Errore inaspettato durante il salvataggio nel database", Alert.AlertType.ERROR, null);
