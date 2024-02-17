@@ -1,6 +1,10 @@
 package it.univr.ipertensione_hope.Model;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class BloodPressureData {
 
@@ -9,6 +13,7 @@ public class BloodPressureData {
     private int DBP;
     private LocalDate date;
     private BloodPressureCategory category;
+    private int sintomoId;
 
     private static final int MAX_SBP = 300;
     private static final int MAX_DBP = 200;
@@ -18,7 +23,7 @@ public class BloodPressureData {
     private static final String dbpFieldName = "dbp";
     private static final String dateFieldName = "date";
     private static final String userIdFieldName = "user_id";
-
+    private static final String sintomoIdFieldName = "sintomo_id";
 
     public BloodPressureData(int userId, int SBP, int DBP, LocalDate date){
         this.userId = userId;
@@ -26,6 +31,11 @@ public class BloodPressureData {
         this.DBP = DBP;
         this.date = date;
         this.category = classifyBloodPressure();
+    }
+
+    public BloodPressureData(int userId, int SBP, int DBP, LocalDate date, int sintomoId) {
+        this(userId, SBP, DBP, date);
+        this.sintomoId = sintomoId;
     }
 
     public int getUserId() {
@@ -59,8 +69,15 @@ public class BloodPressureData {
         this.date = date;
     }
 
+    public int getSintomoId() {
+        return sintomoId;
+    }
+    public void setSintomoId(int sintomoId) {
+        this.sintomoId = sintomoId;
+    }
+
+    // Classificazione della pressione
     public BloodPressureCategory classifyBloodPressure() {
-        // Classificazione della pressione
         if (SBP >= 180 || DBP >= 120) {
             return BloodPressureCategory.HYPERTENSIVE_CRISIS;
         } else if (SBP >= 160 || DBP >= 100) {
@@ -89,6 +106,40 @@ public class BloodPressureData {
         return DatabaseManager.updateItem(query);
     }
 
+    // aggiunge i dati assieme anche al sintomo associato
+    public boolean addWithSymptom() {
+        String query = "INSERT INTO " + tableName + " (" + userIdFieldName + ", " + sbpFieldName + ", " + dbpFieldName + ", " + dateFieldName + ", " + sintomoIdFieldName + ") " +
+            "VALUES (" + userId + ", " + SBP + ", " + DBP + ", '" + date + "', " + sintomoId + ")";
 
+        return DatabaseManager.updateItem(query);
+    }
+
+    // carica i dati di pressione ottenuti dal db in un vettore
+    private static BloodPressureData[] loadBloodData(ResultSet set) {
+        List<BloodPressureData> pressureDataList = new ArrayList<>();
+
+        try {
+            while (set.next()) {
+                int patientId = set.getInt(userIdFieldName);
+                int SBP = set.getInt(sbpFieldName);
+                int DBP = set.getInt(dbpFieldName);
+                LocalDate date = set.getDate(dateFieldName).toLocalDate();
+
+                BloodPressureData pressureData = new BloodPressureData(patientId, SBP, DBP, date);
+                pressureDataList.add(pressureData);
+            }
+        } catch (SQLException | NullPointerException e) {
+            e.printStackTrace();
+        }
+
+        return pressureDataList.toArray(new BloodPressureData[0]);
+    }
+
+    public static BloodPressureData[] getAllByPatient(int patientId) {
+        String query = "SELECT * FROM bloodpressure WHERE user_id = " + patientId;
+        ResultSet set = DatabaseManager.getItem(query);
+
+        return loadBloodData(set);
+    }
 
 }

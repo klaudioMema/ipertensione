@@ -1,6 +1,5 @@
 package it.univr.ipertensione_hope.Model;
 
-import it.univr.ipertensione_hope.Controller.DatabaseController;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -155,7 +154,7 @@ public class Prescrizione {
                 patientIdField + " = " + paziente.getPatientId();
 
         List<Prescrizione> prescrizioniList = new ArrayList<>();
-        ResultSet set = DatabaseController.getResultSet(query);
+        ResultSet set = DatabaseManager.getItem(query);
 
         try {
             while(set.next()) {

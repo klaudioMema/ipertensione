@@ -8,6 +8,7 @@ import it.univr.ipertensione_hope.View.WindowsManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 
@@ -19,6 +20,8 @@ public class ReportBloodPressure {
     private TextField sbpField;
     @FXML
     private TextField dbpField;
+    @FXML
+    private Button segnalaSintomi;
 
     @FXML
     private void confirm(ActionEvent event) {
@@ -53,5 +56,11 @@ public class ReportBloodPressure {
         } catch (NumberFormatException e) {
             Functions.alert("Inserisci valori numerici validi", Alert.AlertType.ERROR, null);
         }
+    }
+
+    @FXML
+    private void segnalaSintomi(ActionEvent event) {
+        String path = PatientAppData.getInstance().getDirectory() + "SegnalaSintomi.fxml";
+        WindowsManager.nextPage(WindowsManager.mainClass.getResource(path), path);
     }
 }

@@ -1,10 +1,14 @@
 package it.univr.ipertensione_hope.Controller.doctor;
 
+import it.univr.ipertensione_hope.Model.Medico;
 import it.univr.ipertensione_hope.Model.Paziente;
 
 public class DoctorAppData {
     private static DoctorAppData instance;
+
     private Paziente selectedPatient;
+    private Medico medicoLoggato;
+    private final String directory = "doctor/"; // memorizza la directory dei file fxml per il medico
 
     private DoctorAppData() {
         // Costruttore privato per impedire l'istanziazione diretta
@@ -23,5 +27,13 @@ public class DoctorAppData {
 
     public void setSelectedPatient(Paziente selectedPatient) {
         this.selectedPatient = selectedPatient;
+    }
+
+    public void setMedicoLoggato(Medico medico) {
+        this.medicoLoggato = medico;
+    }
+
+    public Medico getMedicoLoggato() {
+        return this.medicoLoggato;
     }
 }

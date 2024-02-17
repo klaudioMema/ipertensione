@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<HBox prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univr.ipertensione_hope.Controller.doctor.PressureData">
+    <fx:include source="DoctorMenu.fxml" />
+    <VBox>
+        <AnchorPane prefHeight="400.0" prefWidth="662.0">
+            <Label layoutX="41.0" layoutY="14.0" text="Visualizza Dati Pressione">
+                <font>
+                    <Font size="20.0" />
+                </font>
+            </Label>
+            <ChoiceBox fx:id="modeChoiceBox" layoutX="377.0" layoutY="29.0" prefWidth="150.0">
+                <FXCollections fx:factory="observableArrayList">
+                    <String fx:value="Giornaliera" />
+                    <String fx:value="Settimanale" />
+                    <String fx:value="Mensile" />
+                </FXCollections>
+            </ChoiceBox>
+            <HBox layoutX="47.0" layoutY="77.0" spacing="10.0">
+                <Label text="Pressione Sistolica (SBP):" />
+                <Label fx:id="sbpLabel" />
+            </HBox>
+            <HBox layoutX="47.0" layoutY="110.0" spacing="10.0">
+                <Label text="Pressione Diastolica (DBP):" />
+                <Label fx:id="dbpLabel" />
+            </HBox>
+            <LineChart fx:id="pressureChart" layoutX="41.0" layoutY="173.0" prefHeight="227.0" prefWidth="605.0">
+                <xAxis>
+                    <CategoryAxis side="BOTTOM" />
+                </xAxis>
+                <yAxis>
+                    <NumberAxis side="LEFT" />
+                </yAxis>
+            </LineChart>
+            <Button layoutX="542.0" layoutY="128.0" mnemonicParsing="false" text="Aggiorna Dati" />
+        </AnchorPane>
+    </VBox>
+</HBox>

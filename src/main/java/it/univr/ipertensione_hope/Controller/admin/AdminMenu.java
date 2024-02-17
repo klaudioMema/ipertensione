@@ -1,19 +1,12 @@
 package it.univr.ipertensione_hope.Controller.admin;
 
+import it.univr.ipertensione_hope.Controller.doctor.DoctorAppData;
 import it.univr.ipertensione_hope.Model.AgenteSanitario;
 import it.univr.ipertensione_hope.View.WindowsManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
 public class AdminMenu {
-    private AgenteSanitario admin = null;
-
-    public void setAdmin(AgenteSanitario admin) {
-        this.admin = admin;
-    }
-    public AgenteSanitario getAdmin() {
-        return this.admin;
-    }
 
     private final String directory = "admin/";
 
@@ -47,6 +40,7 @@ public class AdminMenu {
 
     public void logoutEvent(ActionEvent event) {
         String path = "LoginPageView.fxml";
+        AdminAppData.getInstance().setLoggedAgenteSanitario(null);
         WindowsManager.logout(WindowsManager.mainClass.getResource(path), path);
     }
 }

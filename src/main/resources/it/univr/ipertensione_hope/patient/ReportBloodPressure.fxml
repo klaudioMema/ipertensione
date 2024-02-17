@@ -18,7 +18,8 @@
                 <Label layoutX="31.0" layoutY="197.0" text="Pressione Diastolica (DBP):" />
                 <TextField fx:id="dbpField" layoutX="209.0" layoutY="193.0" />
       
-            <Button layoutX="221.0" layoutY="273.0" onAction="#confirm" prefHeight="42.0" prefWidth="113.0" text="Conferma" />
+            <Button layoutX="290.0" layoutY="274.0" onAction="#confirm" prefHeight="42.0" prefWidth="113.0" text="Conferma" />
+            <Button fx:id="segnalaSintomi" onAction="#segnalaSintomi" layoutX="52.0" layoutY="274.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="132.0" text="Segnala sintomi" />
         </Pane>
     </VBox>
 

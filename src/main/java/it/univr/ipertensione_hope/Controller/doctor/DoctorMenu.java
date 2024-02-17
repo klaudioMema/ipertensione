@@ -11,10 +11,22 @@ public class DoctorMenu {
 
     private static final String directory = "doctor/";
 
+    // Controlla se il paziente è stato selezionato prima di caricare la pagina
+    private void checkPatientSelected(String path) {
+        if(DoctorAppData.getInstance().getSelectedPatient() == null) {
+            Functions.alert("Prima devi selezionare un paziente", Alert.AlertType.ERROR, (ButtonType button) -> {
+                selectPatient(new ActionEvent());
+            });
+        } else {
+            WindowsManager.loadPage(WindowsManager.mainClass.getResource(path), path);
+            WindowsManager.reloadPage();
+        }
+    }
+
     @FXML
     private void myPatient(ActionEvent event) {
         String path = directory + "MyPatient.fxml";
-        WindowsManager.loadPage(WindowsManager.mainClass.getResource(path), path);
+        checkPatientSelected(path);
     }
 
     @FXML
@@ -26,41 +38,32 @@ public class DoctorMenu {
     @FXML
     private void alertPatient(ActionEvent event) {
         String path = directory + "AlertPatient.fxml";
-        WindowsManager.loadPage(WindowsManager.mainClass.getResource(path), path);
+        checkPatientSelected(path);
     }
 
     @FXML
     private void prescription(ActionEvent event) {
         String path = directory + "Prescriptions.fxml";
-
-        if(DoctorAppData.getInstance().getSelectedPatient() == null) {
-            Functions.alert("Prima devi selezionare un paziente", Alert.AlertType.ERROR, (ButtonType button) -> {
-                selectPatient(new ActionEvent());
-            });
-        } else {
-            WindowsManager.loadPage(WindowsManager.mainClass.getResource(path), path);
-            WindowsManager.reloadPage();
-        }
-
+        checkPatientSelected(path);
     }
+
     @FXML
     private void managePrescription(ActionEvent event) {
         String path = directory + "ManagePrescription.fxml";
-
-        if(DoctorAppData.getInstance().getSelectedPatient() == null) {
-            Functions.alert("Prima devi selezionare un paziente", Alert.AlertType.ERROR, (ButtonType button) -> {
-                selectPatient(new ActionEvent());
-            });
-        } else {
-            WindowsManager.loadPage(WindowsManager.mainClass.getResource(path), path);
-            WindowsManager.reloadPage();
-        }
+        checkPatientSelected(path);
 
     }
 
+    @FXML
     public void logoutEvent(ActionEvent event) {
         String path = "LoginPageView.fxml";
+        DoctorAppData.getInstance().setMedicoLoggato(null);
         WindowsManager.logout(WindowsManager.mainClass.getResource(path), path);
     }
 
+    @FXML
+    public void pressureData(ActionEvent event) {
+        String path = directory + "PressureData.fxml";
+        checkPatientSelected(path);
+    }
 }

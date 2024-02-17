@@ -11,12 +11,10 @@
             </font>
         </Label>
     </Pane>
-    <Button mnemonicParsing="false" onAction="#home" prefHeight="47.0" prefWidth="142.0" text="Home" />
-    <Button mnemonicParsing="false" onAction="#myProfile" prefHeight="48.0" prefWidth="145.0" text="My Profile" />
-    <Button mnemonicParsing="false" onAction="#myDoctor" prefHeight="48.0" prefWidth="145.0" text="My Doctor" />
-    <Button mnemonicParsing="false" onAction="#bloodData" prefHeight="47.0" prefWidth="143.0" text="Blood Data" />
+    <Button mnemonicParsing="false" onAction="#myProfile" prefHeight="48.0" prefWidth="145.0" text="Profilo" />
+    <Button mnemonicParsing="false" onAction="#myDoctor" prefHeight="48.0" prefWidth="145.0" text="Dottore" />
+    <Button mnemonicParsing="false" onAction="#bloodData" prefHeight="47.0" prefWidth="143.0" text="Riporta dati di pressione" />
     <Button mnemonicParsing="false" onAction="#therapies" prefHeight="47.0" prefWidth="145.0" text="Therapies" />
     <Button mnemonicParsing="false" onAction="#reportSymptoms" prefHeight="47.0" prefWidth="145.0" text="Report Symptoms" />
     <Button mnemonicParsing="false" onAction="#logoutEvent" prefHeight="47.0" prefWidth="145.0" text="Logout" />
 </VBox>
-

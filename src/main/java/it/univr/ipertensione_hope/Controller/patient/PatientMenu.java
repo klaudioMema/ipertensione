@@ -2,6 +2,7 @@ package it.univr.ipertensione_hope.Controller.patient;
 
 
 import it.univr.ipertensione_hope.Controller.LoginPage;
+import it.univr.ipertensione_hope.Controller.doctor.DoctorAppData;
 import it.univr.ipertensione_hope.Model.Paziente;
 import it.univr.ipertensione_hope.View.WindowsManager;
 import javafx.event.ActionEvent;
@@ -21,11 +22,6 @@ public class PatientMenu {
 
     private static final String directory = "patient/";
 
-    public void home() throws IOException {
-        String path = directory + "HomePage.fxml";
-        WindowsManager.loadPage(WindowsManager.mainClass.getResource(path), path);
-    }
-
     public void myProfile(ActionEvent event) throws IOException {
         String path = directory + "MyProfile.fxml";
         WindowsManager.loadPage(WindowsManager.mainClass.getResource(path), path);
@@ -35,8 +31,7 @@ public class PatientMenu {
         WindowsManager.loadPage(WindowsManager.mainClass.getResource(path), path);
     }
 
-
-    public void bloodData(ActionEvent event) throws IOException {
+   public void bloodData(ActionEvent event) throws IOException {
         String path = directory + "ReportBloodPressure.fxml";
         WindowsManager.loadPage(WindowsManager.mainClass.getResource(path), path);
     }
@@ -53,6 +48,7 @@ public class PatientMenu {
 
     public void logoutEvent(ActionEvent event) throws IOException {
         String path = directory + "LoginPageView.fxml";
+        PatientAppData.getInstance().setLoggedPatient(null);
         WindowsManager.logout(WindowsManager.mainClass.getResource(path), path);
     }
 }
