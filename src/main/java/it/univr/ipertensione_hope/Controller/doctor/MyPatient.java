@@ -1,8 +1,10 @@
 package it.univr.ipertensione_hope.Controller.doctor;
 
 import it.univr.ipertensione_hope.Controller.DatabaseController;
+import it.univr.ipertensione_hope.Controller.admin.ManagePatient;
 import it.univr.ipertensione_hope.Functions;
 import it.univr.ipertensione_hope.Model.Paziente;
+import it.univr.ipertensione_hope.Model.Prescrizione;
 import it.univr.ipertensione_hope.View.WindowsManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -112,4 +114,21 @@ public class MyPatient implements Initializable {
         Matcher matcher = Pattern.compile(regex).matcher(codiceFField.getText());
         return matcher.matches();
     }
+    public void aggiornaFattoriRischio(){
+        if (  fattoriDiRischio.getText() == null || fattoriDiRischio.getText().isEmpty())
+            Functions.alert("completare i fattori di ricschio per aggiornarli", Alert.AlertType.ERROR, null);
+        else {
+            selectedPaziente.setFattoriDiRischio(fattoriDiRischio.getText());
+
+            if(selectedPaziente.updateRisk()) {
+                Functions.alert("Fattori di Rischio aggiornati", Alert.AlertType.INFORMATION, (ButtonType button) -> {
+                    WindowsManager.reloadPage();
+                });
+            } else {
+                Functions.alert("Errore inaspettato durante la modifica", Alert.AlertType.ERROR, null);
+            }
+        }
+
+    }
+
 }

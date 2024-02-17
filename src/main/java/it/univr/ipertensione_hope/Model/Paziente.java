@@ -210,5 +210,11 @@ public class Paziente extends User{
 
         return DatabaseManager.updateItem(query);
     }
+    public boolean updateRisk() {
+        String query = "UPDATE " + tableName + " SET " + riskField + " = '" + fattoriDiRischio +
+                "' WHERE " + idField + " = " + patientId;
+
+        return DatabaseManager.updateItem(query);
+    }
 
 }
