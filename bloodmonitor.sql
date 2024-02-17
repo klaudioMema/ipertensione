@@ -1,277 +1,242 @@
-mysql  Ver 8.0.35-0ubuntu0.23.10.1 for Linux on x86_64 ((Ubuntu))
-Copyright (c) 2000, 2023, Oracle and/or its affiliates.
+-- MySQL dump 10.13  Distrib 8.0.35, for Linux (x86_64)
+--
+-- Host: localhost    Database: bloodmonitor
+-- ------------------------------------------------------
+-- Server version	8.0.35-0ubuntu0.23.10.1
 
-Oracle is a registered trademark of Oracle Corporation and/or its
-affiliates. Other names may be trademarks of their respective
-owners.
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8mb4 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
-Usage: mysql [OPTIONS] [database]
-  -?, --help          Display this help and exit.
-  -I, --help          Synonym for -?
-  --auto-rehash       Enable automatic rehashing. One doesn't need to use
-                      'rehash' to get table and field completion, but startup
-                      and reconnecting may take a longer time. Disable with
-                      --disable-auto-rehash.
-                      (Defaults to on; use --skip-auto-rehash to disable.)
-  -A, --no-auto-rehash 
-                      No automatic rehashing. One has to use 'rehash' to get
-                      table and field completion. This gives a quicker start of
-                      mysql and disables rehashing on reconnect.
-  --auto-vertical-output 
-                      Automatically switch to vertical output mode if the
-                      result is wider than the terminal width.
-  -B, --batch         Don't use history file. Disable interactive behavior.
-                      (Enables --silent.)
-  --bind-address=name IP address to bind to.
-  --binary-as-hex     Print binary data as hex. Enabled by default for
-                      interactive terminals.
-  --character-sets-dir=name 
-                      Directory for character set files.
-  --column-type-info  Display column type information.
-  -c, --comments      Preserve comments. Send comments to the server. The
-                      default is --skip-comments (discard comments), enable
-                      with --comments.
-  -C, --compress      Use compression in server/client protocol.
-  -#, --debug[=#]     This is a non-debug version. Catch this and exit.
-  --debug-check       This is a non-debug version. Catch this and exit.
-  -T, --debug-info    This is a non-debug version. Catch this and exit.
-  -D, --database=name Database to use.
-  --default-character-set=name 
-                      Set the default character set.
-  --delimiter=name    Delimiter to be used.
-  --enable-cleartext-plugin 
-                      Enable/disable the clear text authentication plugin.
-  -e, --execute=name  Execute command and quit. (Disables --force and history
-                      file.)
-  -E, --vertical      Print the output of a query (rows) vertically.
-  -f, --force         Continue even if we get an SQL error.
-  --histignore=name   A colon-separated list of patterns to keep statements
-                      from getting logged into syslog and mysql history.
-  -G, --named-commands 
-                      Enable named commands. Named commands mean this program's
-                      internal commands; see mysql> help . When enabled, the
-                      named commands can be used from any line of the query,
-                      otherwise only from the first line, before an enter.
-                      Disable with --disable-named-commands. This option is
-                      disabled by default.
-  -i, --ignore-spaces Ignore space after function names.
-  --init-command=name SQL Command to execute when connecting to MySQL server.
-                      Will automatically be re-executed when reconnecting.
-  --local-infile      Enable/disable LOAD DATA LOCAL INFILE.
-  -b, --no-beep       Turn off beep on error.
-  -h, --host=name     Connect to host.
-  --dns-srv-name=name Connect to a DNS SRV resource
-  -H, --html          Produce HTML output.
-  -X, --xml           Produce XML output.
-  --line-numbers      Write line numbers for errors.
-                      (Defaults to on; use --skip-line-numbers to disable.)
-  -L, --skip-line-numbers 
-                      Don't write line number for errors.
-  -n, --unbuffered    Flush buffer after each query.
-  --column-names      Write column names in results.
-                      (Defaults to on; use --skip-column-names to disable.)
-  -N, --skip-column-names 
-                      Don't write column names in results.
-  --sigint-ignore     Ignore SIGINT (CTRL-C).
-  -o, --one-database  Ignore statements except those that occur while the
-                      default database is the one named at the command line.
-  --pager[=name]      Pager to use to display results. If you don't supply an
-                      option, the default pager is taken from your ENV variable
-                      PAGER. Valid pagers are less, more, cat [> filename],
-                      etc. See interactive help (\h) also. This option does not
-                      work in batch mode. Disable with --disable-pager. This
-                      option is disabled by default.
-  -p, --password[=name] 
-                      Password to use when connecting to server. If password is
-                      not given it's asked from the tty.
-  -,, --password1[=name] 
-                      Password for first factor authentication plugin.
-  -,, --password2[=name] 
-                      Password for second factor authentication plugin.
-  -,, --password3[=name] 
-                      Password for third factor authentication plugin.
-  -P, --port=#        Port number to use for connection or 0 for default to, in
-                      order of preference, my.cnf, $MYSQL_TCP_PORT,
-                      /etc/services, built-in default (3306).
-  --prompt=name       Set the mysql prompt to this value.
-  --protocol=name     The protocol to use for connection (tcp, socket, pipe,
-                      memory).
-  -q, --quick         Don't cache result, print it row by row. This may slow
-                      down the server if the output is suspended. Doesn't use
-                      history file.
-  -r, --raw           Write fields without conversion. Used with --batch.
-  --reconnect         Reconnect if the connection is lost. Disable with
-                      --disable-reconnect. This option is enabled by default.
-                      (Defaults to on; use --skip-reconnect to disable.)
-  -s, --silent        Be more silent. Print results with a tab as separator,
-                      each row on new line.
-  -S, --socket=name   The socket file to use for connection.
-  --server-public-key-path=name 
-                      File path to the server public RSA key in PEM format.
-  --get-server-public-key 
-                      Get server public key
-  --ssl-mode=name     SSL connection mode.
-  --ssl-ca=name       CA file in PEM format.
-  --ssl-capath=name   CA directory.
-  --ssl-cert=name     X509 cert in PEM format.
-  --ssl-cipher=name   SSL cipher to use.
-  --ssl-key=name      X509 key in PEM format.
-  --ssl-crl=name      Certificate revocation list.
-  --ssl-crlpath=name  Certificate revocation list path.
-  --tls-version=name  TLS version to use, permitted values are: TLSv1.2,
-                      TLSv1.3
-  --ssl-fips-mode=name 
-                      SSL FIPS mode (applies only for OpenSSL); permitted
-                      values are: OFF, ON, STRICT
-  --tls-ciphersuites=name 
-                      TLS v1.3 cipher to use.
-  --ssl-session-data=name 
-                      Session data file to use to enable ssl session reuse
-  --ssl-session-data-continue-on-failed-reuse 
-                      If set to ON, this option will allow connection to
-                      succeed even if session data cannot be reused.
-  -t, --table         Output in table format.
-  --tee=name          Append everything into outfile. See interactive help (\h)
-                      also. Does not work in batch mode. Disable with
-                      --disable-tee. This option is disabled by default.
-  -u, --user=name     User for login if not current user.
-  -U, --safe-updates  Only allow UPDATE and DELETE that uses keys.
-  -U, --i-am-a-dummy  Synonym for option --safe-updates, -U.
-  -v, --verbose       Write more. (-v -v -v gives the table output format).
-  -V, --version       Output version information and exit.
-  -w, --wait          Wait and retry if connection is down.
-  --connect-timeout=# Number of seconds before connection timeout.
-  --max-allowed-packet=# 
-                      The maximum packet length to send to or receive from
-                      server.
-  --net-buffer-length=# 
-                      The buffer size for TCP/IP and socket communication.
-  --select-limit=#    Automatic limit for SELECT when using --safe-updates.
-  --max-join-size=#   Automatic limit for rows in a join when using
-                      --safe-updates.
-  --show-warnings     Show warnings after every statement.
-  -j, --syslog        Log filtered interactive commands to syslog. Filtering of
-                      commands depends on the patterns supplied via histignore
-                      option besides the default patterns.
-  --plugin-dir=name   Directory for client-side plugins.
-  --default-auth=name Default authentication client-side plugin to use.
-  --binary-mode       By default, ASCII '\0' is disallowed and '\r\n' is
-                      translated to '\n'. This switch turns off both features,
-                      and also turns off parsing of all clientcommands except
-                      \C and DELIMITER, in non-interactive mode (for input
-                      piped to mysql or loaded using the 'source' command).
-                      This is necessary when processing output from mysqlbinlog
-                      that may contain blobs.
-  --connect-expired-password 
-                      Notify the server that this client is prepared to handle
-                      expired password sandbox mode.
-  --network-namespace=name 
-                      Network namespace to use for connection via tcp with a
-                      server.
-  --compression-algorithms=name 
-                      Use compression algorithm in server/client protocol.
-                      Valid values are any combination of
-                      'zstd','zlib','uncompressed'.
-  --zstd-compression-level=# 
-                      Use this compression level in the client/server protocol,
-                      in case --compression-algorithms=zstd. Valid range is
-                      between 1 and 22, inclusive. Default is 3.
-  --load-data-local-dir=name 
-                      Directory path safe for LOAD DATA LOCAL INFILE to read
-                      from.
-  --fido-register-factor=name 
-                      Specifies authentication factor, for which registration
-                      needs to be done.
-  --authentication-oci-client-config-profile=name 
-                      Specifies the configuration profile whose configuration
-                      options are to be read from the OCI configuration file.
-                      Default is DEFAULT.
-  --oci-config-file=name 
-                      Specifies the location of the OCI configuration file.
-                      Default for Linux is ~/.oci/config and %HOME/.oci/config
-                      on Windows.
+--
+-- Table structure for table `LastExecutionDate`
+--
 
-Default options are read from the following files in the given order:
-/etc/my.cnf /etc/mysql/my.cnf ~/.my.cnf 
-The following groups are read: mysql client
-The following options may be given as the first argument:
---print-defaults        Print the program argument list and exit.
---no-defaults           Don't read default options from any option file,
-                        except for login file.
---defaults-file=#       Only read default options from the given file #.
---defaults-extra-file=# Read this file after the global files are read.
---defaults-group-suffix=#
-                        Also read groups with concat(group, suffix)
---login-path=#          Read this path from the login file.
+DROP TABLE IF EXISTS `LastExecutionDate`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `LastExecutionDate` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `lastExecutionDate` date DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
-Variables (--variable-name=value)
-and boolean options {FALSE|TRUE}          Value (after reading options)
------------------------------------------ --------------------------------
-auto-rehash                               TRUE
-auto-vertical-output                      FALSE
-bind-address                              (No default value)
-binary-as-hex                             FALSE
-character-sets-dir                        (No default value)
-column-type-info                          FALSE
-comments                                  FALSE
-compress                                  FALSE
-database                                  (No default value)
-default-character-set                     auto
-delimiter                                 ;
-enable-cleartext-plugin                   FALSE
-vertical                                  FALSE
-force                                     FALSE
-histignore                                (No default value)
-named-commands                            FALSE
-ignore-spaces                             FALSE
-init-command                              (No default value)
-local-infile                              FALSE
-no-beep                                   FALSE
-host                                      (No default value)
-dns-srv-name                              (No default value)
-html                                      FALSE
-xml                                       FALSE
-line-numbers                              TRUE
-unbuffered                                FALSE
-column-names                              TRUE
-sigint-ignore                             FALSE
-port                                      0
-prompt                                    mysql> 
-quick                                     FALSE
-raw                                       FALSE
-reconnect                                 FALSE
-socket                                    (No default value)
-server-public-key-path                    (No default value)
-get-server-public-key                     FALSE
-ssl-ca                                    (No default value)
-ssl-capath                                (No default value)
-ssl-cert                                  (No default value)
-ssl-cipher                                (No default value)
-ssl-key                                   (No default value)
-ssl-crl                                   (No default value)
-ssl-crlpath                               (No default value)
-tls-version                               (No default value)
-tls-ciphersuites                          (No default value)
-ssl-session-data                          (No default value)
-ssl-session-data-continue-on-failed-reuse FALSE
-table                                     FALSE
-user                                      (No default value)
-safe-updates                              FALSE
-i-am-a-dummy                              FALSE
-connect-timeout                           0
-max-allowed-packet                        16777216
-net-buffer-length                         16384
-select-limit                              1000
-max-join-size                             1000000
-show-warnings                             FALSE
-plugin-dir                                (No default value)
-default-auth                              (No default value)
-binary-mode                               FALSE
-connect-expired-password                  FALSE
-network-namespace                         (No default value)
-compression-algorithms                    (No default value)
-zstd-compression-level                    3
-load-data-local-dir                       (No default value)
-fido-register-factor                      (No default value)
-authentication-oci-client-config-profile  (No default value)
-oci-config-file                           (No default value)
+--
+-- Dumping data for table `LastExecutionDate`
+--
+
+LOCK TABLES `LastExecutionDate` WRITE;
+/*!40000 ALTER TABLE `LastExecutionDate` DISABLE KEYS */;
+INSERT INTO `LastExecutionDate` VALUES (1,'2024-02-17');
+/*!40000 ALTER TABLE `LastExecutionDate` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `Sintomi`
+--
+
+DROP TABLE IF EXISTS `Sintomi`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `Sintomi` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `descrizione` varchar(255) NOT NULL,
+  `tipologia` varchar(50) NOT NULL,
+  `gravità` int NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Sintomi`
+--
+
+LOCK TABLES `Sintomi` WRITE;
+/*!40000 ALTER TABLE `Sintomi` DISABLE KEYS */;
+/*!40000 ALTER TABLE `Sintomi` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `agentesanitario`
+--
+
+DROP TABLE IF EXISTS `agentesanitario`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `agentesanitario` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nome` varchar(50) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `password` text,
+  `cognome` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `agentesanitario`
+--
+
+LOCK TABLES `agentesanitario` WRITE;
+/*!40000 ALTER TABLE `agentesanitario` DISABLE KEYS */;
+INSERT INTO `agentesanitario` VALUES (2,'giorgio','giorgio@gmail.com','giorgio','di'),(3,'a','a','a','a');
+/*!40000 ALTER TABLE `agentesanitario` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `bloodpressure`
+--
+
+DROP TABLE IF EXISTS `bloodpressure`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `bloodpressure` (
+  `user_id` int DEFAULT NULL,
+  `sbp` int DEFAULT NULL,
+  `dbp` int DEFAULT NULL,
+  `date` date DEFAULT NULL,
+  `sintomo_id` int DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `bloodpressure`
+--
+
+LOCK TABLES `bloodpressure` WRITE;
+/*!40000 ALTER TABLE `bloodpressure` DISABLE KEYS */;
+INSERT INTO `bloodpressure` VALUES (1,100,100,'2023-07-10',NULL),(2,100,90,'2023-07-10',NULL),(32,100,100,'2023-07-13',NULL),(32,90,90,'2023-07-12',NULL),(32,90,100,'2023-07-16',NULL),(0,100,90,'2024-02-15',NULL),(35,100,90,'2024-02-15',NULL),(35,100,100,'2024-02-15',NULL),(35,140,90,'2024-02-16',NULL),(35,120,70,'2024-02-17',NULL),(35,120,60,'2024-03-15',NULL),(35,110,90,'2024-04-15',NULL),(35,100,100,'2024-05-16',NULL);
+/*!40000 ALTER TABLE `bloodpressure` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `medics`
+--
+
+DROP TABLE IF EXISTS `medics`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `medics` (
+  `doctor_id` int NOT NULL AUTO_INCREMENT,
+  `nome` varchar(50) DEFAULT NULL,
+  `cognome` varchar(50) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `password` text,
+  PRIMARY KEY (`doctor_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `medics`
+--
+
+LOCK TABLES `medics` WRITE;
+/*!40000 ALTER TABLE `medics` DISABLE KEYS */;
+INSERT INTO `medics` VALUES (10,'Jon','Non','Jo@gmail.com','jo'),(11,'antonio','rossi','antoniorossi@gmail.com','a'),(12,'biagio','alfarano','biagio@gmail.com','biagio'),(15,'a','a','a','a');
+/*!40000 ALTER TABLE `medics` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `patients`
+--
+
+DROP TABLE IF EXISTS `patients`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `patients` (
+  `user_id` int NOT NULL AUTO_INCREMENT,
+  `nome` varchar(50) DEFAULT NULL,
+  `cognome` varchar(50) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `password` text,
+  `codicef` varchar(16) DEFAULT NULL,
+  `bday` date DEFAULT NULL,
+  `doctor_id` int DEFAULT NULL,
+  `fattoridirischio` text,
+  PRIMARY KEY (`user_id`),
+  UNIQUE KEY `patients_pk` (`codicef`)
+) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `patients`
+--
+
+LOCK TABLES `patients` WRITE;
+/*!40000 ALTER TABLE `patients` DISABLE KEYS */;
+INSERT INTO `patients` VALUES (35,'luca','fron','luca@gmail.com','luca','luca','1999-09-13',15,'fumatore, drogato'),(39,'asdf','asdf','asdf','asdfasdf','asdf','2024-01-29',15,NULL),(40,'qwer','qwerqwer','qwer','qwerqwer','qwer','2024-02-16',15,NULL),(41,'zxcv','zxcv','zxcv','zxcvzxcv','zxcv','2024-02-10',15,NULL),(42,'vbnm','vbmn','vbmn','vbmnvbmn','vbm','2024-03-08',15,NULL),(43,'uiop','uiop','uiop','uiopuiop','uiop','2024-02-17',10,NULL),(44,'hjkl','hjkl','hjkl','hjklhjkl','hjkl','2024-02-03',11,NULL),(45,'vczx','vcxz','vcxz','vcxzvcxz','vcxz','2024-02-15',10,NULL),(46,'fdsa','fdsa','fdsa','fdsafdsa','fdsa','2024-02-14',10,NULL);
+/*!40000 ALTER TABLE `patients` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `prescriptions`
+--
+
+DROP TABLE IF EXISTS `prescriptions`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `prescriptions` (
+  `user_id` int DEFAULT NULL,
+  `medication` text,
+  `indications` text,
+  `days` int DEFAULT NULL,
+  `fromDate` date DEFAULT NULL,
+  `assumption` int DEFAULT NULL,
+  `toDate` date DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `prescriptions`
+--
+
+LOCK TABLES `prescriptions` WRITE;
+/*!40000 ALTER TABLE `prescriptions` DISABLE KEYS */;
+INSERT INTO `prescriptions` VALUES (35,'coca','da assumere tre volte al giorno dopo i pasti, anche prima se vuoi',NULL,'2024-02-13',2,'2024-02-15'),(35,'asdf','',NULL,'2024-02-13',2,'2024-02-29'),(35,'ero','',NULL,'2024-02-13',3,'2024-02-14'),(35,'fenta','',NULL,'2024-02-12',3,'2024-02-29'),(35,'paro','asfd',NULL,'2024-02-01',3,'2024-02-01'),(35,'qwerty','',NULL,'2024-02-12',2,'2024-02-18'),(35,'zxvc','sadf',NULL,'2024-02-24',0,'2024-02-29');
+/*!40000 ALTER TABLE `prescriptions` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `takenmedication`
+--
+
+DROP TABLE IF EXISTS `takenmedication`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `takenmedication` (
+  `user_id` int DEFAULT NULL,
+  `medication` varchar(255) DEFAULT NULL,
+  `indications` text,
+  `daythatwastaken` date DEFAULT NULL,
+  `days` int DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `takenmedication`
+--
+
+LOCK TABLES `takenmedication` WRITE;
+/*!40000 ALTER TABLE `takenmedication` DISABLE KEYS */;
+INSERT INTO `takenmedication` VALUES (32,'bbbb','bsrbb','2023-07-16',4),(32,'asddas','321','2023-07-16',2);
+/*!40000 ALTER TABLE `takenmedication` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2024-02-17 16:04:10
