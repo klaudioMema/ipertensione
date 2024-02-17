@@ -1,10 +1,8 @@
 package it.univr.ipertensione_hope.Controller.patient;
 
+import it.univr.ipertensione_hope.Functions;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.Slider;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 public class SegnalaSintomi{
 
@@ -37,7 +35,6 @@ public class SegnalaSintomi{
             gravitaLabel.setText(String.valueOf(newValue.intValue()));
         });
 
-        // Aggiungi un listener per ripristinare il valore del tick più vicino quando viene rilasciato il mouse
         gravitaSlider.setOnMouseReleased(event -> {
             double value = gravitaSlider.getValue();
             int roundedValue = (int) Math.round(value); // Arrotonda il valore
@@ -47,11 +44,18 @@ public class SegnalaSintomi{
 
     @FXML
     private void submitSymptom() {
-        String tipologia = tipologiaField.getText();
-        String descrizione = descrizioneArea.getText();
-        int gravita = (int) gravitaSlider.getValue();
+        String tipoSintomo = tipologiaField.getText().trim();
+        String descrizione = descrizioneArea.getText().trim();
 
-        // Qui puoi gestire l'invio dei dati del sintomo al database o fare altre operazioni necessarie
-        System.out.println("Tipologia: " + tipologia + ", Descrizione: " + descrizione + ", Gravità: " + gravita);
+        if (tipoSintomo.isEmpty() || descrizione.isEmpty()) {
+            // Mostra un messaggio di errore se uno dei campi è vuoto
+            Functions.alert("Per favore, compila tutti i campi.", Alert.AlertType.ERROR, null);
+            return;
+        }
+
+        int gravita = (int) gravitaSlider.getValue(); // Converte il valore in intero
+
+        // Ora puoi procedere con l'aggiunta del sintomo al database
+        // Esegui la query o chiama il metodo per l'aggiunta del sintomo al database
     }
 }
