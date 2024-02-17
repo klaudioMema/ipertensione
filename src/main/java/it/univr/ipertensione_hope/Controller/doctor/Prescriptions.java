@@ -26,8 +26,6 @@ public class Prescriptions implements Initializable {
     @FXML
     private TableColumn<Prescrizione, String> indicationsColumn;
     @FXML
-    private TableColumn<Prescrizione, Integer> daysColumn;
-    @FXML
     private TableColumn<Prescrizione, Date> fromDateColumn;
     @FXML
     private TableColumn<Prescrizione, Date> toDateColumn;
@@ -92,22 +90,6 @@ public class Prescriptions implements Initializable {
             }
 
         }
-    }
-
-    // Check if prescription still valid today
-    private boolean isValidYet(Date fromDate, int days){
-        Date today = new Date(System.currentTimeMillis());
-        long daysPassed = ChronoUnit.DAYS.between(fromDate.toLocalDate(), today.toLocalDate());
-        return daysPassed <= days;
-    }
-
-    private void deleteExpiredPrescription(Prescrizione prescrizione){
-        DatabaseController.updateItem("DELETE FROM prescriptions WHERE user_id = '" +
-                selectedPaziente.getPatientId() + "' AND medication LIKE '" +
-                prescrizione.getMedication() + "' AND indications LIKE '" +
-                prescrizione.getIndications() +"' AND days LIKE '" +
-                prescrizione.getDays() + "' AND fromDate LIKE '" +
-                prescrizione.getFromDate() + "'");
     }
 
 }
