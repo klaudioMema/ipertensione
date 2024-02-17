@@ -46,6 +46,7 @@ public class SegnalaSintomi{
     private void submitSymptom() {
         String tipoSintomo = tipologiaField.getText().trim();
         String descrizione = descrizioneArea.getText().trim();
+        int gravita = (int) gravitaSlider.getValue(); // Converte il valore in intero
 
         if (tipoSintomo.isEmpty() || descrizione.isEmpty()) {
             // Mostra un messaggio di errore se uno dei campi è vuoto
@@ -53,7 +54,7 @@ public class SegnalaSintomi{
             return;
         }
 
-        int gravita = (int) gravitaSlider.getValue(); // Converte il valore in intero
+
 
         // Ora puoi procedere con l'aggiunta del sintomo al database
         // Esegui la query o chiama il metodo per l'aggiunta del sintomo al database

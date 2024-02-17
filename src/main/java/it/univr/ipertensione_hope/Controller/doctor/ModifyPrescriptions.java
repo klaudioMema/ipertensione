@@ -34,25 +34,24 @@ public class ModifyPrescriptions {
     }
     @FXML
     void salva(ActionEvent event) {
-        if(     medicationField.getText().isEmpty() || indicationsField.getText().isEmpty() ||
-                FromDateField.getValue() == null || ToDateField.getValue() == null )
+        if(     medicationField.getText().isEmpty() ||
+                FromDateField.getValue() == null ||
+                ToDateField.getValue() == null )
             Functions.alert("Compilare tutti i campi", Alert.AlertType.ERROR, null);
         else {
-                selectPrescription.setMedication(medicationField.getText());
-                selectPrescription.setIndications(indicationsField.getText());
-                selectPrescription.setFromDate(FromDateField.getValue());
-                selectPrescription.setToDate((ToDateField.getValue()));
-                /*
-            if(Medico.updateDoctor(selectedDoctor)) {
-                Functions.alert("Medico salvato correttamente", Alert.AlertType.INFORMATION, (ButtonType button) -> {
+            selectPrescription.setMedication(medicationField.getText());
+            selectPrescription.setIndications(indicationsField.getText());
+            selectPrescription.setFromDate(FromDateField.getValue());
+            selectPrescription.setToDate((ToDateField.getValue()));
+
+            if(selectPrescription.updatePrescription()) {
+                Functions.alert("Prescrizione modificata correttamente", Alert.AlertType.INFORMATION, (ButtonType button) -> {
                     WindowsManager.previousPage();
+                    WindowsManager.reloadPage();
                 });
             } else {
-                Functions.alert("Errore inaspettato", Alert.AlertType.ERROR, null);
+                Functions.alert("Errore inaspettato durante la modifica", Alert.AlertType.ERROR, null);
             }
-            */
-
-
         }
     }
 }

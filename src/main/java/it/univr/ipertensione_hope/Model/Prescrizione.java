@@ -13,6 +13,7 @@ import java.util.List;
 public class Prescrizione {
 
     private final static String tableName = "prescriptions";
+    private final static String idField = "id";
     private final static String patientIdField = "user_id";
     private final static String prescriptionNameField = "medication";
     private final static String indicationField = "indications";
@@ -20,6 +21,7 @@ public class Prescrizione {
     private final static String toDateField = "toDate";
     private final static String assumptionField = "assumption";
 
+    private int id;
     private int userId;
     private String medication;
     private String indications;
@@ -53,6 +55,12 @@ public class Prescrizione {
         this.assumption = assumption;
     }
 
+    // per caricare i dati dal database
+    public Prescrizione(int id, int userId, String medication, String indications, LocalDate fromDate, LocalDate toDate, int assumption) {
+        this(userId, medication, indications, fromDate, toDate, assumption);
+        this.id = id;
+    }
+
     /*Calcolo dei giorni consecutivi di assunzione del farmaco
     *
     *
@@ -69,6 +77,13 @@ public class Prescrizione {
         }
 
         return assumption;
+    }
+
+    public int getId() {
+        return this.id;
+    }
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getMedication() {
@@ -158,6 +173,7 @@ public class Prescrizione {
 
         try {
             while(set.next()) {
+                int id = set.getInt(idField);
                 int userId = set.getInt(patientIdField);
                 String prescriptionName = set.getString(prescriptionNameField);
                 String indication = set.getString(indicationField);
@@ -166,7 +182,7 @@ public class Prescrizione {
                 int assumption = set.getInt(assumptionField);
 
                 // vogliamo l'assumption così come è nel database
-                Prescrizione prescrizione = new Prescrizione(userId, prescriptionName, indication, fromDate, toDate, assumption);
+                Prescrizione prescrizione = new Prescrizione(id, userId, prescriptionName, indication, fromDate, toDate, assumption);
                 prescrizioniList.add(prescrizione);
 
             }
@@ -178,23 +194,29 @@ public class Prescrizione {
     }
 
     public boolean delete() {
+        String query = "DELETE FROM " + tableName +
+                " WHERE " + idField + " = " + this.getId();
 
-            String query = "DELETE FROM " + tableName +
-                    " WHERE " + patientIdField + " = " + this.getUserId() +
-                    " AND " + prescriptionNameField + " = '" + this.getMedication() + "'" +
-                    " AND " + indicationField + " = '" + this.getIndications() + "'" +
-                    " AND " + fromDateField + " = '" + this.getFromDate() + "'" +
-                    " AND " + toDateField + " = '" + this.getToDate() + "'" +
-                    " AND " + assumptionField + " = " + this.getAssumption();
-            return DatabaseManager.updateItem(query);
+        return DatabaseManager.updateItem(query);
     }
 
     public boolean reportPrescription() {
         // Costruisci la query SQL per aggiornare il campo assumption nel database
-        String query = "UPDATE " + tableName + " SET " + assumptionField + " = 0 WHERE " + patientIdField + " = " + userId +
-                   " AND " + prescriptionNameField + " = '" + medication + "' AND " + fromDateField + " = '" + fromDate + "'";
+        String query = "UPDATE " + tableName + " SET " + assumptionField + " = 0 WHERE " + idField + " = " + this.getId();
 
         // Esegui l'aggiornamento nel database e restituisci true se è stato eseguito con successo, altrimenti false
+        return DatabaseManager.updateItem(query);
+    }
+
+    public boolean updatePrescription() {
+        String query = "UPDATE " + tableName + " SET " +
+                prescriptionNameField + " = '" + medication + "', " +
+                indicationField + " = '" + indications + "', " +
+                fromDateField + " = '" + fromDate + "', " +
+                toDateField + " = '" + toDate + "', " +
+                assumptionField + " = " + assumption +
+                " WHERE " + idField + " = " + id;
+
         return DatabaseManager.updateItem(query);
     }
 
