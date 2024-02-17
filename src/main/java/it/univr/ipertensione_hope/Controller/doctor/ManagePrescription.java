@@ -23,6 +23,7 @@ import java.sql.Date;
 import java.util.ResourceBundle;
 
 public class ManagePrescription implements Initializable {
+
     @FXML
     private TableColumn<Prescrizione, String> indicationsColumn;
     @FXML
@@ -42,16 +43,14 @@ public class ManagePrescription implements Initializable {
     private final  String directory = "doctor/";
 
     public void initialize(URL location, ResourceBundle resources) {
+        selectedPaziente = DoctorAppData.getInstance().getSelectedPatient();
         Prescrizione[] prescrizioni = Prescrizione.getAllByPatient(selectedPaziente);
-
-        // Creazione della tabella
-        listaPrescrizioni.setItems(FXCollections.observableArrayList(prescrizioni));
-
-        // Colonne per le informazioni dei Prescizioni
         medicationColumn.setCellValueFactory(new PropertyValueFactory<>("medication"));
         indicationsColumn.setCellValueFactory(new PropertyValueFactory<>("indications"));
         fromDateColumn.setCellValueFactory(new PropertyValueFactory<>("fromDate"));
         toDateColumn.setCellValueFactory(new PropertyValueFactory<>("toDate"));
+        // Creazione della tabella
+
         // Caricamento dei dati nella tabella
         if (prescrizioni != null) {
             listaPrescrizioni.setItems(FXCollections.observableArrayList(prescrizioni));
@@ -61,7 +60,6 @@ public class ManagePrescription implements Initializable {
             emptyList.add(new Prescrizione("Nessuna prescrizione trovata", "", 0, null));
             listaPrescrizioni.setItems(emptyList);
         }
-
     }
 
     public void elimina() {
@@ -82,9 +80,8 @@ public class ManagePrescription implements Initializable {
         if(prescrizioneSelezionata == null) {
             Functions.alert("Selezionare prima un prescrizione", Alert.AlertType.INFORMATION, null);
         } else {
-            String path = directory + "ModifyPrescriptions";
+            String path = directory + "ModifyPrescriptions.fxml";
             FXMLLoader loader = WindowsManager.nextPage(WindowsManager.mainClass.getResource(path), path);
-
             if(loader != null)
                 ((ModifyPrescriptions) loader.getController()).setData(prescrizioneSelezionata);
             else System.out.println("Impossibile aprire la prescrizione");

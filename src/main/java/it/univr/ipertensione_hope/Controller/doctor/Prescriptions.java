@@ -57,14 +57,6 @@ public class Prescriptions implements Initializable {
         toDateColumn.setCellValueFactory(new PropertyValueFactory<>("toDate"));
 
         // Caricamento dei dati nella tabella
-        if (prescrizioni != null) {
-            listaPrescrizioni.setItems(FXCollections.observableArrayList(prescrizioni));
-        } else {
-            // Gestione dell'errore se non ci sono prescrizioni
-            ObservableList<Prescrizione> emptyList = FXCollections.observableArrayList();
-            emptyList.add(new Prescrizione("Nessuna prescrizione trovata", "", 0, null));
-            listaPrescrizioni.setItems(emptyList);
-        }
 
     }
 

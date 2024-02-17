@@ -178,10 +178,15 @@ public class Prescrizione {
     }
 
     public boolean delete() {
-        String query = "DELETE FROM " + Prescrizione.tableName +
-                " WHERE " + Prescrizione.patientIdField+ " = " +
-                this.getUserId();
-        return DatabaseManager.updateItem(query);
+
+            String query = "DELETE FROM " + tableName +
+                    " WHERE " + patientIdField + " = " + this.getUserId() +
+                    " AND " + prescriptionNameField + " = '" + this.getMedication() + "'" +
+                    " AND " + indicationField + " = '" + this.getIndications() + "'" +
+                    " AND " + fromDateField + " = '" + this.getFromDate() + "'" +
+                    " AND " + toDateField + " = '" + this.getToDate() + "'" +
+                    " AND " + assumptionField + " = " + this.getAssumption();
+            return DatabaseManager.updateItem(query);
     }
 
     public boolean reportPrescription() {
@@ -204,5 +209,7 @@ public class Prescrizione {
 
     public StringProperty medicationProperty() { return new SimpleStringProperty(this.getMedication());}
     public StringProperty indicationsProperty() { return new SimpleStringProperty(this.getIndications());}
+    public  StringProperty toDateProperty() { return new SimpleStringProperty(this.getToDate().toString());}
+    public  StringProperty fromDateProperty() { return new SimpleStringProperty(this.getFromDate().toString());}
 
 }
