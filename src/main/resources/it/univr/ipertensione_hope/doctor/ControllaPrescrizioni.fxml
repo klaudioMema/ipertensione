@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<HBox prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univr.ipertensione_hope.Controller.doctor.ControllaPrescrizioni">
+    <fx:include source="DoctorMenu.fxml" />
+    <VBox prefHeight="400.0" prefWidth="487.0">
+        <Pane prefHeight="370.0" prefWidth="470.0">
+            <Label layoutX="83.0" layoutY="14.0" text="Seleziona il paziente">
+                <font>
+                    <Font size="29.0" />
+                </font>
+            </Label>
+            <TableView fx:id="listaPazienti" editable="true" layoutY="64.0" prefHeight="264.0" prefWidth="472.0">
+                <columns>
+                    <TableColumn fx:id="medicationCol" prefWidth="98.0" text="Medicazione" />
+                    <TableColumn fx:id="indicationCol" prefWidth="95.0" text="Indicazioni" />
+                    <TableColumn fx:id="fromDateCol" prefWidth="83.0" text="FromDate" />
+                    <TableColumn fx:id="toDateCol" prefWidth="76.0" text="ToDate" />
+                    <TableColumn fx:id="notAssumptionCol" prefWidth="122.0" text="Non Assunto da" />
+                </columns>
+            </TableView>
+        </Pane>
+
+        <!-->Paziente selezionato<-->
+        <HBox>
+           <Label fx:id="PatientLabel" layoutX="180.0" layoutY="14.0" text="Paziente selezionato">
+              <font>
+                 <Font size="25.0" />
+              </font>
+           </Label>
+         <Label fx:id="SelectPatient" layoutX="10.0" layoutY="10.0">
+            <font>
+               <Font size="25.0" />
+            </font>
+         </Label>
+        </HBox>
+    </VBox>
+</HBox>
