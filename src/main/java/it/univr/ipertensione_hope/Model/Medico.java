@@ -129,6 +129,31 @@ public class Medico extends User{
         return DatabaseManager.updateItem(query);
     }
 
+    // ottiene il medico con l'id associato
+    public static Medico getDoctor(int id) {
+        String query = "SELECT * FROM " + tableName +
+                " WHERE " + idField +
+                " = " + id;
+
+        ResultSet set = DatabaseManager.getItem(query);
+
+        try {
+            set.next();
+
+            Medico medico = new Medico(
+                    set.getString(nameField),
+                    set.getString(surnameField),
+                    set.getString(emailField),
+                    set.getString(passwordField),
+                    set.getInt(idField)
+            );
+
+            return medico;
+        } catch (SQLException e) {
+            return null;
+        }
+    }
+
     public String toString() {
         return this.getNome() + " " + this.getCognome();
     }

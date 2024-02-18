@@ -40,13 +40,9 @@ public class MyPatient implements Initializable {
     private Label bDayField;
     @FXML
     private TextArea fattoriDiRischio;
-    @FXML
-    private Label statusLabel;
-    @FXML
-    private Label selectPatientLabel;
+
     private Paziente selectedPaziente;
-    @FXML
-    private Rectangle errorRectangle;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         selectedPaziente=DoctorAppData.getInstance().getSelectedPatient();
@@ -61,59 +57,7 @@ public class MyPatient implements Initializable {
             fattoriDiRischio.setText(selectedPaziente.getFattoriDiRischio());
         }
     }
-    @FXML
-    public void viewPrescriptions(ActionEvent event) {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(WindowsManager.mainClass.getResource("../../View/doctor/Prescriptions.fxml"));
-            Parent root1 = fxmlLoader.load();
-            Stage stage = new Stage();
-            stage.initModality(Modality.WINDOW_MODAL);
-            // Specifies the owner Window (parent) for new window
-            stage.setScene(new Scene(root1));
-            stage.setResizable(false);
-            stage.setTitle("BloodMonitor - Prescriptions");
-            stage.show();
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
-    }
-    @FXML
-    public void viewBloodPressureData(ActionEvent event) {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(WindowsManager.mainClass.getResource("../../View/BloodPressure.fxml"));
-            Parent root1 = fxmlLoader.load();
-            Stage stage = new Stage();
-            stage.initModality(Modality.WINDOW_MODAL);
-            // Specifies the owner Window (parent) for new window
-            stage.setScene(new Scene(root1));
-            stage.setTitle("BloodMonitor - Patient's Blood Pressure Data");
-            stage.setResizable(false);
-            stage.show();
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
-    }
-    @FXML
-    public void viewReportedSymptoms(ActionEvent event) {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(WindowsManager.mainClass.getResource("../../View/doctor/ViewSymptomsDoctor.fxml"));
-            Parent root1 = fxmlLoader.load();
-            Stage stage = new Stage();
-            stage.initModality(Modality.WINDOW_MODAL);
-            // Specifies the owner Window (parent) for new window
-            stage.setScene(new Scene(root1));
-            stage.setResizable(false);
-            stage.setTitle("BloodMonitor - Reported Symptoms");
-            stage.show();
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
-    }
-    private boolean checkCF(){
-        String regex = "^[A-Z]{6}\\d{2}[A-Z]\\d{2}[A-Z]\\d{3}[A-Z]$";
-        Matcher matcher = Pattern.compile(regex).matcher(codiceFField.getText());
-        return matcher.matches();
-    }
+
     public void aggiornaFattoriRischio(){
         if (  fattoriDiRischio.getText() == null || fattoriDiRischio.getText().isEmpty())
             Functions.alert("completare i fattori di ricschio per aggiornarli", Alert.AlertType.ERROR, null);

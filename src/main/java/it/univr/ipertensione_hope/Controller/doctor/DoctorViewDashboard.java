@@ -2,10 +2,12 @@ package it.univr.ipertensione_hope.Controller.doctor;
 
 import it.univr.ipertensione_hope.Controller.DatabaseController;
 import it.univr.ipertensione_hope.Functions;
+import it.univr.ipertensione_hope.Model.Medico;
 import it.univr.ipertensione_hope.Model.Paziente;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -23,7 +25,7 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 import java.util.concurrent.TimeUnit;
 
-public class DoctorViewDashboard  {
+public class DoctorViewDashboard implements Initializable {
     @FXML
     private Label usernameLabel;
     @FXML
@@ -32,6 +34,19 @@ public class DoctorViewDashboard  {
     private Label PatientLabel;
     @FXML
     private Label SelectPatient;
-    private Paziente selectedPaziente;
+    @FXML
+    private Label welcomeLabel;
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        Medico medico = DoctorAppData.getInstance().getMedicoLoggato();
+        Paziente pazienteSelezionato = DoctorAppData.getInstance().getSelectedPatient();
+
+        welcomeLabel.setText("Benvenuto " + medico.getNome());
+        if(pazienteSelezionato != null) {
+            PatientLabel.setText("Paziente selezionato: " + pazienteSelezionato);
+        } else {
+            PatientLabel.setText("Nessun paziente selezionato");
+        }
+    }
 }

@@ -13,50 +13,37 @@
    <fx:include source="DoctorMenu.fxml" />
    <VBox>
       <Pane prefHeight="432.0" prefWidth="496.0">
-         <Label layoutX="180.0" layoutY="14.0" prefHeight="36.0" prefWidth="114.0" styleClass="titles" text="Paziente">
+         <Label layoutX="180.0" layoutY="14.0" prefHeight="36.0" prefWidth="114.0" text="Paziente">
             <font>
                <Font size="25.0" />
             </font>
          </Label>
-         <Label layoutX="33.0" layoutY="70.0" prefHeight="17.0" prefWidth="49.0" styleClass="normal" text="Nome">
+         <Label layoutX="33.0" layoutY="70.0" prefHeight="17.0" prefWidth="49.0" text="Nome">
             <font>
                <Font size="16.0" />
             </font>
          </Label>
-         <Label layoutX="227.0" layoutY="70.0" styleClass="normal" text="Cognome">
+         <Label layoutX="227.0" layoutY="70.0" text="Cognome">
             <font>
                <Font size="16.0" />
             </font>
          </Label>
-         <Label layoutX="25.0" layoutY="137.0" styleClass="normal" text="Codice Fiscale">
+         <Label layoutX="25.0" layoutY="137.0" text="Codice Fiscale">
             <font>
                <Font size="16.0" />
             </font>
          </Label>
-         <Label layoutX="227.0" layoutY="137.0" styleClass="normal" text="Data di Nascita">
+         <Label layoutX="227.0" layoutY="137.0" text="Data di Nascita">
             <font>
                <Font size="16.0" />
             </font>
          </Label>
-         <Label layoutX="25.0" layoutY="191.0" styleClass="normal" text="Fattori di rischio">
+         <Label layoutX="25.0" layoutY="191.0" text="Fattori di rischio">
             <font>
                <Font size="16.0" />
             </font>
          </Label>
-         <Button layoutX="32.0" layoutY="314.0" mnemonicParsing="false" onAction="#viewBloodPressureData" prefHeight="36.0" prefWidth="156.0" styleClass="button" text="Pressione Sanguigna" />
-         <Button layoutX="280.0" layoutY="314.0" mnemonicParsing="false" onAction="#viewReportedSymptoms" prefHeight="36.0" prefWidth="138.0" styleClass="button" text="Sintomi Reportati" />
          <TextArea fx:id="fattoriDiRischio" layoutX="27.0" layoutY="223.0" prefHeight="89.0" prefWidth="396.0" />
-         <Rectangle fx:id="errorRectangle" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="327.0" layoutX="14.0" layoutY="59.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: linear-gradient(from 25% 25% to 100% 100%, #2265c3, #d62dfd);;" visible="false" width="402.0" />
-         <Label fx:id="selectPatientLabel" layoutX="43.0" layoutY="59.0" prefHeight="327.0" prefWidth="351.0" styleClass="normal" text="You may select a patient first, under &quot;Search Patient&quot;" textFill="WHITE" visible="false">
-            <font>
-               <Font name="System Bold" size="14.0" />
-            </font>
-         </Label>
-         <Label fx:id="statusLabel" layoutX="32.0" layoutY="69.0" prefHeight="17.0" prefWidth="296.0" styleClass="normal">
-            <font>
-               <Font size="18.0" />
-            </font>
-         </Label>
          <Label fx:id="nameField" layoutX="33.0" layoutY="94.0" prefHeight="25.0" prefWidth="138.0" />
          <Label fx:id="surnameField" layoutX="227.0" layoutY="94.0" prefHeight="25.0" prefWidth="189.0" />
          <Label fx:id="codiceFField" layoutX="24.0" layoutY="164.0" prefHeight="25.0" prefWidth="156.0" />

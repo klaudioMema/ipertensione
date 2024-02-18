@@ -3,12 +3,9 @@ package it.univr.ipertensione_hope.Model;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
-import it.univr.ipertensione_hope.Controller.DatabaseController;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -245,5 +242,4 @@ public class Paziente extends User{
 
         return DatabaseManager.updateItem(query);
     }
-
 }

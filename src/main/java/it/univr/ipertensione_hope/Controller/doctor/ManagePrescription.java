@@ -12,10 +12,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.net.URL;
@@ -38,6 +35,9 @@ public class ManagePrescription implements Initializable {
     private TableView<Prescrizione> listaPrescrizioni;
     @FXML
     private Button modificaButton;
+    @FXML
+    private Label PatientLabel;
+
     private Paziente selectedPaziente;
     private Prescrizione selectPrescription;
     private final  String directory = "doctor/";
@@ -60,6 +60,13 @@ public class ManagePrescription implements Initializable {
             emptyList.add(new Prescrizione("Nessuna prescrizione trovata", "", 0, null));
             listaPrescrizioni.setItems(emptyList);
         }
+        
+        if(selectedPaziente != null) {
+            PatientLabel.setText("Paziente selezionato: " + selectedPaziente);
+        } else {
+            PatientLabel.setText("Nessun paziente selezionato");
+        }
+
     }
 
     public void elimina() {

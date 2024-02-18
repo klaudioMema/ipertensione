@@ -30,5 +30,13 @@
               </TableView>
            </center>
         </BorderPane>
+        <!-->Paziente selezionato<-->
+        <HBox prefHeight="96.0" prefWidth="863.0">
+            <Label fx:id="patientLabel" layoutX="180.0" layoutY="14.0" text="Paziente selezionato: ">
+                <font>
+                    <Font size="25.0" />
+                </font>
+            </Label>
+        </HBox>
     </VBox>
 </HBox>
