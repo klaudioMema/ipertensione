@@ -50,7 +50,8 @@ public class ReportBloodPressure {
                     if(dati.add()) {
                         Functions.alert("Dati inseriti correttamente", Alert.AlertType.INFORMATION, (ButtonType button) -> {
                             String page = "patient/PatientDashboard.fxml";
-                            WindowsManager.loadPage(getClass().getResource(page), page);
+                            WindowsManager.loadPage(WindowsManager.mainClass.getResource(page), page);
+                            WindowsManager.reloadPage();
                         });
                     } else {
                         Functions.alert("Errore inaspettato durante il salvataggio nel database", Alert.AlertType.ERROR, null);
