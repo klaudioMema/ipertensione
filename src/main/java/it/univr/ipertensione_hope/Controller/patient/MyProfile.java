@@ -1,72 +1,29 @@
 package it.univr.ipertensione_hope.Controller.patient;
 
-import it.univr.ipertensione_hope.Controller.DatabaseController;
-import it.univr.ipertensione_hope.Model.Paziente;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
 
 import java.net.URL;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class MyProfile implements Initializable {
-
     @FXML
-    private TextField nameField;
+    private Label codiceFLabel;
     @FXML
-    private TextField surnameField;
+    private Label cognomeLabel;
     @FXML
-    private TextField codiceFField;
+    private Label dataNascitaLabel;
     @FXML
-    private TextArea fattoriDiRischio;
+    private Label fattoriRiscLabel;
     @FXML
-    private DatePicker bDayField;
-    @FXML
-    private Label doctorsName;
-    @FXML
-    private Label doctorsEmail;
-
-    //TODO
+    private Label nameLabel;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        /*
-        nameField.setText(Paziente.getInstance().getName());
-        surnameField.setText(Paziente.getInstance().getSurname());
-        codiceFField.setText(Paziente.getInstance().getCodiceF());
-        fattoriDiRischio.setText(Paziente.getInstance().getFattoriDiRischio());
-        bDayField.setValue(Paziente.getInstance().getbDay().toLocalDate());
-        try {
-            getDoctorsData();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-         */
+        nameLabel.setText(PatientAppData.getInstance().getLoggedPatient().getCognome());
+        cognomeLabel.setText(PatientAppData.getInstance().getLoggedPatient().getCognome());
+        codiceFLabel.setText(PatientAppData.getInstance().getLoggedPatient().getCodiceF());
+        dataNascitaLabel.setText(PatientAppData.getInstance().getLoggedPatient().getbDay().toString());
+        fattoriRiscLabel.setText(PatientAppData.getInstance().getLoggedPatient().getFattoriDiRischio());
     }
-
-    private void getDoctorsData() throws SQLException {
-        /*
-        String query =  "SELECT * FROM medics WHERE doctor_id = '" + Paziente.getInstance().getDoctorId() + "'";
-        ResultSet rs = DatabaseController.getResultSet(query);
-
-        try {
-            if (rs.next()) {
-                doctorsName.setText("Name: " + rs.getString("name") +
-                                    " " + rs.getString("surname"));
-                doctorsEmail.setText("Email: " + rs.getString("email"));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-         */
-
-    }
-
-
 }
