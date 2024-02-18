@@ -78,4 +78,11 @@ public class DoctorMenu {
         String path = directory + "VisualizzaSintomi.fxml";
         checkPatientSelected(path);
     }
+
+    @FXML
+    private void pazientiGravi(ActionEvent event) {
+        String path = directory + "PazientiGravi.fxml";
+        WindowsManager.loadPage(WindowsManager.mainClass.getResource(path), path);
+        WindowsManager.reloadPage();
+    }
 }

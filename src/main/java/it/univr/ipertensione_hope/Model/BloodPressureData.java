@@ -143,4 +143,18 @@ public class BloodPressureData {
         return loadBloodData(set);
     }
 
+    // funzione che controlla se il paziente ha riportato oggi i dati di pressione
+    public static boolean hasReportedToday(Paziente paziente) {
+        String query = "SELECT * FROM " + tableName +
+                " WHERE " + userIdFieldName +
+                " = " + paziente.getPatientId() + " AND " + dateFieldName +
+                " = '" + LocalDate.now() + "'";
+
+        try {
+            return DatabaseManager.getItem(query).next();
+        } catch (SQLException e) {
+            return false;
+        }
+    }
+
 }

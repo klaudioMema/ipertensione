@@ -1,21 +1,10 @@
 package it.univr.ipertensione_hope.Controller.patient;
 
-
-import it.univr.ipertensione_hope.Controller.LoginPage;
-import it.univr.ipertensione_hope.Controller.doctor.DoctorAppData;
-import it.univr.ipertensione_hope.Model.Paziente;
+import it.univr.ipertensione_hope.Functions;
+import it.univr.ipertensione_hope.Model.BloodPressureData;
 import it.univr.ipertensione_hope.View.WindowsManager;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.geometry.Pos;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.layout.HBox;
-import javafx.stage.Stage;
-
+import javafx.scene.control.Alert;
 import java.io.IOException;
 
 public class PatientMenu {
@@ -26,6 +15,7 @@ public class PatientMenu {
         String path = directory + "MyProfile.fxml";
         WindowsManager.loadPage(WindowsManager.mainClass.getResource(path), path);
     }
+
     public void myDoctor(ActionEvent event) throws IOException {
         String path = directory + "MyDoctor.fxml";
         WindowsManager.loadPage(WindowsManager.mainClass.getResource(path), path);
@@ -33,7 +23,11 @@ public class PatientMenu {
 
    public void bloodData(ActionEvent event) throws IOException {
         String path = directory + "ReportBloodPressure.fxml";
-        WindowsManager.loadPage(WindowsManager.mainClass.getResource(path), path);
+        if(BloodPressureData.hasReportedToday(PatientAppData.getInstance().getLoggedPatient())) {
+            Functions.alert("Hai già riportato i dati di pressione per oggi", Alert.AlertType.INFORMATION, null);
+        } else {
+            WindowsManager.loadPage(WindowsManager.mainClass.getResource(path), path);
+        }
     }
 
     public void therapies(ActionEvent event) throws IOException {

@@ -6,9 +6,13 @@ import it.univr.ipertensione_hope.Model.Paziente;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.util.Callback;
+
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -50,9 +54,43 @@ public class PazientiGravi implements Initializable{
         });
 
         dateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
-        systolicColumn.setCellValueFactory(new PropertyValueFactory<>("systolic"));
-        diastolicColumn.setCellValueFactory(new PropertyValueFactory<>("diastolic"));
+        systolicColumn.setCellValueFactory(new PropertyValueFactory<>("SBP"));
+        diastolicColumn.setCellValueFactory(new PropertyValueFactory<>("DBP"));
         categoryColumn.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().classifyBloodPressure().getDescription()));
+
+        // Configura la cell factory per le righe della tabella
+        pressureTableView.setRowFactory(tv -> new TableRow<BloodPressureData>() {
+            @Override
+            protected void updateItem(BloodPressureData item, boolean empty) {
+                super.updateItem(item, empty);
+                if (item == null || empty) {
+                    // Imposta il colore di sfondo predefinito
+                    setStyle("");
+                } else {
+                    // Imposta il colore di sfondo in base alla categoria
+                    switch (item.classifyBloodPressure()) {
+                        case HYPERTENSIVE_CRISIS ->
+                            // Colore rosso con opacità ridotta per l'ipertensione critica
+                                setStyle("-fx-background-color: rgba(255, 204, 204, 0.5);");
+                        case HYPERTENSION_STAGE_2 ->
+                            // Colore arancione con opacità ridotta per l'ipertensione di stadio 2
+                                setStyle("-fx-background-color: rgba(255, 229, 204, 0.5);");
+                        case HYPERTENSION_STAGE_1 ->
+                            // Colore giallo con opacità ridotta per l'ipertensione di stadio 1
+                                setStyle("-fx-background-color: rgba(255, 255, 204, 0.5);");
+                        case HIGH_BLOOD_PRESSURE_STAGE_1 ->
+                            // Colore verde chiaro con opacità ridotta per l'ipertensione lieve
+                                setStyle("-fx-background-color: rgba(204, 255, 204, 0.5);");
+                        case ELEVATED ->
+                            // Colore azzurro con opacità ridotta per la pressione leggermente elevata
+                                setStyle("-fx-background-color: rgba(204, 229, 255, 0.5);");
+                        default ->
+                            // Imposta il colore di sfondo predefinito
+                                setStyle("");
+                    }
+                }
+            }
+        });
 
         pressureTableView.getItems().addAll(datiPazienti);
     }
