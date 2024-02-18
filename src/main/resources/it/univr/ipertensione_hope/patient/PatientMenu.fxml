@@ -1,20 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.Font?>
 
-<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="it.univr.ipertensione_hope.Controller.patient.PatientMenu" prefHeight="400.0" prefWidth="140.0" style="-fx-background-color: #afeeee;">
-    <Pane prefHeight="102.0" prefWidth="148.0">
-        <Label fx:id="usernameLabel" layoutY="36.0" prefHeight="30.0" prefWidth="140.0" text="USERNAME">
-            <font>
-                <Font size="24.0" />
-            </font>
-        </Label>
-    </Pane>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox prefHeight="400.0" prefWidth="140.0" style="-fx-background-color: #afeeee;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univr.ipertensione_hope.Controller.patient.PatientMenu">
+    <Pane prefHeight="102.0" prefWidth="148.0" />
     <Button mnemonicParsing="false" onAction="#myProfile" prefHeight="48.0" prefWidth="145.0" text="Profilo" />
     <Button mnemonicParsing="false" onAction="#myDoctor" prefHeight="48.0" prefWidth="145.0" text="Dottore" />
     <Button mnemonicParsing="false" onAction="#bloodData" prefHeight="47.0" prefWidth="143.0" text="Riporta dati di pressione" />
     <Button mnemonicParsing="false" onAction="#therapies" prefHeight="47.0" prefWidth="145.0" text="Therapies" />
-    <Button mnemonicParsing="false" onAction="#reportSymptoms" prefHeight="47.0" prefWidth="145.0" text="Report Symptoms" />
     <Button mnemonicParsing="false" onAction="#logoutEvent" prefHeight="47.0" prefWidth="145.0" text="Logout" />
 </VBox>

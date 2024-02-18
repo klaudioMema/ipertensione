@@ -35,11 +35,6 @@ public class PatientMenu {
         WindowsManager.loadPage(WindowsManager.mainClass.getResource(path), path);
     }
 
-    public void reportSymptoms(ActionEvent event) throws IOException {
-        String path = directory + "ViewSymptomsPatient.fxml";
-        WindowsManager.loadPage(WindowsManager.mainClass.getResource(path), path);
-    }
-
     public void logoutEvent(ActionEvent event) throws IOException {
         String path = directory + "LoginPageView.fxml";
         PatientAppData.getInstance().setLoggedPatient(null);
