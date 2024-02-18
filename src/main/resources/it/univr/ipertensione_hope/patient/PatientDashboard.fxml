@@ -1,11 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox prefHeight="400.0" prefWidth="600.0"  xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univr.ipertensione_hope.Controller.patient.PatientViewDashboard">
-    <fx:include source="PatientMenu.fxml"/>
+<HBox prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.univr.ipertensione_hope.Controller.patient.PatientViewDashboard">
+    <fx:include source="PatientMenu.fxml" />
     <VBox>
-        <HBox fx:id="contentArea" layoutX="145.0" prefHeight="400.0" prefWidth="455.0" />
+        <BorderPane prefHeight="98.0" prefWidth="400.0">
+            <!-- Header -->
+            <top>
+                <HBox alignment="CENTER">
+                    <Label fx:id="welcomeLabel" text="Benvenuto, [Nome Paziente]" />
+                </HBox>
+            </top>
+            <bottom>
+                <HBox alignment="CENTER">
+                </HBox>
+            </bottom>
+        </BorderPane>
+          <VBox alignment="CENTER" prefHeight="191.0" prefWidth="400.0">
+              <Label text="Benvenuto nella tua area personale!" />
+
+              <Label fx:id="pressureDataLabel" text="Ricorda di caricare i tuoi dati di pressione giornalieri." />
+              <Button fx:id="loadPressureDataButton" onAction="#openPressureDataPage" text="Carica Dati di Pressione" />
+          </VBox>
     </VBox>
 </HBox>

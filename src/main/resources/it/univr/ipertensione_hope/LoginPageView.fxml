@@ -35,7 +35,7 @@
          <Button blendMode="SRC_ATOP" cacheShape="false" centerShape="false" focusTraversable="false" graphicTextGap="5.0" layoutX="242.0" layoutY="267.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#login" prefHeight="35.0" prefWidth="120.0" scaleShape="false" text="Login" textOverrun="CLIP" wrapText="true" />
          <CheckBox fx:id="login_selectShowPass" layoutX="204.0" layoutY="221.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#showPassword" text="Show Password" />
          <ImageView fitHeight="90.0" fitWidth="328.0" layoutX="143.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true">
-            <Image url="@../resources/logo.png" />
+            <Image url="@logo.png" />
          </ImageView>
       </AnchorPane>
    </AnchorPane>
