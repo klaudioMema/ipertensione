@@ -17,7 +17,7 @@
                     <Font size="29.0" />
                 </font>
             </Label>
-            <TableView fx:id="listaPazienti" editable="true" layoutY="64.0" prefHeight="264.0" prefWidth="472.0">
+            <TableView fx:id="listaPrescrizioni" editable="true" layoutY="64.0" prefHeight="264.0" prefWidth="472.0">
                 <columns>
                     <TableColumn fx:id="medicationCol" prefWidth="98.0" text="Medicazione" />
                     <TableColumn fx:id="indicationCol" prefWidth="95.0" text="Indicazioni" />

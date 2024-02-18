@@ -15,8 +15,11 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.net.URL;
 import java.sql.Date;
+import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ResourceBundle;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Prescriptions implements Initializable {
     @FXML
@@ -67,7 +70,14 @@ public class Prescriptions implements Initializable {
                 ToDateField == null
         ) {
             Functions.alert("Riempire tutti i campi", Alert.AlertType.ERROR, null);
-        } else {
+        }else if (!(FromDateField.getValue().isEqual(LocalDate.now()))) {
+            Functions.alert("Inserire il giorno di oggi", Alert.AlertType.ERROR, null);
+
+        } else if (!(ToDateField.getValue().isAfter(FromDateField.getValue()))) {
+            Functions.alert("La data deve essere maggiore della data di oggi", Alert.AlertType.ERROR, null);
+
+        }
+        else {
             Prescrizione prescrizione = new Prescrizione(
                     selectedPaziente.getPatientId(),
                     medicationField.getText(),

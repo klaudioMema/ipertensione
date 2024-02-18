@@ -3,8 +3,10 @@ package it.univr.ipertensione_hope.Model;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import it.univr.ipertensione_hope.Controller.DatabaseController;
 import javafx.beans.property.SimpleStringProperty;
@@ -185,6 +187,33 @@ public class Paziente extends User{
         }
 
         return pazientiList.toArray(new Paziente[0]);
+    }
+
+    // Metodo per ottenere un paziente dal database dato il suo ID
+    public static Paziente getById(int id) {
+        String query = "SELECT * FROM " + tableName + " WHERE " + idField + " = " + id;
+        ResultSet resultSet = DatabaseManager.getItem(query);
+
+        try {
+            if (resultSet.next()) {
+                String nome = resultSet.getString(nameField);
+                String cognome = resultSet.getString(surnameField);
+                String email = resultSet.getString(emailField);
+                String password = resultSet.getString(passwordField);
+                String risk = resultSet.getString(riskField);
+                String codiceF = resultSet.getString(CFField);
+                int patientId = resultSet.getInt(idField);
+                int doctorId = resultSet.getInt(doctorIdField);
+                Date bday = resultSet.getDate(bdayField);
+
+
+                // Recupera altri campi se necessario
+                return new Paziente(nome, cognome, email, password, patientId, codiceF, bday, risk, doctorId);
+            }
+        } catch (SQLException e) {
+            return null;
+        }
+        return null; // Ritorna null se il paziente non viene trovato
     }
 
     // ritorna i pazienti di un certo dottore

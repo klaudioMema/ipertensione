@@ -11,6 +11,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class RegisterDoctor {
 
     @FXML
@@ -29,6 +32,8 @@ public class RegisterDoctor {
 
             Functions.alert("Compilare tutti i campi", Alert.AlertType.ERROR, null);
 
+        } else if(!checkEM()) {
+            Functions.alert("Email non valida", Alert.AlertType.ERROR, null);
         } else {
             if(Medico.findUserDB(emailField.getText()) != null) {
                 Functions.alert("Questo medico è già esistente nel database", Alert.AlertType.ERROR, null);
@@ -50,5 +55,11 @@ public class RegisterDoctor {
                 }
             }
         }
+    }
+
+    private  boolean checkEM(){
+        String regex = "^[a-zA-Z0-9_.+-]+@(gmail|outlook|libero).(com|it)$";
+        Matcher matcher = Pattern.compile(regex).matcher(emailField.getText());
+        return matcher.matches();
     }
 }

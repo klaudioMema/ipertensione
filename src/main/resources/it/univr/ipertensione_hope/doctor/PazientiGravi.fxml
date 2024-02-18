@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<HBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="it.univr.ipertensione_hope.Controller.doctor.PazientiGravi" prefHeight="400.0" prefWidth="600.0">
+    <fx:include source="DoctorMenu.fxml"/>
+    <VBox>
+        <AnchorPane>
+            <TableView fx:id="pressureTableView" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                <columns>
+                    <TableColumn text="Paziente" fx:id="patientColumn"/>
+                    <TableColumn text="Data" fx:id="dateColumn"/>
+                    <TableColumn text="Sistolica" fx:id="systolicColumn"/>
+                    <TableColumn text="Diastolica" fx:id="diastolicColumn"/>
+                    <TableColumn text="Categoria" fx:id="categoryColumn"/>
+                </columns>
+            </TableView>
+
+        </AnchorPane>
+    </VBox>
+</HBox>

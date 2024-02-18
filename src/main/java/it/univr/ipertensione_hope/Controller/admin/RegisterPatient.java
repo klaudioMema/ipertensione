@@ -64,10 +64,15 @@ public class RegisterPatient implements Initializable {
 
             Functions.alert("Compilare tutti i campi", Alert.AlertType.ERROR, null);
 
+        } else if(!checkCF()) {
+            Functions.alert("Codice fiscale non valido", Alert.AlertType.ERROR, null);
+        } else if (!checkEM()) {
+            Functions.alert("Ricontrolla la email", Alert.AlertType.ERROR, null);
+
         } else if (passwordField.getText().length() < 8) {
             Functions.alert("La password deve avere almeno 8 caratteri", Alert.AlertType.ERROR, null);
-
-        } else if (bDayField.getValue().getYear() < 1910 || bDayField.getValue().getYear() > LocalDate.now().getYear()) {
+        }
+        else if (bDayField.getValue().getYear() < 1910 || bDayField.getValue().getYear() > LocalDate.now().getYear()) {
             Functions.alert("Inserire una data di nascita valida", Alert.AlertType.ERROR, null);
 
         } else {
@@ -99,10 +104,15 @@ public class RegisterPatient implements Initializable {
         }
     }
 
-    // Check if codice fiscale is valid
     private boolean checkCF(){
-        String regex = "^[A-Z]{6}\\d{2}[0-9]\\d[A-Z]\\d{2}[0-9]\\d[A-Z]\\d{3}[0-9]\\d[A-Z]$";
+        //String regex = "^[A-Z]{6}\d{2}[0-9]\d[A-Z]\d{2}[0-9]\d[A-Z]\d{3}[0-9]\d[A-Z]$";
+        String regex ="^[A-Z]{3}[A-Z]{3}[0-9]{2}[A-Z]{1}[0-9]{2}[A-Z]{1}[0-9]{3}[A-Z]{1}$";
         Matcher matcher = Pattern.compile(regex).matcher(codiceFField.getText());
+        return matcher.matches();
+    }
+    private  boolean checkEM(){
+        String regex = "^[a-zA-Z0-9_.+-]+@(gmail|outlook|libero).(com|it)$";
+        Matcher matcher = Pattern.compile(regex).matcher(emailField.getText());
         return matcher.matches();
     }
 }

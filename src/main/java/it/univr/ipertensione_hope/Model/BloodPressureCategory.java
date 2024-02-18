@@ -1,20 +1,26 @@
 package it.univr.ipertensione_hope.Model;
 
 public enum BloodPressureCategory {
-    HYPERTENSIVE_CRISIS("Hypertensive Crisis"),
-    HYPERTENSION_STAGE_2("Hypertension Stage 2"),
-    HYPERTENSION_STAGE_1("Hypertension Stage 1"),
-    HIGH_BLOOD_PRESSURE_STAGE_1("High Blood Pressure (Hypertension) Stage 1"),
-    ELEVATED("Elevated"),
-    NORMAL("Normal");
+    NORMAL("Normal", 0),
+    ELEVATED("Elevated", 1),
+    HIGH_BLOOD_PRESSURE_STAGE_1("High Blood Pressure Stage 1", 2),
+    HYPERTENSION_STAGE_1("Hypertension Stage 1", 3),
+    HYPERTENSION_STAGE_2("Hypertension Stage 2", 4),
+    HYPERTENSIVE_CRISIS("Hypertensive Crisis", 5);
 
-    private final String label;
+    private final String description;
+    private final int value;
 
-    BloodPressureCategory(String label) {
-        this.label = label;
+    BloodPressureCategory(String description, int value) {
+        this.description = description;
+        this.value = value;
     }
 
-    public String getLabel() {
-        return label;
+    public String getDescription() {
+        return description;
+    }
+
+    public int getValue() {
+        return value;
     }
 }
