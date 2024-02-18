@@ -68,13 +68,11 @@ public class RegisterPatient implements Initializable {
             Functions.alert("Codice fiscale non valido", Alert.AlertType.ERROR, null);
         } else if (!checkEM()) {
             Functions.alert("Ricontrolla la email", Alert.AlertType.ERROR, null);
-
         } else if (passwordField.getText().length() < 8) {
             Functions.alert("La password deve avere almeno 8 caratteri", Alert.AlertType.ERROR, null);
         }
-        else if (bDayField.getValue().getYear() < 1910 || bDayField.getValue().getYear() > LocalDate.now().getYear()) {
+        else if (bDayField.getValue().getYear() < 1910 || bDayField.getValue().getYear() >= LocalDate.now().getYear()) {
             Functions.alert("Inserire una data di nascita valida", Alert.AlertType.ERROR, null);
-
         } else {
             Paziente paziente = (Paziente) Paziente.findUserDB(codiceFField.getText());
             if(paziente != null) {

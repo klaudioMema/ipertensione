@@ -21,10 +21,6 @@ public class ManageDoctor {
     private TextField emailField;
     @FXML
     private TextField passwordField;
-    @FXML
-    private Label statusLabel;
-    @FXML
-    private Button saveButton;
 
     private Medico selectedDoctor;
 
@@ -44,21 +40,17 @@ public class ManageDoctor {
             Functions.alert("Compilare tutti i campi", Alert.AlertType.ERROR, null);
 
         } else {
-            if(Medico.findUserDB(emailField.getText()) != null) {
-                Functions.alert("Medico già esistente nel database", Alert.AlertType.ERROR, null);
-            } else {
-                selectedDoctor.setNome(nameField.getText());
-                selectedDoctor.setCognome(surnameField.getText());
-                selectedDoctor.setEmail(emailField.getText());
-                selectedDoctor.setPassword(passwordField.getText());
+            selectedDoctor.setNome(nameField.getText());
+            selectedDoctor.setCognome(surnameField.getText());
+            selectedDoctor.setEmail(emailField.getText());
+            selectedDoctor.setPassword(passwordField.getText());
 
-                if(Medico.updateDoctor(selectedDoctor)) {
-                    Functions.alert("Medico salvato correttamente", Alert.AlertType.INFORMATION, (ButtonType button) -> {
-                    	WindowsManager.previousPage();
-                    });
-                } else {
-                    Functions.alert("Errore inaspettato", Alert.AlertType.ERROR, null);
-                }
+            if(Medico.updateDoctor(selectedDoctor)) {
+                Functions.alert("Medico salvato correttamente", Alert.AlertType.INFORMATION, (ButtonType button) -> {
+                    WindowsManager.previousPage();
+                });
+            } else {
+                Functions.alert("Errore inaspettato", Alert.AlertType.ERROR, null);
             }
         }
     }

@@ -41,14 +41,6 @@
                     <Font size="22.0" />
                 </font>
             </Label>
-            <Button layoutX="308.0" layoutY="322.0" mnemonicParsing="false" onAction="#searchPatient" prefHeight="43.0" prefWidth="98.0" text="Cerca">
-                <font>
-                    <Font size="14.0" />
-                </font></Button>
-            <Button layoutX="20.0" layoutY="322.0" mnemonicParsing="false" onAction="#changeData" prefHeight="43.0" prefWidth="113.0" text="Cambia Dati">
-                <font>
-                    <Font size="14.0" />
-                </font></Button>
             <Button layoutX="153.0" layoutY="322.0" mnemonicParsing="false" onAction="#changeDoctor" prefHeight="43.0" prefWidth="135.0" text="Cambia Dottore">
                 <font>
                     <Font size="14.0" />

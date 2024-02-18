@@ -28,17 +28,9 @@ public class ManagePatient{
         codiceFField.setText(this.paziente.getEmail());
     }
 
-
-    // Change the doctor of a patient
-    @FXML
-    private void changeDoctor(ActionEvent event) {
-        
-    }
-
     // Remove a patient from DB
     @FXML
     private void removePatient(ActionEvent event){
-
             String query = "DELETE FROM patients WHERE name = '" + nameField.getText() +
                     "'AND surname = '" + surnameField.getText() +
                     "' AND codicef = '" + codiceFField.getText() + "'";
