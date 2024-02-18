@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.text.Font?>
+<HBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="it.univr.ipertensione_hope.Controller.doctor.VisualizzaSintomi" prefHeight="400.0" prefWidth="800.0">
+    <fx:include source="DoctorMenu.fxml"/>
+    <VBox>
+        <BorderPane>
+           <top>
+              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="40.0" prefWidth="600.0" text="Sintomi del Paziente" textAlignment="CENTER">
+                 <font>
+                    <Font name="System Bold" size="18.0" />
+                 </font>
+              </Label>
+           </top>
+           <center>
+              <TableView fx:id="sintomiTable" prefHeight="320.0" prefWidth="600.0">
+                 <columns>
+                     <TableColumn fx:id="descrizioneColumn" prefWidth="275.0" text="Descrizione" />
+                     <TableColumn fx:id="tipologiaColumn" prefWidth="125.0" text="Tipologia" />
+                     <TableColumn fx:id="gravitaColumn" prefWidth="125.0" text="Gravità" />
+                     <TableColumn fx:id="dataColumn" prefWidth="125.0" text="Data" />
+                 </columns>
+              </TableView>
+           </center>
+        </BorderPane>
+    </VBox>
+</HBox>

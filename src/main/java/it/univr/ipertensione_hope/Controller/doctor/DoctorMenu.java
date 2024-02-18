@@ -66,4 +66,16 @@ public class DoctorMenu {
         String path = directory + "PressureData.fxml";
         checkPatientSelected(path);
     }
+
+    @FXML
+    private void checkPrescription(ActionEvent event) {
+        String path = directory + "ControllaPrescrizioni.fxml";
+        checkPatientSelected(path);
+    }
+
+    @FXML
+    private void visualizzaSintomi(ActionEvent event) {
+        String path = directory + "VisualizzaSintomi.fxml";
+        checkPatientSelected(path);
+    }
 }
