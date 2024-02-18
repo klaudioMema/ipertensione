@@ -5,6 +5,7 @@ import javafx.beans.binding.BooleanExpression;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import javafx.beans.property.*;
@@ -111,16 +112,45 @@ public class Sintomo {
     // ritorna tutti i sintomi di un certo paziente
     public static Sintomo[] getAllByPatient(int patientId) {
         ArrayList<Sintomo> sintomi = new ArrayList<>();
+        Sintomo sintomoDaAggiungere;
 
         // prima bisogna recuperare tutti i dati di pressione del paziente
         BloodPressureData[] data = BloodPressureData.getAllByPatient(patientId);
 
         // per ognuno di essi recuperiamo il sintomo associato
         for(BloodPressureData pressureData : data) {
-            sintomi.add(getById(pressureData.getSintomoId()));
+            sintomoDaAggiungere = getById(pressureData.getSintomoId());
+            if(sintomoDaAggiungere != null) {
+                sintomi.add(getById(pressureData.getSintomoId()));
+            }
         }
 
         return sintomi.toArray(new Sintomo[0]);
+    }
+
+    // ottiene i dati di pressione associati a questo sintomo
+    public BloodPressureData getBloodPressureData() {
+        String query = "SELECT * FROM bloodpressure WHERE " +
+                BloodPressureData.sintomoIdFieldName + " = " + getId();
+
+        // Esegui la query e ottieni il risultato
+        ResultSet resultSet = DatabaseManager.getItem(query);
+
+        try {
+            if (resultSet.next()) {
+                int userId = resultSet.getInt(BloodPressureData.userIdFieldName);
+                int sbp = resultSet.getInt(BloodPressureData.sbpFieldName);
+                int dbp = resultSet.getInt(BloodPressureData.dbpFieldName);
+                LocalDate date = resultSet.getDate(BloodPressureData.dateFieldName).toLocalDate();
+
+                return new BloodPressureData(userId, sbp, dbp, date);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        // Se non ci sono risultati o c'è un errore, restituisci null
+        return null;
     }
 
     public StringProperty descrizioneProperty() {

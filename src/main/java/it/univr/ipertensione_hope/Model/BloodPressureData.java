@@ -18,12 +18,12 @@ public class BloodPressureData {
     private static final int MAX_SBP = 300;
     private static final int MAX_DBP = 200;
 
-    private static final String tableName = "bloodpressure";
-    private static final String sbpFieldName = "sbp";
-    private static final String dbpFieldName = "dbp";
-    private static final String dateFieldName = "date";
-    private static final String userIdFieldName = "user_id";
-    private static final String sintomoIdFieldName = "sintomo_id";
+    public static final String tableName = "bloodpressure";
+    public static final String sbpFieldName = "sbp";
+    public static final String dbpFieldName = "dbp";
+    public static final String dateFieldName = "date";
+    public static final String userIdFieldName = "user_id";
+    public static final String sintomoIdFieldName = "sintomo_id";
 
     public BloodPressureData(int userId, int SBP, int DBP, LocalDate date){
         this.userId = userId;
@@ -124,8 +124,9 @@ public class BloodPressureData {
                 int SBP = set.getInt(sbpFieldName);
                 int DBP = set.getInt(dbpFieldName);
                 LocalDate date = set.getDate(dateFieldName).toLocalDate();
+                int sintomoId = set.getInt(sintomoIdFieldName);
 
-                BloodPressureData pressureData = new BloodPressureData(patientId, SBP, DBP, date);
+                BloodPressureData pressureData = new BloodPressureData(patientId, SBP, DBP, date, sintomoId);
                 pressureDataList.add(pressureData);
             }
         } catch (SQLException | NullPointerException e) {
