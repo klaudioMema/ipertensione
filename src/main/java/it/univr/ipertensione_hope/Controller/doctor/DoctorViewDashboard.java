@@ -44,7 +44,7 @@ public class DoctorViewDashboard implements Initializable {
 
         welcomeLabel.setText("Benvenuto " + medico.getNome());
         if(pazienteSelezionato != null) {
-            PatientLabel.setText("Paziente selezionato: " + pazienteSelezionato);
+            PatientLabel.setText("Paziente selezionato: " + pazienteSelezionato.getNome() + " " + pazienteSelezionato.getCognome());
         } else {
             PatientLabel.setText("Nessun paziente selezionato");
         }

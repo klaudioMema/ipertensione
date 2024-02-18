@@ -1,9 +1,11 @@
 package it.univr.ipertensione_hope.Controller.doctor;
 
+import it.univr.ipertensione_hope.Model.Paziente;
 import it.univr.ipertensione_hope.Model.Sintomo;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
@@ -13,6 +15,7 @@ import java.util.ResourceBundle;
 
 public class VisualizzaSintomi implements Initializable {
 
+    @FXML private Label patientLabel;
     @FXML private TableView<Sintomo> sintomiTable;
     @FXML private TableColumn<Sintomo, String> descrizioneColumn = new TableColumn<>("descrizioneColumn");
     @FXML private TableColumn<Sintomo, String> tipologiaColumn = new TableColumn<>("tipologiaColumn");
@@ -40,5 +43,10 @@ public class VisualizzaSintomi implements Initializable {
 
         // Aggiungere i sintomi alla tabella
         sintomiTable.getItems().addAll(symptoms);
+
+        Paziente selectedPaziente = DoctorAppData.getInstance().getSelectedPatient();
+        if(selectedPaziente != null){
+            patientLabel.setText("Paziente selezionato: " + selectedPaziente.getNome() + " " + selectedPaziente.getCognome());
+        }
     }
 }

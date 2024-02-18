@@ -63,7 +63,7 @@ public class ManagePrescription implements Initializable {
         }
 
         if(selectedPaziente != null) {
-            PatientLabel.setText("Paziente selezionato: " + selectedPaziente);
+            PatientLabel.setText("Paziente selezionato: " + selectedPaziente.getNome() + " " + selectedPaziente.getCognome());
         } else {
             PatientLabel.setText("Nessun paziente selezionato");
         }

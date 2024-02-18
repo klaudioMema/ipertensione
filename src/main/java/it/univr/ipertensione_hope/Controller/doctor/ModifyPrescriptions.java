@@ -65,7 +65,7 @@ public class ModifyPrescriptions implements Initializable {
         Paziente selectedPaziente = DoctorAppData.getInstance().getSelectedPatient();
 
         if(selectedPaziente != null) {
-            patientLabel.setText("Paziente selezionato: " + selectedPaziente);
+            patientLabel.setText("Paziente selezionato: " + selectedPaziente.getNome() + " " + selectedPaziente.getCognome());
         } else {
             patientLabel.setText("Nessun paziente selezionato");
         }

@@ -20,8 +20,6 @@ public class SelectPatient implements Initializable {
     private TableView<Paziente> listaPazienti;
     @FXML
     private Label PatientLabel;
-    @FXML
-    private Label SelectPatient;
 
     private Paziente selectedPaziente;
 
@@ -30,8 +28,9 @@ public class SelectPatient implements Initializable {
         Paziente[] pazienti = Paziente.getAllByDoctor(DoctorAppData.getInstance().getMedicoLoggato());
         selectedPaziente = DoctorAppData.getInstance().getSelectedPatient();
 
-        if(selectedPaziente != null)
-            SelectPatient.setText(selectedPaziente.getNome() + " " + selectedPaziente.getCognome());
+        if(selectedPaziente != null){
+            PatientLabel.setText("Paziente selezionato: " + selectedPaziente.getNome() + " " + selectedPaziente.getCognome());
+        }
 
         listaPazienti.setItems(FXCollections.observableArrayList(pazienti));
 
@@ -43,6 +42,7 @@ public class SelectPatient implements Initializable {
 
         TableColumn<Paziente, String> mailCol = new TableColumn<>("mail");
         mailCol.setCellValueFactory(cellData -> cellData.getValue().mailProperty());
+
     }
 
     @FXML
