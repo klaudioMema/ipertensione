@@ -21,6 +21,7 @@ import java.util.ResourceBundle;
 
 public class ManagePrescription implements Initializable {
 
+    public Label SelectPatient;
     @FXML
     private TableColumn<Prescrizione, String> indicationsColumn;
     @FXML
@@ -60,7 +61,7 @@ public class ManagePrescription implements Initializable {
             emptyList.add(new Prescrizione("Nessuna prescrizione trovata", "", 0, null));
             listaPrescrizioni.setItems(emptyList);
         }
-        
+
         if(selectedPaziente != null) {
             PatientLabel.setText("Paziente selezionato: " + selectedPaziente);
         } else {

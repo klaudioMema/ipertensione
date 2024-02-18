@@ -10,15 +10,14 @@ import javafx.scene.control.TextField;
 import java.time.LocalDate;
 import java.util.*;
 import java.time.temporal.WeekFields;
+import it.univr.ipertensione_hope.Model.Paziente;
 
 public class PressureData {
 
     @FXML
     private ChoiceBox<String> modeChoiceBox;
     @FXML
-    private Label sbpLabel;
-    @FXML
-    private Label dbpLabel;
+    private Label patientLabel;
     @FXML
     private TextField patientIdField;
     @FXML
@@ -35,6 +34,14 @@ public class PressureData {
 
         // Inizializzazione dei dati di pressione
         updatePressureData();
+
+        Paziente selectedPaziente = DoctorAppData.getInstance().getSelectedPatient();
+
+        if(selectedPaziente != null) {
+            patientLabel.setText("Paziente selezionato: " + selectedPaziente);
+        } else {
+            patientLabel.setText("Nessun paziente selezionato");
+        }
     }
 
     private void updatePressureChart() {

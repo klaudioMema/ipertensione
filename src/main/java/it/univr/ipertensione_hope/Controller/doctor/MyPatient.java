@@ -1,30 +1,14 @@
 package it.univr.ipertensione_hope.Controller.doctor;
 
-import it.univr.ipertensione_hope.Controller.DatabaseController;
-import it.univr.ipertensione_hope.Controller.admin.ManagePatient;
 import it.univr.ipertensione_hope.Functions;
 import it.univr.ipertensione_hope.Model.Paziente;
-import it.univr.ipertensione_hope.Model.Prescrizione;
 import it.univr.ipertensione_hope.View.WindowsManager;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.shape.Rectangle;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-import javafx.stage.Window;
-
 import java.net.URL;
-import java.sql.Date;
-import java.time.LocalDate;
-import java.time.format.DateTimeParseException;
 import java.util.ResourceBundle;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+
 public class MyPatient implements Initializable {
     @FXML
     private Label PatientLabel;
@@ -55,6 +39,12 @@ public class MyPatient implements Initializable {
             codiceFField.setText(selectedPaziente.getCodiceF());
             bDayField.setText((selectedPaziente.getbDay().toString()));
             fattoriDiRischio.setText(selectedPaziente.getFattoriDiRischio());
+        }
+
+        if(selectedPaziente != null) {
+            PatientLabel.setText("Paziente selezionato: " + selectedPaziente);
+        } else {
+            PatientLabel.setText("Nessun paziente selezionato");
         }
     }
 

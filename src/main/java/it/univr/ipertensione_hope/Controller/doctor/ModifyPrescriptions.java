@@ -2,13 +2,18 @@ package it.univr.ipertensione_hope.Controller.doctor;
 
 import it.univr.ipertensione_hope.Functions;
 import it.univr.ipertensione_hope.Model.Medico;
+import it.univr.ipertensione_hope.Model.Paziente;
 import it.univr.ipertensione_hope.Model.Prescrizione;
 import it.univr.ipertensione_hope.View.WindowsManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 
-public class ModifyPrescriptions {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class ModifyPrescriptions implements Initializable {
     @FXML
     private DatePicker FromDateField;
     @FXML
@@ -52,6 +57,17 @@ public class ModifyPrescriptions {
             } else {
                 Functions.alert("Errore inaspettato durante la modifica", Alert.AlertType.ERROR, null);
             }
+        }
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        Paziente selectedPaziente = DoctorAppData.getInstance().getSelectedPatient();
+
+        if(selectedPaziente != null) {
+            patientLabel.setText("Paziente selezionato: " + selectedPaziente);
+        } else {
+            patientLabel.setText("Nessun paziente selezionato");
         }
     }
 }
