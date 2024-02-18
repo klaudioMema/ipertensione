@@ -35,7 +35,7 @@ CREATE TABLE `LastExecutionDate` (
 
 LOCK TABLES `LastExecutionDate` WRITE;
 /*!40000 ALTER TABLE `LastExecutionDate` DISABLE KEYS */;
-INSERT INTO `LastExecutionDate` VALUES (1,'2024-02-17');
+INSERT INTO `LastExecutionDate` VALUES (1,'2024-02-18');
 /*!40000 ALTER TABLE `LastExecutionDate` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -50,9 +50,9 @@ CREATE TABLE `Sintomi` (
   `id` int NOT NULL AUTO_INCREMENT,
   `descrizione` varchar(255) NOT NULL,
   `tipologia` varchar(50) NOT NULL,
-  `gravità` int NOT NULL,
+  `gravita` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -61,6 +61,7 @@ CREATE TABLE `Sintomi` (
 
 LOCK TABLES `Sintomi` WRITE;
 /*!40000 ALTER TABLE `Sintomi` DISABLE KEYS */;
+INSERT INTO `Sintomi` VALUES (1,'asdf','asdf',3),(2,'bcx','xcvb',1),(3,'dgh','dfgh',2),(4,'asdf','asdf',3);
 /*!40000 ALTER TABLE `Sintomi` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -113,7 +114,7 @@ CREATE TABLE `bloodpressure` (
 
 LOCK TABLES `bloodpressure` WRITE;
 /*!40000 ALTER TABLE `bloodpressure` DISABLE KEYS */;
-INSERT INTO `bloodpressure` VALUES (1,100,100,'2023-07-10',NULL),(2,100,90,'2023-07-10',NULL),(32,100,100,'2023-07-13',NULL),(32,90,90,'2023-07-12',NULL),(32,90,100,'2023-07-16',NULL),(0,100,90,'2024-02-15',NULL),(35,100,90,'2024-02-15',NULL),(35,100,100,'2024-02-15',NULL),(35,140,90,'2024-02-16',NULL),(35,120,70,'2024-02-17',NULL),(35,120,60,'2024-03-15',NULL),(35,110,90,'2024-04-15',NULL),(35,100,100,'2024-05-16',NULL);
+INSERT INTO `bloodpressure` VALUES (1,100,100,'2023-07-10',NULL),(2,100,90,'2023-07-10',NULL),(32,100,100,'2023-07-13',NULL),(32,90,90,'2023-07-12',NULL),(32,90,100,'2023-07-16',NULL),(0,100,90,'2024-02-15',NULL),(35,100,90,'2024-02-15',NULL),(35,100,100,'2024-02-15',NULL),(35,140,90,'2024-02-16',NULL),(35,120,70,'2024-02-17',NULL),(35,120,60,'2024-03-15',NULL),(35,110,90,'2024-04-15',NULL),(35,100,100,'2024-05-16',NULL),(35,120,90,'2024-02-17',0),(35,100,100,'2024-02-17',0),(35,100,90,'2024-02-17',0),(35,90,90,'2024-02-17',2),(35,80,80,'2024-02-17',3),(35,90,90,'2024-02-17',4);
 /*!40000 ALTER TABLE `bloodpressure` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -172,7 +173,7 @@ CREATE TABLE `patients` (
 
 LOCK TABLES `patients` WRITE;
 /*!40000 ALTER TABLE `patients` DISABLE KEYS */;
-INSERT INTO `patients` VALUES (35,'luca','fron','luca@gmail.com','luca','luca','1999-09-13',15,'fumatore, drogato'),(39,'asdf','asdf','asdf','asdfasdf','asdf','2024-01-29',15,NULL),(40,'qwer','qwerqwer','qwer','qwerqwer','qwer','2024-02-16',15,NULL),(41,'zxcv','zxcv','zxcv','zxcvzxcv','zxcv','2024-02-10',15,NULL),(42,'vbnm','vbmn','vbmn','vbmnvbmn','vbm','2024-03-08',15,NULL),(43,'uiop','uiop','uiop','uiopuiop','uiop','2024-02-17',10,NULL),(44,'hjkl','hjkl','hjkl','hjklhjkl','hjkl','2024-02-03',11,NULL),(45,'vczx','vcxz','vcxz','vcxzvcxz','vcxz','2024-02-15',10,NULL),(46,'fdsa','fdsa','fdsa','fdsafdsa','fdsa','2024-02-14',10,NULL);
+INSERT INTO `patients` VALUES (35,'luca','fron','luca@gmail.com','luca','luca','1999-09-13',15,'fumatore, drogato, gay'),(39,'asdf','asdf','asdf','asdfasdf','asdf','2024-01-29',15,NULL),(40,'qwer','qwerqwer','qwer','qwerqwer','qwer','2024-02-16',15,NULL),(41,'zxcv','zxcv','zxcv','zxcvzxcv','zxcv','2024-02-10',15,NULL),(42,'vbnm','vbmn','vbmn','vbmnvbmn','vbm','2024-03-08',15,NULL),(43,'uiop','uiop','uiop','uiopuiop','uiop','2024-02-17',10,NULL),(44,'hjkl','hjkl','hjkl','hjklhjkl','hjkl','2024-02-03',11,NULL),(45,'vczx','vcxz','vcxz','vcxzvcxz','vcxz','2024-02-15',10,NULL),(46,'fdsa','fdsa','fdsa','fdsafdsa','fdsa','2024-02-14',10,NULL);
 /*!40000 ALTER TABLE `patients` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -184,14 +185,16 @@ DROP TABLE IF EXISTS `prescriptions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `prescriptions` (
+  `id` int NOT NULL AUTO_INCREMENT,
   `user_id` int DEFAULT NULL,
   `medication` text,
   `indications` text,
   `days` int DEFAULT NULL,
   `fromDate` date DEFAULT NULL,
   `assumption` int DEFAULT NULL,
-  `toDate` date DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `toDate` date DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -200,7 +203,7 @@ CREATE TABLE `prescriptions` (
 
 LOCK TABLES `prescriptions` WRITE;
 /*!40000 ALTER TABLE `prescriptions` DISABLE KEYS */;
-INSERT INTO `prescriptions` VALUES (35,'coca','da assumere tre volte al giorno dopo i pasti, anche prima se vuoi',NULL,'2024-02-13',2,'2024-02-15'),(35,'asdf','',NULL,'2024-02-13',2,'2024-02-29'),(35,'ero','',NULL,'2024-02-13',3,'2024-02-14'),(35,'fenta','',NULL,'2024-02-12',3,'2024-02-29'),(35,'paro','asfd',NULL,'2024-02-01',3,'2024-02-01'),(35,'qwerty','',NULL,'2024-02-12',2,'2024-02-18'),(35,'zxvc','sadf',NULL,'2024-02-24',0,'2024-02-29');
+INSERT INTO `prescriptions` VALUES (1,35,'morfina','da assumere tre volte al giorno dopo i pasti, anche prima se vuoi',NULL,'2024-02-17',3,'2024-02-22'),(2,35,'morfina','da assumere tre volte al giorno dopo i pasti, anche prima se vuoi',NULL,'2024-02-17',3,'2024-02-22'),(3,35,'morfina','da assumere tre volte al giorno dopo i pasti, anche prima se vuoi',NULL,'2024-02-17',3,'2024-02-22'),(4,35,'morfina','da assumere tre volte al giorno dopo i pasti, anche prima se vuoi',NULL,'2024-02-17',3,'2024-02-22'),(5,35,'morfina','da assumere tre volte al giorno dopo i pasti, anche prima se vuoi',NULL,'2024-02-17',3,'2024-02-22'),(6,35,'morfina','da assumere tre volte al giorno dopo i pasti, anche prima se vuoi',NULL,'2024-02-17',3,'2024-02-22'),(7,35,'morfina','da assumere tre volte al giorno dopo i pasti, anche prima se vuoi',NULL,'2024-02-17',3,'2024-02-22');
 /*!40000 ALTER TABLE `prescriptions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -239,4 +242,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-02-17 16:04:10
+-- Dump completed on 2024-02-18 17:20:14
